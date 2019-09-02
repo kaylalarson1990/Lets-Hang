@@ -7,7 +7,7 @@ cache:
   - node_modules
 install:
 - yarn install
-- yarn install expo-cli
+- yarn add expo-cli
 script:
 - yarn run lint
 - yarn test
