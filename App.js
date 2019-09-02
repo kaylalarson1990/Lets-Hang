@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, AppRegistry, ScrollView } from "react-native";
 import { MockEvents, MockUserEvents, MockUser } from "./MockData";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Events } from "./Events";
 import styled from "styled-components";
 
-export default App = () => {
+App = () => {
   const [events, setEvents] = useState([]);
   const [user, setUser] = useState({});
 
@@ -40,6 +43,18 @@ export default App = () => {
   );
 };
 
+// const homeStack = createStackNavigator({
+//   Home: {
+//     screen: App
+//   }
+// });
+
+const tabNavigator = createBottomTabNavigator({
+  Home: {
+    screen: App
+  }
+});
+
 const Title = styled.Text`
   font-size: 50px;
   color: black;
@@ -65,12 +80,9 @@ const Name = styled.Text`
 
 const Cover = styled.View`
   width: 100%;
-  height: 150px;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+  height: 170px;
   overflow: hidden;
   padding-top: 40px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 `;
 
 const styles = StyleSheet.create({
@@ -82,4 +94,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent("Let's Hang", () => App);
+export default createAppContainer(tabNavigator);
