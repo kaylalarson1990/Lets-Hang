@@ -49,6 +49,10 @@ export const MockEvents = {
   ]
 };
 
+export const MockUser = {
+  name: 'Ryan'
+}
+
 export const MockUserEvents = {
   users: [
     {
