@@ -10,7 +10,7 @@ install:
 - yarn add expo-cli
 script:
 - yarn run lint
-- yarn test
+- yarn run test
 deploy:
   provider: heroku
   api_key:
