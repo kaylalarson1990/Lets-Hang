@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, AppRegistry, ScrollView } from "react-native";
 import { MockEvents, MockUserEvents, MockUser } from "./MockData";
 import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Events } from "./Events";
+import { Ionicons } from "@expo/vector-icons";
 import styled from "styled-components";
 
 App = () => {
@@ -22,36 +22,49 @@ App = () => {
         name={event.name}
         title={event.title}
         time={event.time}
+        address={event.address}
         key={event.id}
       />
     );
   });
-  console.log(allEvents);
   return (
     <>
-      <Cover>
-        <View style={{ display: "flex", flexDirection: "row" }}>
-          <Avatar source={require("./assets/avatar.png")} />
-          <Title>Let's Hang!</Title>
-        </View>
-        <Name>Welcome, {user.name}!</Name>
-      </Cover>
       <ScrollView>
+        <Cover>
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Avatar source={require("./assets/main-user.png")} />
+            <Title>Let's Hang!</Title>
+          </View>
+          <Name>Welcome, {user.name}!</Name>
+        </Cover>
         <View style={styles.container}>{allEvents}</View>
       </ScrollView>
     </>
   );
 };
 
-// const homeStack = createStackNavigator({
-//   Home: {
-//     screen: App
-//   }
-// });
+const activeTintLabelColor = "#4D8CFF";
+const inactiveTintLabelColor = "#808080";
 
 const tabNavigator = createBottomTabNavigator({
-  Home: {
-    screen: App
+  TabHome: {
+    screen: App,
+    navigationOptions: {
+      tabBarLabel: (
+        <Text
+          style={{
+            fontSize: 24,
+            color: activeTintLabelColor,
+            padding: 15,
+            textAlign: "center"
+          }}
+        >
+          Home
+        </Text>
+      ),
+      padding: 15,
+      margin: 15
+    }
   }
 });
 
@@ -80,15 +93,16 @@ const Name = styled.Text`
 
 const Cover = styled.View`
   width: 100%;
-  height: 170px;
+  height: 190px;
   overflow: hidden;
   padding-top: 40px;
+  background-color: #f7f7f7;
 `;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f7f7f7",
     alignItems: "center",
     justifyContent: "center"
   }

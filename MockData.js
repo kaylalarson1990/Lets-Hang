@@ -3,6 +3,7 @@ export const MockEvents = {
     {
       id: 1,
       title: "Happy Hour",
+      address: '1234 Happy Hour St, Denver, CO',
       description:
         "Planning on meeting at Brothers at 6pm for happy hour today!",
       time: "6:00 pm",
@@ -15,6 +16,7 @@ export const MockEvents = {
     {
       id: 2,
       title: "Wing Night",
+      address: '1234 Wing Lane, Denver, CO',
       description:
         "Planning on meeting at Pub on Penn at 4pm for a fun Wednesday night wing night!",
       time: "4:00 pm",
@@ -27,6 +29,7 @@ export const MockEvents = {
     {
       id: 3,
       title: "Taco Tuesday",
+      address: '1234 Taco Ave, Denver, CO',
       description: "Planning on meeting at Machete at 5pm for taco Tuesday!",
       time: "5:00 pm",
       name: "Logan",
@@ -38,6 +41,7 @@ export const MockEvents = {
     {
       id: 4,
       title: "Wine Down Wednesday",
+      address: '1234 Wine Rd, Denver, CO',
       description: "Planning on meeting at Barcelona at 4pm for a wine night!",
       time: "4:00 pm",
       name: "Kayla",
