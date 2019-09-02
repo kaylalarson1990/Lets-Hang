@@ -6,10 +6,10 @@ cache:
   directories:
   - node_modules
 install:
-- npm install
+- yarn install
 script:
-- npm run lint
-- npm test
+- yarn run lint
+- yarn test
 deploy:
   provider: heroku
   api_key:
