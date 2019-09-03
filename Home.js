@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, AppRegistry, ScrollView } from "react-native";
-import { MockEvents, MockUserEvents, MockUser } from "./MockData";
+import { StyleSheet, View, ScrollView } from "react-native";
+import { MockEvents, MockUser } from "./MockData";
 import { Events } from "./Events";
-import { Ionicons } from "@expo/vector-icons";
 import { connect } from 'react-redux'
-import { EventReducer } from './Reducers/EventReducer'
 import { getEvents } from './Actions/index'
+import LottieView from 'lottie-react-native'
 import styled from "styled-components";
 
 const Home = (props) => {
@@ -47,6 +46,14 @@ const Home = (props) => {
           </View>
         </Cover>
         <View style={styles.container}>{allEvents}</View>
+        {/* <LottieView 
+          source={require('./Animations/8868-three-points.json')} 
+          autoPlay 
+          loop 
+          speed={1}
+          autoSize
+
+          /> */}
       </ScrollView>
     </>
   );
