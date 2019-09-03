@@ -1,60 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, AppRegistry, ScrollView } from "react-native";
-import { MockEvents, MockUserEvents, MockUser } from "./MockData";
+import React from "react";
+import { Text } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { Events } from "./Events";
-import { Ionicons } from "@expo/vector-icons";
-import styled from "styled-components";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import { rootReducer } from './Reducers/index'
+import Home from './Home'
 
-App = () => {
-  const [events, setEvents] = useState([]);
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    setEvents(MockEvents.events);
-    setUser(MockUser);
-  }, []);
-
-  const allEvents = events.map(event => {
-    return (
-      <Events
-        title={event.title}
-        time={event.time}
-        address={event.address}
-        description={event.description}
-        key={event.id}
-      />
-    );
-  });
-  return (
-    <>
-      <ScrollView>
-        <Cover>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center"
-            }}
-          >
-            <Name>Welcome, {user.name}!</Name>
-            <Avatar source={require("./assets/main-user.png")} />
-          </View>
-        </Cover>
-        <View style={styles.container}>{allEvents}</View>
-      </ScrollView>
-    </>
-  );
-};
+const store = createStore(rootReducer)
 
 const activeTintLabelColor = "#4D8CFF";
-const inactiveTintLabelColor = "#808080";
+// const inactiveTintLabelColor = "#808080";
 
 const tabNavigator = createBottomTabNavigator({
   TabHome: {
-    screen: App,
+    screen: Home,
     navigationOptions: {
       tabBarLabel: (
         <Text
@@ -74,46 +34,15 @@ const tabNavigator = createBottomTabNavigator({
   }
 });
 
-const Title = styled.Text`
-  font-size: 50px;
-  color: black;
-  margin-left: 50px;
-  align-items: center;
-`;
+const Navigation = createAppContainer(tabNavigator)
 
-const Avatar = styled.Image`
-  top: 15;
-  left: 15;
-  border-radius: 20px;
-  width: 48px;
-  height: 48px;
-  margin-right: 16px;
-`;
-
-const Name = styled.Text`
-  color: black;
-  font-size: 32px;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-right: 44px;
-  text-align: center;
-`;
-
-const Cover = styled.View`
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  padding-top: 40px;
-  background-color: #f7f7f7;
-`;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f7f7f7",
-    alignItems: "center",
-    justifyContent: "center"
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
+    )
   }
-});
+}
 
-export default createAppContainer(tabNavigator);

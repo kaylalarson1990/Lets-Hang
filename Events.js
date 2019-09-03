@@ -14,7 +14,6 @@ export const Events = props => {
           <Address>{props.address}</Address>
           <Time>{props.time}</Time>
           <Description>{props.description}</Description>
-        </Wrapper>
         <ButtonWrapper>
           <ButtonDecline title="Decline">
             <Text
@@ -23,7 +22,7 @@ export const Events = props => {
                 textAlign: "center",
                 fontSize: 16
               }}
-            >
+              >
               Decline
             </Text>
           </ButtonDecline>
@@ -34,11 +33,12 @@ export const Events = props => {
                 textAlign: "center",
                 fontSize: 16
               }}
-            >
+              >
               Accept
             </Text>
           </Button>
         </ButtonWrapper>
+      </Wrapper>
       </Content>
     </Container>
   );
