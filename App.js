@@ -19,10 +19,10 @@ App = () => {
   const allEvents = events.map(event => {
     return (
       <Events
-        name={event.name}
         title={event.title}
         time={event.time}
         address={event.address}
+        description={event.description}
         key={event.id}
       />
     );
@@ -31,11 +31,17 @@ App = () => {
     <>
       <ScrollView>
         <Cover>
-          <View style={{ display: "flex", flexDirection: "row" }}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center"
+            }}
+          >
+            <Name>Welcome, {user.name}!</Name>
             <Avatar source={require("./assets/main-user.png")} />
-            <Title>Let's Hang!</Title>
           </View>
-          <Name>Welcome, {user.name}!</Name>
         </Cover>
         <View style={styles.container}>{allEvents}</View>
       </ScrollView>
@@ -79,21 +85,23 @@ const Avatar = styled.Image`
   top: 15;
   left: 15;
   border-radius: 20px;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
 `;
 
 const Name = styled.Text`
   color: black;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   margin-top: 20px;
+  margin-right: 44px;
   text-align: center;
 `;
 
 const Cover = styled.View`
   width: 100%;
-  height: 190px;
+  height: 150px;
   overflow: hidden;
   padding-top: 40px;
   background-color: #f7f7f7;

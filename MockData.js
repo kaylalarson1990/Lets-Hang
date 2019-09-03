@@ -40,7 +40,7 @@ export const MockEvents = {
     },
     {
       id: 4,
-      title: "Wine Down Wednesday",
+      title: "Wine Down",
       address: '1234 Wine Rd, Denver, CO',
       description: "Planning on meeting at Barcelona at 4pm for a wine night!",
       time: "4:00 pm",
