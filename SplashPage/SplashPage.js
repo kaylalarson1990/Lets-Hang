@@ -1,58 +1,56 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Input } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { LogInForm } from './LogInForm'
+import { SignUpForm } from './SignUpForm'
+import { Button } from 'react-native-elements'
+import LottieView from 'lottie-react-native'
 
 export const SplashPage = () => {
   const [signUp, setSignUp] = useState(false)
-  const [signIn, setSignIn] = useState(false)
-  
+  const [logIn, setLogIn] = useState(false)
 
   return (
     <SplashView>
-    <LoginForm>
-      <Input 
-        placeholder='Email'
-      />
-      <Input 
-        placeholder='Password'
-      />
-    </LoginForm>
-    <LogoutForm>
-      <SignUpTitle>Sign Up!</SignUpTitle>
-      <Input 
-        placeholder='First Name'
-      />
-      <Input 
-        placeholder='Last Name'
-      />
-      <Input 
-        placeholder='Email'
-      />
-      <Input 
-        placeholder='Password'
-      />
-      <Input 
-        placeholder='Confirm Password'
-      />
-      <Input 
-        placeholder='Phone number e.g 3031119999'
-      />
-    </LogoutForm>
+    <LottieView 
+      source={require('../Animations/animation-w414-h736.json')}
+      loop={false}
+      autoPlay
+      speed={1}
+      autoSize
+    />
+    <SplashContent>
+    <AppTitle>Let's Hang!</AppTitle>
+    <Button 
+      title='Log In'
+      onPress={() => setLogIn(true) }
+      containerStyle={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center'
+      }}
+      buttonStyle={{
+        width: '50%',
+      }}
+    />
+    <Button 
+      title='Sign Up'
+      onPress={() => setSignUp(true)}
+      containerStyle={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center'
+      }}
+      buttonStyle={{
+        width: '50%'
+      }}
+    />
+    {logIn && <LogInForm />}
+    {signUp && <SignUpForm />}
+    </SplashContent>
     </SplashView>
   )
 }
-
-const LoginForm = styled.View`
-  height: 50%;
-  width: 100%;
-`
-
-const LogoutForm = styled.View`
-  height: 50%;
-  width: 100%
-`
 
 const SplashView = styled.View`
   z-index: 1;
@@ -61,13 +59,19 @@ const SplashView = styled.View`
   background: lightblue
   display: flex;
   flex-direction: column;
-  justify-content: center
+  justify-content: center;
+  align-items: center;
 `
-const SignUpTitle = styled.Text`
-  font-size: 35px;
-  text-align: center;
+const AppTitle = styled.Text`
+  font-size: 50px;
+  color: yellow;
 `
 
+const SplashContent = styled.View`
+  z-index: 10;
+  position: absolute;
+
+`
 const mapDispatchToProps = dispatch => ({
 
 })
