@@ -8,13 +8,15 @@ import { Provider } from "react-redux";
 import { rootReducer } from "./Reducers/index";
 import Home from "./Home";
 import Friends from "./Friends";
+import { createStackNavigator } from "react-navigation-stack";
+import SplashPage from './SplashPage/SplashPage'
 
 const store = createStore(rootReducer, composeWithDevTools());
 
 const activeTintLabelColor = "#4D8CFF";
 const inactiveTintLabelColor = "#808080";
 
-const tabNavigator = createBottomTabNavigator({
+const tabNavigator = createStackNavigator({
   TabHome: {
     screen: Home,
     navigationOptions: {
@@ -31,27 +33,11 @@ const tabNavigator = createBottomTabNavigator({
         >
           Home
         </Text>
-      )
-    }
-  },
-  TabFriends: {
-    screen: Friends,
-    navigationOptions: {
-      tabBarLabel: (
-        <Text
-          style={{
-            fontSize: 24,
-            color: inactiveTintLabelColor,
-            padding: 15,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          Friends
-        </Text>
-      )
-    }
+      ),
+      padding: 15,
+      margin: 15,
+      header: null,
+    },
   }
 });
 
