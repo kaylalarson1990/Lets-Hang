@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import { rootReducer } from './Reducers/index'
 import Home from './Home'
+import SplashPage from './SplashPage/SplashPage'
 
 const store = createStore(rootReducer)
 
