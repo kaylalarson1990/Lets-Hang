@@ -5,22 +5,56 @@ import { connect } from 'react-redux'
 import { View } from 'react-native'
 
 export const SplashPage = () => {
+  const [signUp, setSignUp] = useState(false)
+  const [signIn, setSignIn] = useState(false)
+  
 
   return (
-    <Form>
+    <SplashView>
+    <LoginForm>
+      <Input 
+        placeholder='Email'
+      />
+      <Input 
+        placeholder='Password'
+      />
+    </LoginForm>
+    <LogoutForm>
+      <SignUpTitle>Sign Up!</SignUpTitle>
       <Input 
         placeholder='First Name'
-        label='First Name'
-        
       />
       <Input 
         placeholder='Last Name'
       />
-    </Form>
+      <Input 
+        placeholder='Email'
+      />
+      <Input 
+        placeholder='Password'
+      />
+      <Input 
+        placeholder='Confirm Password'
+      />
+      <Input 
+        placeholder='Phone number e.g 3031119999'
+      />
+    </LogoutForm>
+    </SplashView>
   )
 }
 
-const Form = styled.View`
+const LoginForm = styled.View`
+  height: 50%;
+  width: 100%;
+`
+
+const LogoutForm = styled.View`
+  height: 50%;
+  width: 100%
+`
+
+const SplashView = styled.View`
   z-index: 1;
   height: 100%;
   width: 100%;
@@ -28,6 +62,10 @@ const Form = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: center
+`
+const SignUpTitle = styled.Text`
+  font-size: 35px;
+  text-align: center;
 `
 
 const mapDispatchToProps = dispatch => ({
