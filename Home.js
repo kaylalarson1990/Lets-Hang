@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, AppRegistry, ScrollView } from "react-native";
 import { MockEvents, MockUserEvents, MockUser } from "./MockData";
 import { Events } from "./Events";
-import { Ionicons } from "@expo/vector-icons";
+// import { Ionicons } from "@expo/vector-icons";
 import { connect } from 'react-redux'
 import { EventReducer } from './Reducers/EventReducer'
 import { getEvents } from './Actions/index'
-import styled from "styled-components";
+import styled from "styled-components/native";
 
 const Home = (props) => {
   const [events, setEvents] = useState([]);
   const [user, setUser] = useState({});
-  console.log(props)
 
   useEffect(() => {
     props.getEvents(MockEvents.events)
@@ -53,7 +52,7 @@ const Home = (props) => {
 };
 
 const Avatar = styled.Image`
-  top: 15;
+  top: 10;
   left: 15;
   border-radius: 20px;
   width: 48px;
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
   })
 
 const mapStateToProps = store => ({
-  ...store
+  events: store.events
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,6 +1,8 @@
-import { combineReducers } from 'redux'
-import { EventReducer } from './EventReducer'
+import { combineReducers } from "redux";
+import { EventReducer } from "./EventReducer";
+import { FriendsReducer } from "./FriendsReducer";
 
 export const rootReducer = combineReducers({
-  events: EventReducer
-})
+  events: EventReducer,
+  friends: FriendsReducer
+});

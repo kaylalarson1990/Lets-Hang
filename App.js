@@ -1,16 +1,18 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { createStore } from 'redux';
-import { Provider } from 'react-redux'
-import { rootReducer } from './Reducers/index'
-import Home from './Home'
+import { createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { Provider } from "react-redux";
+import { rootReducer } from "./Reducers/index";
+import Home from "./Home";
+import Friends from "./Friends";
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composeWithDevTools());
 
 const activeTintLabelColor = "#4D8CFF";
-// const inactiveTintLabelColor = "#808080";
+const inactiveTintLabelColor = "#808080";
 
 const tabNavigator = createBottomTabNavigator({
   TabHome: {
@@ -22,19 +24,38 @@ const tabNavigator = createBottomTabNavigator({
             fontSize: 24,
             color: activeTintLabelColor,
             padding: 15,
-            textAlign: "center"
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center"
           }}
         >
           Home
         </Text>
-      ),
-      padding: 15,
-      margin: 15
+      )
+    }
+  },
+  TabFriends: {
+    screen: Friends,
+    navigationOptions: {
+      tabBarLabel: (
+        <Text
+          style={{
+            fontSize: 24,
+            color: inactiveTintLabelColor,
+            padding: 15,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          Friends
+        </Text>
+      )
     }
   }
 });
 
-const Navigation = createAppContainer(tabNavigator)
+const Navigation = createAppContainer(tabNavigator);
 
 export default class App extends React.Component {
   render() {
@@ -42,7 +63,6 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Navigation />
       </Provider>
-    )
+    );
   }
 }
-
