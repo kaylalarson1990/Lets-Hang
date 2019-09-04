@@ -6,7 +6,7 @@ import { SignUpForm } from "./SignUpForm";
 import { Button } from "react-native-elements";
 import LottieView from "lottie-react-native";
 
-export const SplashPage = () => {
+export const SplashPage = ({setViewSplash}) => {
   const [signUp, setSignUp] = useState(false);
   const [logIn, setLogIn] = useState(false);
 
@@ -54,8 +54,8 @@ export const SplashPage = () => {
             raised={true}
           />
         )}
-        {logIn && <LogInForm setLogIn={setLogIn} />}
-        {signUp && <SignUpForm setSignUp={setSignUp} />}
+        {logIn && <LogInForm setLogIn={setLogIn} setViewSplash={setViewSplash}/>}
+        {signUp && <SignUpForm setSignUp={setSignUp} setViewSplash={setViewSplash}/>}
       </SplashContent>
     </SplashView>
   );

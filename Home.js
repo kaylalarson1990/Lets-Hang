@@ -12,6 +12,7 @@ import SplashPage from './SplashPage/SplashPage'
 const Home = (props) => {
   const [events, setEvents] = useState([]);
   const [user, setUser] = useState({});
+  const [viewSplash, setViewSplash] = useState(true)
 
   useEffect(() => {
     props.getEvents(MockEvents.events)
@@ -32,7 +33,7 @@ const Home = (props) => {
   });
   return (
     <>
-      <SplashPage />
+      {viewSplash && <SplashPage setViewSplash={setViewSplash}/>}
       <ScrollView>
         <Cover>
           <View

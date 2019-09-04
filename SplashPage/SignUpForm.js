@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Input, Button } from "react-native-elements";
+import { Input } from "react-native-elements";
 import { TouchableOpacity, Text } from "react-native";
+import LottieView from 'lottie-react-native'
+import { connect } from 'react-redux'
 
-export const SignUpForm = ({ setSignUp }) => {
+export const SignUpForm = ({ setSignUp, setViewSplash}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,13 +44,29 @@ export const SignUpForm = ({ setSignUp }) => {
         placeholder="Phone number e.g 3031119999"
         value={phoneNumber}
         onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
+
       />
-      <Button
-        title="Submit"
-        containerStyle={{
-          marginTop: 20
+      <TouchableOpacity
+        onPress={() => lottieAnimation.play()}
+        style={{
+          width: 200,
+          height: 200
         }}
+      >
+      <LottieView 
+        ref={animation => {
+          lottieAnimation = animation
+        }}
+        source={require('../Animations/animation-w512-h512.json')}
+        loop={false}
+        speed={2}
+        style={{
+          height: '100%',
+          width: '100%'
+        }}
+        onAnimationFinish={() => setViewSplash(false)}
       />
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setSignUp(false)}
         containerStyle={{
@@ -76,3 +94,7 @@ const SignUpTitle = styled.Text`
   font-size: 35px;
   text-align: center;
 `;
+
+
+
+export default connect(null, null)(SignUpForm)

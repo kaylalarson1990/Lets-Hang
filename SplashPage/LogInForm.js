@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Input, Button } from "react-native-elements";
 import { TouchableOpacity, Text } from "react-native";
+import LottieView from 'lottie-react-native'
 
-export const LogInForm = ({ setLogIn }) => {
+export const LogInForm = ({ setLogIn, setViewSplash }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,12 +20,27 @@ export const LogInForm = ({ setLogIn }) => {
         value={password}
         onChangeText={password => setPassword(password)}
       />
-      <Button
-        title="Submit"
-        containerStyle={{
-          marginTop: 20
+      <TouchableOpacity
+        onPress={() => lottieAnimation.play()}
+        style={{
+          width: 200,
+          height: 200
         }}
+      >
+      <LottieView 
+        ref={animation => {
+          lottieAnimation = animation
+        }}
+        source={require('../Animations/animation-w512-h512.json')}
+        loop={false}
+        speed={2}
+        style={{
+          height: '100%',
+          width: '100%'
+        }}
+        onAnimationFinish={() => setViewSplash(false)}
       />
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setLogIn(false)}
         containerStyle={{
