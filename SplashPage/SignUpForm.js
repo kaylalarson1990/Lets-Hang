@@ -4,14 +4,29 @@ import { Input } from "react-native-elements";
 import { TouchableOpacity, Text } from "react-native";
 import LottieView from 'lottie-react-native'
 import { connect } from 'react-redux'
+import { addNewUserThunk } from '../Thunks/UserThunks'
 
-export const SignUpForm = ({ setSignUp, setViewSplash}) => {
+export const SignUpForm = ({ setSignUp, setViewSplash, addNewUser}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(null);
+
+  const checkUserSignUp = async () => {
+    const user = {
+      first_name: firstName,
+      last_name: lastName,
+      phone_number: phoneNumber,
+      email,
+      password,
+      password_confirmation: confirmPassword
+    }
+    const response = await addNewUser(user)
+    console.log(response)
+    lottieAnimation.play()
+  }
 
   return (
     <SignUp>
@@ -47,7 +62,7 @@ export const SignUpForm = ({ setSignUp, setViewSplash}) => {
 
       />
       <TouchableOpacity
-        onPress={() => lottieAnimation.play()}
+        onPress={() => checkUserSignUp()}
         style={{
           width: 200,
           height: 200
@@ -95,6 +110,8 @@ const SignUpTitle = styled.Text`
   text-align: center;
 `;
 
+const mapDispatchToProps = dispatch => ({
+  addNewUser: (user) => dispatch(addNewUserThunk(user))
+})
 
-
-export default connect(null, null)(SignUpForm)
+export default connect(null, mapDispatchToProps)(SignUpForm)

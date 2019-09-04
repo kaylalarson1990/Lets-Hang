@@ -12,3 +12,8 @@ export const addCurrentUser = user => ({
   type: 'ADD_CURRENT_USER',
   user
 })
+
+export const hasErrored = error => ({
+  type: 'HAS_ERRORED',
+  error
+})

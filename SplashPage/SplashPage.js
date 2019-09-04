@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { LogInForm } from "./LogInForm";
-import { SignUpForm } from "./SignUpForm";
+import SignUpForm  from "./SignUpForm";
 import { Button } from "react-native-elements";
 import LottieView from "lottie-react-native";
 

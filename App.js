@@ -1,17 +1,16 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import { createAppContainer } from "react-navigation";
-import { createBottomTabNavigator } from "react-navigation-tabs";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import { rootReducer } from "./Reducers/index";
 import Home from "./Home";
-import Friends from "./Friends";
 import { createStackNavigator } from "react-navigation-stack";
-import SplashPage from './SplashPage/SplashPage'
+import thunk from 'redux-thunk'
 
-const store = createStore(rootReducer, composeWithDevTools());
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 const activeTintLabelColor = "#4D8CFF";
 const inactiveTintLabelColor = "#808080";
