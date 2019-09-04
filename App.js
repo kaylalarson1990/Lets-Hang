@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 import { createAppContainer } from "react-navigation";
-import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createStackNavigator } from "react-navigation-stack";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import { rootReducer } from './Reducers/index'
@@ -13,7 +13,7 @@ const store = createStore(rootReducer)
 const activeTintLabelColor = "#4D8CFF";
 // const inactiveTintLabelColor = "#808080";
 
-const tabNavigator = createBottomTabNavigator({
+const tabNavigator = createStackNavigator({
   TabHome: {
     screen: Home,
     navigationOptions: {
@@ -30,8 +30,9 @@ const tabNavigator = createBottomTabNavigator({
         </Text>
       ),
       padding: 15,
-      margin: 15
-    }
+      margin: 15,
+      header: null,
+    },
   }
 });
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Input } from 'react-native-elements'
+import { Input, Button } from 'react-native-elements'
 
-export const SignUpForm = () => {
+export const SignUpForm = ({setSignUp}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -12,7 +12,6 @@ export const SignUpForm = () => {
 
   return (
     <SignUp>
-    <SignUpTitle>Sign Up!</SignUpTitle>
     <Input 
       placeholder='First Name'
       value={firstName}
@@ -42,6 +41,23 @@ export const SignUpForm = () => {
       placeholder='Phone number e.g 3031119999'
       value={phoneNumber}
       onChangeText={(phoneNumber) => setPhoneNumber(phoneNumber)}
+    />
+    <Button 
+      title='Submit'
+      containerStyle={{
+        marginTop: 20
+      }}
+    />
+    <Button 
+      title='Back to Login'
+      onPress={() => setSignUp(false)}
+      containerStyle={{
+        marginTop: 10,
+        position: 'absolute',
+        right: 175,
+        top: 400,
+      }}
+      raised={true}
     />
   </SignUp>
   )
