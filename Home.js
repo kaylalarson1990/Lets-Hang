@@ -4,10 +4,7 @@ import { MockEvents, MockUser } from "./MockData";
 import { Events } from "./Components/Events/Events";
 import { connect } from 'react-redux'
 import { getEvents } from './Actions/index'
-import LottieView from 'lottie-react-native'
 import styled from "styled-components";
-import SplashPage from './SplashPage/SplashPage'
-import { FriendList } from './Components/FriendsList/FriendList'
 
 const Home = (props) => {
   const [events, setEvents] = useState([]);
@@ -45,13 +42,6 @@ const Home = (props) => {
           </View>
         </Cover>
         <View style={styles.container}>{allEvents}</View>
-        <LottieView 
-          source={require('./Animations/8868-three-points.json')} 
-          autoPlay 
-          loop 
-          speed={1}
-          autoSize
-          />
       </ScrollView>
     </>
   );

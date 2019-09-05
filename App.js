@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, YellowBox } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -13,6 +13,7 @@ import { SplashPage } from './SplashPage/SplashPage'
 import LogInForm from './SplashPage/LogInForm'
 import thunk from 'redux-thunk'
 
+YellowBox.ignoreWarnings(["ReactNative.NativeModules.LottieAnimationView.getConstants"]);
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
