@@ -24,7 +24,6 @@ export const SignUpForm = ({ setSignUp, setViewSplash, addNewUser}) => {
       password_confirmation: confirmPassword
     }
     const response = await addNewUser(user)
-    console.log(response)
     lottieAnimation.play()
   }
 
