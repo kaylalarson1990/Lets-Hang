@@ -21,7 +21,8 @@ export const LogInForm = (props) => {
     }
     setIsLoading(true)
     const response = await props.loginUser(user)
-    
+    setIsLoading(false)
+    setSuccess(true)
   }
   return (
     <LoginForm>
@@ -35,7 +36,7 @@ export const LogInForm = (props) => {
         value={password}
         onChangeText={password => setPassword(password)}
       />
-      {!isLoading && <Button
+      {!isLoading && !success && <Button
         title='Submit'      
         onPress={() => handleUserLogin()}
       >
@@ -53,13 +54,14 @@ export const LogInForm = (props) => {
         }}
       />}
       {!isLoading && success && <LottieView 
-        source={require('../Animations/3152-star-success.json')}
+        source={require('../Animations/4431-success.json')}
         ref={ animation => {
           successAnimation = animation
         }}
         autoPlay
+        loop={false}
         style={{
-          margintop: 20
+          marginTop: 20
         }}
         onAnimationFinish={() => props.navigation.navigate('Home')}
       />}

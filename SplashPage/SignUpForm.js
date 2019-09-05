@@ -29,8 +29,8 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
     }
     setIsLoading(true)
     const response = await addNewUser(user)
-    console.log()
-    waveAnimation.play()
+    setIsLoading(false)
+    setSuccess(true)
     return response
   }
 
@@ -67,7 +67,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
         onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
 
       />
-      {!isLoading && <Button
+      {!isLoading && !success && <Button
         title='Submit'
         onPress={() => checkUserSignUp()}
         style={{
@@ -87,16 +87,18 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
         style={{
           marginTop: 20
         }}
-      />}{!isLoading && success && <LottieView 
-        source={require('../Animations/3152-star-success.json')}
+      />}
+      {!isLoading && success && <LottieView 
+        source={require('../Animations/4431-success.json')}
         ref={ animation => {
           successAnimation = animation
         }}
         autoPlay
         style={{
-          margintop: 20
+          marginTop: 20
         }}
-        onAnimationFinish={() => props.navigation.navigate('Home')}
+        loop={false}
+        onAnimationFinish={() => navigation.navigate('Home')}
       />}
       <TouchableOpacity
         onPress={() => setSignUp(false)}
