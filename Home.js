@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import { MockEvents, MockUser } from "./MockData";
 import { Events } from "./Components/Events/Events";
-import { connect } from 'react-redux'
-import { getEvents } from './Actions/index'
-import LottieView from 'lottie-react-native'
+import { connect } from "react-redux";
+import { getEvents } from "./Actions/index";
+import LottieView from "lottie-react-native";
 import styled from "styled-components";
-import SplashPage from './SplashPage/SplashPage'
-import { FriendList } from './Components/FriendsList/FriendList'
+import SplashPage from "./SplashPage/SplashPage";
+import { FriendList } from "./Components/FriendsList/FriendList";
 
-const Home = (props) => {
+const Home = props => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    props.getEvents(MockEvents.events)
+    props.getEvents(MockEvents.events);
     setEvents(MockEvents.events);
   }, []);
 
@@ -41,17 +41,21 @@ const Home = (props) => {
             }}
           >
             <Name>Welcome, Ryan!</Name>
-            <Avatar source={require("./assets/main-user.png")} />
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate("Profile")}
+            >
+              <Avatar source={require("./assets/main-user.png")} />
+            </TouchableOpacity>
           </View>
         </Cover>
         <View style={styles.container}>{allEvents}</View>
-        <LottieView 
-          source={require('./Animations/8868-three-points.json')} 
-          autoPlay 
-          loop 
+        <LottieView
+          source={require("./Animations/8868-three-points.json")}
+          autoPlay
+          loop
           speed={1}
           autoSize
-          />
+        />
       </ScrollView>
     </>
   );
@@ -89,17 +93,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#f7f7f7",
     alignItems: "center",
     justifyContent: "center"
-    }
-  })
+  }
+});
 
 const mapStateToProps = store => ({
   events: store.events,
   user: store.currentUser
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-  getEvents: (event) => dispatch(getEvents(event))
-})
+  getEvents: event => dispatch(getEvents(event))
+});
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(Home)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
