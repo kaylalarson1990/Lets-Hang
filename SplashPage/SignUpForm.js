@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Input } from "react-native-elements";
+import { Input, Button } from "react-native-elements";
 import { TouchableOpacity, Text } from "react-native";
 import LottieView from 'lottie-react-native'
 import { connect } from 'react-redux'
 import { addNewUserThunk } from '../Thunks/UserThunks'
+import { withNavigation } from 'react-navigation'
 
-export const SignUpForm = ({ setSignUp, setViewSplash, addNewUser}) => {
+export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [failure, setFailure] = useState(false)
 
   const checkUserSignUp = async () => {
     const user = {
@@ -23,8 +27,11 @@ export const SignUpForm = ({ setSignUp, setViewSplash, addNewUser}) => {
       password,
       password_confirmation: confirmPassword
     }
+    setIsLoading(true)
     const response = await addNewUser(user)
-    lottieAnimation.play()
+    console.log()
+    waveAnimation.play()
+    return response
   }
 
   return (
@@ -60,27 +67,37 @@ export const SignUpForm = ({ setSignUp, setViewSplash, addNewUser}) => {
         onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
 
       />
-      <TouchableOpacity
+      {!isLoading && <Button
+        title='Submit'
         onPress={() => checkUserSignUp()}
         style={{
           width: 200,
           height: 200
         }}
       >
-      <LottieView 
-        ref={animation => {
-          lottieAnimation = animation
-        }}
-        source={require('../Animations/animation-w512-h512.json')}
-        loop={false}
-        speed={2}
+      </Button>}
+      {isLoading && <LottieView
+        ref={ animation => {
+          waveAnimation = animation
+        }} 
+        source={require('../Animations/196-material-wave-loading.json')}
+        loop={true}
+        speed={1}
+        autoPlay
         style={{
-          height: '100%',
-          width: '100%'
+          marginTop: 20
         }}
-        onAnimationFinish={() => setViewSplash(false)}
-      />
-      </TouchableOpacity>
+      />}{!isLoading && success && <LottieView 
+        source={require('../Animations/3152-star-success.json')}
+        ref={ animation => {
+          successAnimation = animation
+        }}
+        autoPlay
+        style={{
+          margintop: 20
+        }}
+        onAnimationFinish={() => props.navigation.navigate('Home')}
+      />}
       <TouchableOpacity
         onPress={() => setSignUp(false)}
         containerStyle={{
@@ -113,4 +130,4 @@ const mapDispatchToProps = dispatch => ({
   addNewUser: (user) => dispatch(addNewUserThunk(user))
 })
 
-export default connect(null, mapDispatchToProps)(SignUpForm)
+export default withNavigation(connect(null, mapDispatchToProps)(SignUpForm))

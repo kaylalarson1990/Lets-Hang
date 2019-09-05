@@ -24,7 +24,7 @@ export const addNewUserThunk = (user) => {
 
 export const loginUserThunk = (user) => {
   const url = 'https://lets-hang-be.herokuapp.com/api/v1/sessions'
-  return async dispatchd => {
+  return async dispatch => {
     try {
       const options = {
         method: 'POST',

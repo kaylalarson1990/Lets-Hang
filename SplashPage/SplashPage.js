@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { LogInForm } from "./LogInForm";
+import LogInForm from "./LogInForm";
 import SignUpForm  from "./SignUpForm";
 import { Button } from "react-native-elements";
 import LottieView from "lottie-react-native";
 
-export const SplashPage = ({setViewSplash}) => {
+export const SplashPage = (props) => {
   const [signUp, setSignUp] = useState(false);
   const [logIn, setLogIn] = useState(false);
 
@@ -54,8 +54,8 @@ export const SplashPage = ({setViewSplash}) => {
             raised={true}
           />
         )}
-        {logIn && <LogInForm setLogIn={setLogIn} setViewSplash={setViewSplash}/>}
-        {signUp && <SignUpForm setSignUp={setSignUp} setViewSplash={setViewSplash}/>}
+        {logIn && <LogInForm setLogIn={setLogIn} />}
+        {signUp && <SignUpForm setSignUp={setSignUp} />}
       </SplashContent>
     </SplashView>
   );

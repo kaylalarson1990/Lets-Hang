@@ -3,11 +3,26 @@ import styled from "styled-components";
 import { Input, Button } from "react-native-elements";
 import { TouchableOpacity, Text } from "react-native";
 import LottieView from 'lottie-react-native'
+import { connect } from 'react-redux'
+import { loginUserThunk } from '../Thunks/UserThunks'
+import { withNavigation } from 'react-navigation'
 
-export const LogInForm = ({ setLogIn, setViewSplash }) => {
+export const LogInForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading ] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [failure, setFailure] = useState(false)
 
+  const handleUserLogin = async () => {
+    const user = {
+      email,
+      password
+    }
+    setIsLoading(true)
+    const response = await props.loginUser(user)
+    
+  }
   return (
     <LoginForm>
       <Input
@@ -20,29 +35,36 @@ export const LogInForm = ({ setLogIn, setViewSplash }) => {
         value={password}
         onChangeText={password => setPassword(password)}
       />
-      <TouchableOpacity
-        onPress={() => lottieAnimation.play()}
-        style={{
-          width: 200,
-          height: 200
-        }}
+      {!isLoading && <Button
+        title='Submit'      
+        onPress={() => handleUserLogin()}
       >
-      <LottieView 
-        ref={animation => {
-          lottieAnimation = animation
-        }}
-        source={require('../Animations/animation-w512-h512.json')}
-        loop={false}
-        speed={2}
+      </Button>}
+      {isLoading && <LottieView
+        ref={ animation => {
+          waveAnimation = animation
+        }} 
+        source={require('../Animations/196-material-wave-loading.json')}
+        loop={true}
+        speed={1}
+        autoPlay
         style={{
-          height: '100%',
-          width: '100%'
+          marginTop: 20
         }}
-        onAnimationFinish={() => setViewSplash(false)}
-      />
-      </TouchableOpacity>
+      />}
+      {!isLoading && success && <LottieView 
+        source={require('../Animations/3152-star-success.json')}
+        ref={ animation => {
+          successAnimation = animation
+        }}
+        autoPlay
+        style={{
+          margintop: 20
+        }}
+        onAnimationFinish={() => props.navigation.navigate('Home')}
+      />}
       <TouchableOpacity
-        onPress={() => setLogIn(false)}
+        onPress={() => props.setLogIn(false)}
         containerStyle={{
           marginTop: 10,
           position: "absolute",
@@ -62,3 +84,9 @@ const LoginForm = styled.View`
   height: 50%;
   width: 100%;
 `;
+
+const mapDispatchToProps = dispatch => ({
+  loginUser: (user) => dispatch(loginUserThunk(user))
+})
+
+export default withNavigation(connect(null, mapDispatchToProps)(LogInForm))

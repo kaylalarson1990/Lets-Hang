@@ -11,7 +11,6 @@ import { FriendList } from './Components/FriendsList/FriendList'
 
 const Home = (props) => {
   const [events, setEvents] = useState([]);
-  const [viewSplash, setViewSplash] = useState(true)
 
   useEffect(() => {
     props.getEvents(MockEvents.events)
@@ -31,7 +30,6 @@ const Home = (props) => {
   });
   return (
     <>
-      {viewSplash && <SplashPage setViewSplash={setViewSplash}/>}
       <ScrollView>
         <Cover>
           <View
