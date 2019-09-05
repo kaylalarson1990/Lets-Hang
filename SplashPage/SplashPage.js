@@ -72,6 +72,7 @@ const SplashView = styled.View`
 const AppTitle = styled.Text`
   font-size: 50px;
   color: yellow;
+  margin-bottom: 100px;
 `;
 
 const SplashContent = styled.View`

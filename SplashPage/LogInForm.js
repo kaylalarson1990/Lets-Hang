@@ -23,8 +23,7 @@ export const LogInForm = ({ setLogIn, setViewSplash }) => {
       <TouchableOpacity
         onPress={() => lottieAnimation.play()}
         style={{
-          width: 200,
-          height: 200
+          height: 300
         }}
       >
       <LottieView 
@@ -34,23 +33,17 @@ export const LogInForm = ({ setLogIn, setViewSplash }) => {
         source={require('../Animations/animation-w512-h512.json')}
         loop={false}
         speed={2}
-        style={{
-          height: '100%',
-          width: '100%'
-        }}
         onAnimationFinish={() => setViewSplash(false)}
       />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => setLogIn(false)}
         containerStyle={{
-          marginTop: 10,
           position: "absolute",
-          right: 155,
-          top: 320
+          right: 175
         }}
       >
-        <Text style={{ color: "#1F89DC", fontSize: 18, marginTop: 100 }}>
+        <Text style={{ color: "#1F89DC", fontSize: 18, marginLeft: 20 }}>
           Back to Sign Up
         </Text>
       </TouchableOpacity>
