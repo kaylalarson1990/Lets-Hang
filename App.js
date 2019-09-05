@@ -6,6 +6,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import { rootReducer } from "./Reducers/index";
 import Home from "./Home";
+import { FriendsList } from './Components/FriendsList/FriendList'
 import { createStackNavigator } from "react-navigation-stack";
 import thunk from 'redux-thunk'
 
@@ -16,7 +17,7 @@ const activeTintLabelColor = "#4D8CFF";
 const inactiveTintLabelColor = "#808080";
 
 const tabNavigator = createStackNavigator({
-  TabHome: {
+  Home: {
     screen: Home,
     navigationOptions: {
       tabBarLabel: (
