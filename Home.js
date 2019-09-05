@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import { MockEvents, MockUser } from "./MockData";
-import { Events } from "./Events";
-// import { Ionicons } from "@expo/vector-icons";
+import { Events } from "./Components/Events/Events";
 import { connect } from 'react-redux'
 import { getEvents } from './Actions/index'
 import LottieView from 'lottie-react-native'
 import styled from "styled-components";
 import SplashPage from './SplashPage/SplashPage'
+import { FriendList } from './Components/FriendsList/FriendList'
 
 const Home = (props) => {
   const [events, setEvents] = useState([]);
-  const [user, setUser] = useState({});
-  const [viewSplash, setViewSplash] = useState(true)
 
   useEffect(() => {
     props.getEvents(MockEvents.events)
     setEvents(MockEvents.events);
-    setUser(MockUser);
   }, []);
 
   const allEvents = events.map(event => {
@@ -33,7 +30,6 @@ const Home = (props) => {
   });
   return (
     <>
-      {viewSplash && <SplashPage setViewSplash={setViewSplash}/>}
       <ScrollView>
         <Cover>
           <View
@@ -44,7 +40,7 @@ const Home = (props) => {
               alignItems: "center"
             }}
           >
-            <Name>Welcome, {user.name}!</Name>
+            <Name>Welcome, Ryan!</Name>
             <Avatar source={require("./assets/main-user.png")} />
           </View>
         </Cover>
@@ -55,7 +51,6 @@ const Home = (props) => {
           loop 
           speed={1}
           autoSize
-
           />
       </ScrollView>
     </>
@@ -98,11 +93,13 @@ const styles = StyleSheet.create({
   })
 
 const mapStateToProps = store => ({
-  events: store.events
+  events: store.events,
+  user: store.currentUser
 })
 
 const mapDispatchToProps = dispatch => ({
   getEvents: (event) => dispatch(getEvents(event))
 })
+
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home)

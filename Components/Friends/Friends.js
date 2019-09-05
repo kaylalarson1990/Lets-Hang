@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
-import { MockFriends } from "./MockData";
-import { getFriends } from "./Actions/index";
+import { MockFriends } from "../../MockData";
+import { getFriends } from "../../Actions/index";
 import styled from "styled-components";
 import { FriendList } from "./FriendList";
 

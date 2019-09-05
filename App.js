@@ -6,7 +6,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import { rootReducer } from "./Reducers/index";
 import Home from "./Home";
+import { FriendList } from './Components/FriendsList/FriendList'
 import { createStackNavigator } from "react-navigation-stack";
+import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { SplashPage } from './SplashPage/SplashPage'
+import LogInForm from './SplashPage/LogInForm'
 import thunk from 'redux-thunk'
 
 
@@ -15,9 +19,18 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 const activeTintLabelColor = "#4D8CFF";
 const inactiveTintLabelColor = "#808080";
 
-const tabNavigator = createStackNavigator({
-  TabHome: {
-    screen: Home,
+const tabNavigator = createBottomTabNavigator({
+  Home: Home,
+  Friends: FriendList
+})
+
+
+const rootStack = createStackNavigator({
+  Login: {
+    screen: SplashPage
+  },
+  Home: {
+    screen: tabNavigator,
     navigationOptions: {
       tabBarLabel: (
         <Text
@@ -37,10 +50,14 @@ const tabNavigator = createStackNavigator({
       margin: 15,
       header: null,
     },
-  }
+  },
+},
+{
+  initialRouteName: 'Login',
+  headerMode: 'none'
 });
 
-const Navigation = createAppContainer(tabNavigator);
+const Navigation = createAppContainer(rootStack);
 
 export default class App extends React.Component {
   render() {
