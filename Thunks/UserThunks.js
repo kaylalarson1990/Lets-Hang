@@ -12,7 +12,7 @@ export const addNewUserThunk = (user) => {
         body: JSON.stringify(user)
       }
       const response = await fetch(url, options)
-      const currentUser = response.json()
+      const currentUser = await response.json()
       dispatch(addCurrentUser(currentUser))
       return currentUser
     }
@@ -22,7 +22,7 @@ export const addNewUserThunk = (user) => {
   }
 }
 
-export const loginUserThunk = (user) => {
+export const loginUserThunk = currentUser => {
   const url = 'https://lets-hang-be.herokuapp.com/api/v1/sessions'
   return async dispatch => {
     try {
@@ -32,12 +32,11 @@ export const loginUserThunk = (user) => {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(currentUser)
       }
       const response = await fetch(url, options)
-      const user = response.json()
-      console.log(user)
-      dispatch(addCurrentUser(user))
+      const user = await response.json()
+      dispatch(addCurrentUser(user.data))
       return user
     }
     catch (error) {

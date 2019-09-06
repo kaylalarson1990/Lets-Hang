@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, YellowBox } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -9,15 +9,13 @@ import { Profile } from "./Components/Profile/Profile";
 import Home from "./Home";
 import { FriendList } from "./Components/FriendsList/FriendList";
 import { createStackNavigator } from "react-navigation-stack";
-import { createBottomTabNavigator } from "react-navigation-tabs";
-import { SplashPage } from "./SplashPage/SplashPage";
-import LogInForm from "./SplashPage/LogInForm";
-import thunk from "redux-thunk";
+import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { SplashPage } from './SplashPage/SplashPage'
+import thunk from 'redux-thunk'
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+YellowBox.ignoreWarnings(["ReactNative.NativeModules.LottieAnimationView.getConstants"]);
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 const activeTintLabelColor = "#4D8CFF";
 const inactiveTintLabelColor = "#808080";
@@ -56,25 +54,6 @@ const rootStack = createStackNavigator(
     },
     Profile: {
       screen: Profile
-      // navigationOptions: {
-      //   tabBarLabel: (
-      //     <Text
-      //       style={{
-      //         fontSize: 24,
-      //         color: activeTintLabelColor,
-      //         padding: 15,
-      //         flexDirection: "row",
-      //         alignItems: "center",
-      //         justifyContent: "center"
-      //       }}
-      //     >
-      //       Home
-      //     </Text>
-      //   ),
-      //   padding: 15,
-      //   margin: 15,
-      //   header: null
-      // }
     }
   },
   {

@@ -2,19 +2,16 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import { MockEvents, MockUser } from "./MockData";
 import { Events } from "./Components/Events/Events";
-import { connect } from "react-redux";
-import { getEvents } from "./Actions/index";
-import LottieView from "lottie-react-native";
+import { connect } from 'react-redux'
+import { getEventsThunk } from './Thunks/EventThunks'
 import styled from "styled-components";
-import SplashPage from "./SplashPage/SplashPage";
-import { FriendList } from "./Components/FriendsList/FriendList";
 
 const Home = props => {
   const [events, setEvents] = useState([]);
 
-  useEffect(() => {
-    props.getEvents(MockEvents.events);
-    setEvents(MockEvents.events);
+  useEffect(async () => {
+    const allEvents = await props.getEvents(props.user.attributes.api_key)
+      setEvents(allEvents);
   }, []);
 
   const allEvents = events.map(event => {
@@ -49,13 +46,6 @@ const Home = props => {
           </View>
         </Cover>
         <View style={styles.container}>{allEvents}</View>
-        <LottieView
-          source={require("./Animations/8868-three-points.json")}
-          autoPlay
-          loop
-          speed={1}
-          autoSize
-        />
       </ScrollView>
     </>
   );
@@ -102,8 +92,8 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getEvents: event => dispatch(getEvents(event))
-});
+  getEvents: (event) => dispatch(getEventsThunk(event)),
+})
 
 export default connect(
   mapStateToProps,

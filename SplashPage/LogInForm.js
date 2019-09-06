@@ -22,7 +22,11 @@ export const LogInForm = (props) => {
     setIsLoading(true)
     const response = await props.loginUser(user)
     setIsLoading(false)
-    setSuccess(true)
+    if(response === undefined) {
+      setFailure(true)
+    } else {
+      setSuccess(true)
+    }
   }
   return (
     <LoginForm>
@@ -36,7 +40,7 @@ export const LogInForm = (props) => {
         value={password}
         onChangeText={password => setPassword(password)}
       />
-      {!isLoading && !success && <Button
+      {!isLoading && !success && !failure && <Button
         title='Submit'      
         onPress={() => handleUserLogin()}
       >
@@ -64,6 +68,16 @@ export const LogInForm = (props) => {
           marginTop: 20
         }}
         onAnimationFinish={() => props.navigation.navigate('Home')}
+      />}
+      {!isLoading && failure && <LottieView 
+        source={require('../Animations/6952-fail.json')}
+        autoPlay
+        loop={false}
+        speed={2}
+        style={{
+          marginTop: 20
+        }}
+        onAnimationFinish={() => setFailure(false)}
       />}
       <TouchableOpacity
         onPress={() => props.setLogIn(false)}

@@ -30,7 +30,11 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
     setIsLoading(true)
     const response = await addNewUser(user)
     setIsLoading(false)
-    setSuccess(true)
+    if (response.error) {
+      setFailure(true)
+    } else {
+      setSuccess(true)
+    }
     return response
   }
 
@@ -67,7 +71,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
         onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
 
       />
-      {!isLoading && !success && <Button
+      {!isLoading && !success && !failure && <Button
         title='Submit'
         onPress={() => checkUserSignUp()}
         style={{
@@ -98,6 +102,16 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
         }}
         loop={false}
         onAnimationFinish={() => navigation.navigate('Home')}
+      />}
+        {!isLoading && failure && <LottieView 
+        source={require('../Animations/6952-fail.json')}
+        autoPlay
+        loop={false}
+        speed={2}
+        style={{
+          marginTop: 20
+        }}
+        onAnimationFinish={() => setFailure(false)}
       />}
       <TouchableOpacity
         onPress={() => setSignUp(false)}
