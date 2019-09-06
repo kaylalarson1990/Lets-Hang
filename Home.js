@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import { MockEvents, MockUser } from "./MockData";
 import { Events } from "./Components/Events/Events";
-import { connect } from 'react-redux'
-import { getEventsThunk } from './Thunks/EventThunks'
+import { connect } from "react-redux";
+import { getEventsThunk } from "./Thunks/EventThunks";
 import styled from "styled-components";
 
 const Home = props => {
   const [events, setEvents] = useState([]);
 
   useEffect(async () => {
-    const allEvents = await props.getEvents(props.user.attributes.api_key)
-      setEvents(allEvents);
+    const allEvents = await props.getEvents(props.user.attributes.api_key);
+    setEvents(allEvents);
   }, []);
 
   const allEvents = events.map(event => {
@@ -92,8 +92,8 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getEvents: (event) => dispatch(getEventsThunk(event)),
-})
+  getEvents: event => dispatch(getEventsThunk(event))
+});
 
 export default connect(
   mapStateToProps,
