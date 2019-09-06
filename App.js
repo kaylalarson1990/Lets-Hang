@@ -10,7 +10,6 @@ import { FriendList } from './Components/FriendsList/FriendList'
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { SplashPage } from './SplashPage/SplashPage'
-import LogInForm from './SplashPage/LogInForm'
 import thunk from 'redux-thunk'
 
 YellowBox.ignoreWarnings(["ReactNative.NativeModules.LottieAnimationView.getConstants"]);

@@ -34,7 +34,6 @@ export const loginUserThunk = currentUser => {
         },
         body: JSON.stringify(currentUser)
       }
-      console.log(options)
       const response = await fetch(url, options)
       const user = await response.json()
       dispatch(addCurrentUser(user.data))

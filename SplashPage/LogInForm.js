@@ -22,7 +22,7 @@ export const LogInForm = (props) => {
     setIsLoading(true)
     const response = await props.loginUser(user)
     setIsLoading(false)
-    if(response.error) {
+    if(response === undefined) {
       setFailure(true)
     } else {
       setSuccess(true)

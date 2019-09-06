@@ -3,15 +3,15 @@ import { StyleSheet, View, ScrollView } from "react-native";
 import { MockEvents, MockUser } from "./MockData";
 import { Events } from "./Components/Events/Events";
 import { connect } from 'react-redux'
-import { getEvents } from './Actions/index'
+import { getEventsThunk } from './Thunks/EventThunks'
 import styled from "styled-components";
 
 const Home = (props) => {
   const [events, setEvents] = useState([]);
 
-  useEffect(() => {
-    props.getEvents(MockEvents.events)
-    setEvents(MockEvents.events);
+  useEffect(async () => {
+    const allEvents = await props.getEvents(props.user.attributes.api_key)
+      setEvents(allEvents);
   }, []);
 
   const allEvents = events.map(event => {
@@ -88,7 +88,7 @@ const mapStateToProps = store => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getEvents: (event) => dispatch(getEvents(event))
+  getEvents: (event) => dispatch(getEventsThunk(event)),
 })
 
 
