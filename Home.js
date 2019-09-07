@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
-import { MockEvents, MockUser } from "./MockData";
 import { Events } from "./Components/Events/Events";
 import { connect } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
@@ -11,16 +10,18 @@ const Home = props => {
 
   useEffect(async () => {
     const allEvents = await props.getEvents(props.user.attributes.api_key);
-    setEvents(allEvents);
+    console.log(allEvents)
+    setEvents(allEvents.data);
   }, []);
 
   const allEvents = events.map(event => {
     return (
       <Events
-        title={event.title}
-        time={event.time}
-        address={event.address}
-        description={event.description}
+        name={event.attributes.creator}
+        title={event.attributes.title}
+        time={event.attributes.event_time}
+        address={event.attributes.event_location}
+        description={event.attributes.description}
         key={event.id}
       />
     );
@@ -37,7 +38,7 @@ const Home = props => {
               alignItems: "center"
             }}
           >
-            <Name>Welcome, Ryan!</Name>
+            <Name>Welcome, {props.user.attributes.first_name}!</Name>
             <TouchableOpacity
               onPress={() => props.navigation.navigate("Profile")}
             >

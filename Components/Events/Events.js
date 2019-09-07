@@ -6,10 +6,8 @@ export const Events = props => {
   return (
     <Container>
       <Content>
-        {/* <ColorWrapper>
-          <Avatar source={require("./assets/avatar.png")} />
-        </ColorWrapper> */}
         <Wrapper>
+          <Name>{props.name}</Name>
           <Title>{props.title}</Title>
           <Address>{props.address}</Address>
           <Time>{props.time}</Time>
@@ -122,7 +120,14 @@ const Address = styled.Text`
 
 const Title = styled.Text`
   color: black;
-  font-size: 32px;
+  font-size: 18px;
   font-weight: bold;
   margin-top: 4px;
 `;
+
+const Name = styled.Text`
+color: black;
+font-size: 32px;
+font-weight: bold;
+margin-top: 4px;
+`

@@ -1,7 +1,7 @@
 export const EventReducer = (state = [], action) => {
   switch (action.type) {
     case 'GET_EVENTS':
-      return action.events
+      return action.events.data
     default:
       return state
   }
