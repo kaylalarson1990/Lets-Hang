@@ -204,19 +204,18 @@ export const FriendListName = styled.Text`
   margin-top: 4px;
 `;
 
-export const Headshot = styled.Image`
+export const Headshot = styled.ImageBackground`
   width: 100%;
   height: 300px;
+  display: flex;
 `;
 
 export const ProfileAvatar = styled.Image`
   top: 10;
-  left: 15;
-  display: flex;
-  justify-content: flex-end;
   border-radius: 20px;
   width: 48px;
   height: 48px;
   margin-top: 50px;
+  margin-right: 10px;
   margin-bottom: 20px;
 `;
