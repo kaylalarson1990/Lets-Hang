@@ -2,21 +2,22 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Input, Button } from "react-native-elements";
 import { TouchableOpacity, Text } from "react-native";
-import LottieView from 'lottie-react-native'
-import { connect } from 'react-redux'
-import { addNewUserThunk } from '../Thunks/UserThunks'
-import { withNavigation } from 'react-navigation'
+import LottieView from "lottie-react-native";
+import { connect } from "react-redux";
+import { addNewUserThunk } from "../Thunks/UserThunks";
+import { withNavigation } from "react-navigation";
+import { SignUp } from "../StyledComponents/StyledComponents";
 
-export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
+export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(null);
-  const [isLoading, setIsLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [failure, setFailure] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [failure, setFailure] = useState(false);
 
   const checkUserSignUp = async () => {
     const user = {
@@ -26,17 +27,17 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
       email,
       password,
       password_confirmation: confirmPassword
-    }
-    setIsLoading(true)
-    const response = await addNewUser(user)
-    setIsLoading(false)
+    };
+    setIsLoading(true);
+    const response = await addNewUser(user);
+    setIsLoading(false);
     if (response.error) {
-      setFailure(true)
+      setFailure(true);
     } else {
-      setSuccess(true)
+      setSuccess(true);
     }
-    return response
-  }
+    return response;
+  };
 
   return (
     <SignUp>
@@ -53,66 +54,81 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
       <Input
         placeholder="Email"
         value={email}
+        autoCapitalize = 'none'
         onChangeText={email => setEmail(email)}
       />
       <Input
         placeholder="Password"
         value={password}
+        secureTextEntry={true}
+        autoCapitalize = 'none'
         onChangeText={password => setPassword(password)}
       />
       <Input
         placeholder="Confirm Password"
         value={confirmPassword}
+        secureTextEntry={true}
+        autoCapitalize = 'none'
         onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
       />
       <Input
         placeholder="Phone number e.g 3031119999"
         value={phoneNumber}
+        keyboardType="numeric"
         onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
-
       />
-      {!isLoading && !success && !failure && <Button
-        title='Submit'
-        onPress={() => checkUserSignUp()}
-        style={{
-          height: 300
-        }}
-      >
-      </Button>}
-      {isLoading && <LottieView
-        ref={ animation => {
-          waveAnimation = animation
-        }} 
-        source={require('../Animations/196-material-wave-loading.json')}
-        loop={true}
-        speed={1}
-        autoPlay
-        style={{
-          marginTop: 20
-        }}
-      />}
-      {!isLoading && success && <LottieView 
-        source={require('../Animations/4431-success.json')}
-        ref={ animation => {
-          successAnimation = animation
-        }}
-        autoPlay
-        style={{
-          marginTop: 20
-        }}
-        loop={false}
-        onAnimationFinish={() => navigation.navigate('Home')}
-      />}
-        {!isLoading && failure && <LottieView 
-        source={require('../Animations/6952-fail.json')}
-        autoPlay
-        loop={false}
-        speed={2}
-        style={{
-          marginTop: 20
-        }}
-        onAnimationFinish={() => setFailure(false)}
-      />}
+      {!isLoading && !success && !failure && (
+        <Button
+          title="Submit"
+          onPress={() => checkUserSignUp()}
+          style={{
+            height: 50,
+            marginTop: 30,
+            marginBottom: 30,
+            marginLeft: 10,
+          }}
+        ></Button>
+      )}
+      {isLoading && (
+        <LottieView
+          ref={animation => {
+            waveAnimation = animation;
+          }}
+          source={require("../Animations/196-material-wave-loading.json")}
+          loop={true}
+          speed={1}
+          autoPlay
+          style={{
+            marginTop: 80
+          }}
+        />
+      )}
+      {!isLoading && success && (
+        <LottieView
+          source={require("../Animations/4431-success.json")}
+          ref={animation => {
+            successAnimation = animation;
+          }}
+          autoPlay
+          style={{
+            marginTop: 80
+          }}
+          loop={false}
+          onAnimationFinish={() => navigation.navigate("Home")}
+        />
+      )}
+      {!isLoading && failure && (
+        <LottieView
+          source={require("../Animations/6952-fail.json")}
+          autoPlay
+          loop={false}
+          speed={2}
+          style={{
+            marginTop: 80
+          }}
+          onAnimationFinish={() => setFailure(false)}
+        />
+      )}
       <TouchableOpacity
         onPress={() => setSignUp(false)}
         containerStyle={{
@@ -121,7 +137,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
         }}
         raised={true}
       >
-        <Text style={{ color: "#1F89DC", fontSize: 18, marginLeft: 20 }}>
+        <Text style={{ color: "#1F89DC", fontSize: 18, marginLeft: 10 }}>
           Back to Login
         </Text>
       </TouchableOpacity>
@@ -129,18 +145,13 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser}) => {
   );
 };
 
-const SignUp = styled.View`
-  height: 50%;
-  width: 100%;
-`;
-
-const SignUpTitle = styled.Text`
-  font-size: 35px;
-  text-align: center;
-`;
-
 const mapDispatchToProps = dispatch => ({
-  addNewUser: (user) => dispatch(addNewUserThunk(user))
-})
+  addNewUser: user => dispatch(addNewUserThunk(user))
+});
 
-export default withNavigation(connect(null, mapDispatchToProps)(SignUpForm))
+export default withNavigation(
+  connect(
+    null,
+    mapDispatchToProps
+  )(SignUpForm)
+);

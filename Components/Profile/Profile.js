@@ -1,13 +1,11 @@
 import React from "react";
-import styled from "styled-components";
+import { View, ScrollView, Text, TouchableOpacity } from "react-native";
+import { Button, TextInput } from "react-native-elements";
+import { connect } from "react-redux";
 import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Text,
-  TouchableOpacity
-} from "react-native";
-import { Button } from "react-native-elements";
+  Headshot,
+  ProfileAvatar
+} from "../../StyledComponents/StyledComponents";
 
 export const Profile = props => {
   return (
@@ -17,43 +15,69 @@ export const Profile = props => {
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center"
+            justifyContent: "flex-end"
           }}
         >
           <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
-            <Avatar source={require("../../assets/close.png")} />
+            <ProfileAvatar source={require("../../assets/close.png")} />
           </TouchableOpacity>
         </View>
-        <Headshot source={require("../../assets/profile-picture.png")} />
-        <Text>Name: Jordan Taylor</Text>
+        <Headshot source={require("../../assets/profile-picture.png")}>
+          <Text
+            style={{
+              color: "white",
+              fontSize: 36,
+              marginTop: 250,
+              marginLeft: 30
+            }}
+          >
+            {props.user.attributes.first_name}{" "}
+            {props.user.attributes.last_name}
+          </Text>
+        </Headshot>
+        <Text
+          style={{
+            marginLeft: 30,
+            fontSize: 17,
+            marginBottom: 5,
+            marginTop: 20,
+            color: "#767676"
+          }}
+        >
+          Email address
+        </Text>
+        <Text style={{ marginLeft: 30, fontSize: 22, marginBottom: 30 }}>
+          {props.user.attributes.email}
+        </Text>
+        <Text
+          style={{
+            marginLeft: 30,
+            fontSize: 17,
+            marginBottom: 5,
+            color: "#767676"
+          }}
+        >
+          Phone number
+        </Text>
+        <Text style={{ marginLeft: 30, fontSize: 22 }}>
+          {props.user.attributes.phone_number}
+        </Text>
         <Button
           title="Edit Profile"
-          buttonStyle={{
-            width: "60%"
+          style={{
+            height: 40,
+            margin: 30,
+            marginTop: 200
           }}
-          raised={true}
         />
-        <Text>Email: </Text>
-        <Text>Phone Number: </Text>
       </ScrollView>
     </>
   );
 };
 
-const Headshot = styled.Image`
-  width: 100%;
-  height: 300px;
-`;
+export const mapStateToProps = store => ({
+  events: store.events,
+  user: store.currentUser
+});
 
-const Avatar = styled.Image`
-  top: 10;
-  left: 15;
-  display: flex;
-  justify-content: flex-end;
-  border-radius: 20px;
-  width: 48px;
-  height: 48px;
-  margin-top: 50px;
-  margin-bottom: 20px;
-`;
+export default connect(mapStateToProps)(Profile);

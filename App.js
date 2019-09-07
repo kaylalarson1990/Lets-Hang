@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import { rootReducer } from "./Reducers/index";
-import { Profile } from "./Components/Profile/Profile";
+import Profile from "./Components/Profile/Profile";
 import Home from "./Home";
 import { FriendList } from "./Components/FriendsList/FriendList";
 import { createStackNavigator } from "react-navigation-stack";

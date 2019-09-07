@@ -3,8 +3,12 @@ import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { MockFriends } from "../../MockData";
 import { getFriends } from "../../Actions/index";
-import styled from "styled-components";
 import { FriendList } from "./FriendList";
+import {
+  FriendName,
+  FriendAvatar,
+  FriendCover
+} from "../../StyledComponents/StyledComponents";
 
 const Friends = props => {
   const [friends, setFriends] = useState([]);
@@ -25,7 +29,7 @@ const Friends = props => {
   });
   return (
     <ScrollView>
-      <Cover>
+      <FriendCover>
         <View
           style={{
             display: "flex",
@@ -34,42 +38,16 @@ const Friends = props => {
             alignItems: "center"
           }}
         >
-          <Name>Friends List</Name>
-          <Avatar source={require("./assets/main-user.png")} />
+          <FriendName>Friends List</FriendName>
+          <FriendAvatar source={require("./assets/main-user.png")} />
         </View>
-      </Cover>
+      </FriendCover>
       <View style={{ backgroundColor: "#f7f7f7", minHeight: 600 }}>
         {allFriends}
       </View>
     </ScrollView>
   );
 };
-
-const Name = styled.Text`
-  color: black;
-  font-size: 32px;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-right: 84px;
-  text-align: center;
-`;
-
-const Avatar = styled.Image`
-  top: 10;
-  left: 15;
-  border-radius: 20px;
-  width: 48px;
-  height: 48px;
-  margin-right: 6px;
-`;
-
-const Cover = styled.View`
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  padding-top: 40px;
-  background-color: #f7f7f7;
-`;
 
 const mapStateToProps = store => ({
   friends: store.friends
