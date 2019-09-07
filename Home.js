@@ -3,14 +3,14 @@ import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import { Events } from "./Components/Events/Events";
 import { connect } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
-import styled from "styled-components";
+import { Avatar, Name, Cover } from "./StyledComponents/StyledComponents";
 
-const Home = props => {
+export const Home = props => {
   const [events, setEvents] = useState([]);
 
   useEffect(async () => {
     const allEvents = await props.getEvents(props.user.attributes.api_key);
-    console.log(allEvents)
+    console.log(allEvents);
     setEvents(allEvents.data);
   }, []);
 
@@ -52,33 +52,7 @@ const Home = props => {
   );
 };
 
-const Avatar = styled.Image`
-  top: 10;
-  left: 15;
-  border-radius: 20px;
-  width: 48px;
-  height: 48px;
-  margin-right: 16px;
-`;
-
-const Name = styled.Text`
-  color: black;
-  font-size: 32px;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-right: 44px;
-  text-align: center;
-`;
-
-const Cover = styled.View`
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  padding-top: 40px;
-  background-color: #f7f7f7;
-`;
-
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f7f7f7",
@@ -87,12 +61,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = store => ({
+export const mapStateToProps = store => ({
   events: store.events,
   user: store.currentUser
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   getEvents: event => dispatch(getEventsThunk(event))
 });
 

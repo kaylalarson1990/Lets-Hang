@@ -1,13 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Text,
-  TouchableOpacity
-} from "react-native";
+import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
+import {
+  Headshot,
+  ProfileAvatar
+} from "../../StyledComponents/StyledComponents";
 
 export const Profile = props => {
   return (
@@ -22,7 +19,7 @@ export const Profile = props => {
           }}
         >
           <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
-            <Avatar source={require("../../assets/close.png")} />
+            <ProfileAvatar source={require("../../assets/close.png")} />
           </TouchableOpacity>
         </View>
         <Headshot source={require("../../assets/profile-picture.png")} />
@@ -41,19 +38,4 @@ export const Profile = props => {
   );
 };
 
-const Headshot = styled.Image`
-  width: 100%;
-  height: 300px;
-`;
 
-const Avatar = styled.Image`
-  top: 10;
-  left: 15;
-  display: flex;
-  justify-content: flex-end;
-  border-radius: 20px;
-  width: 48px;
-  height: 48px;
-  margin-top: 50px;
-  margin-bottom: 20px;
-`;

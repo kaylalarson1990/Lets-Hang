@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import LogInForm from "./LogInForm";
-import SignUpForm  from "./SignUpForm";
+import SignUpForm from "./SignUpForm";
 import { Button } from "react-native-elements";
 import LottieView from "lottie-react-native";
+import {
+  SplashView,
+  AppTitle,
+  SplashContent
+} from "../StyledComponents/StyledComponents";
 
-export const SplashPage = (props) => {
+export const SplashPage = props => {
   const [signUp, setSignUp] = useState(false);
   const [logIn, setLogIn] = useState(false);
 
@@ -61,24 +65,6 @@ export const SplashPage = (props) => {
   );
 };
 
-const SplashView = styled.View`
-  width: 100%;
-  background: #01d2c1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-const AppTitle = styled.Text`
-  font-size: 50px;
-  color: yellow;
-  margin-bottom: 100px;
-`;
-
-const SplashContent = styled.View`
-  z-index: 10;
-  position: absolute;
-`;
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(
