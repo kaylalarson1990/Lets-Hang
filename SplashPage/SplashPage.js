@@ -27,21 +27,23 @@ export const SplashPage = props => {
         }}
       />
       <SplashContent>
-        <AppTitle>Let's Hang!</AppTitle>
         {!logIn && !signUp && (
-          <Button
-            title="Log In"
-            onPress={() => setLogIn(true)}
-            containerStyle={{
-              width: "100%",
-              display: "flex",
-              marginTop: 10
-            }}
-            buttonStyle={{
-              width: "100%"
-            }}
-            raised={true}
-          />
+          <>
+            <AppTitle>Let's Hang!</AppTitle>
+            <Button
+              title="Log In"
+              onPress={() => setLogIn(true)}
+              containerStyle={{
+                width: "100%",
+                display: "flex",
+                marginTop: 10
+              }}
+              buttonStyle={{
+                width: 300
+              }}
+              raised={true}
+            />
+          </>
         )}
         {!logIn && !signUp && (
           <Button
@@ -53,7 +55,7 @@ export const SplashPage = props => {
               marginTop: 10
             }}
             buttonStyle={{
-              width: "100%"
+              width: 300
             }}
             raised={true}
           />

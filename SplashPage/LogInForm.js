@@ -33,15 +33,27 @@ export const LogInForm = props => {
       <Input
         placeholder="Email"
         value={email}
+        autoCapitalize = 'none'
         onChangeText={email => setEmail(email)}
       />
       <Input
         placeholder="Password"
         value={password}
+        secureTextEntry={true}
+        autoCapitalize = 'none'
         onChangeText={password => setPassword(password)}
       />
       {!isLoading && !success && !failure && (
-        <Button title="Submit" onPress={() => handleUserLogin()}></Button>
+        <Button
+          title="Submit"
+          style={{
+            height: 50,
+            marginTop: 30,
+            marginBottom: 30,
+            marginLeft: 10
+          }}
+          onPress={() => handleUserLogin()}
+        ></Button>
       )}
       {isLoading && (
         <LottieView
@@ -53,7 +65,7 @@ export const LogInForm = props => {
           speed={1}
           autoPlay
           style={{
-            marginTop: 20
+            marginTop: 30
           }}
         />
       )}
@@ -66,7 +78,7 @@ export const LogInForm = props => {
           autoPlay
           loop={false}
           style={{
-            marginTop: 20
+            marginTop: 30
           }}
           onAnimationFinish={() => props.navigation.navigate("Home")}
         />
@@ -78,7 +90,7 @@ export const LogInForm = props => {
           loop={false}
           speed={2}
           style={{
-            marginTop: 20
+            marginTop: 30
           }}
           onAnimationFinish={() => setFailure(false)}
         />
@@ -90,7 +102,7 @@ export const LogInForm = props => {
           right: 175
         }}
       >
-        <Text style={{ color: "#1F89DC", fontSize: 18, marginLeft: 20 }}>
+        <Text style={{ color: "#1F89DC", fontSize: 18, marginLeft: 10 }}>
           Back to Sign Up
         </Text>
       </TouchableOpacity>
@@ -98,7 +110,7 @@ export const LogInForm = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   loginUser: user => dispatch(loginUserThunk(user))
 });
 

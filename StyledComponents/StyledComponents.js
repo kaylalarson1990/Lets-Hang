@@ -109,13 +109,13 @@ export const EventsName = styled.Text`
 `;
 
 export const LoginForm = styled.View`
-  height: 50%;
-  width: 100%;
+  height: 100%;
+  width: 300px;
 `;
 
 export const SignUp = styled.View`
-  height: 50%;
-  width: 100%;
+  height: 100%;
+  width: 300px;
 `;
 
 export const SplashView = styled.View`
@@ -129,7 +129,9 @@ export const SplashView = styled.View`
 export const AppTitle = styled.Text`
   font-size: 50px;
   color: yellow;
+  text-align: center;
   margin-bottom: 100px;
+  position: relative;
 `;
 
 export const SplashContent = styled.View`

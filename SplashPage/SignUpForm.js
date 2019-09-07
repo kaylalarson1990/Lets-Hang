@@ -54,21 +54,27 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
       <Input
         placeholder="Email"
         value={email}
+        autoCapitalize = 'none'
         onChangeText={email => setEmail(email)}
       />
       <Input
         placeholder="Password"
         value={password}
+        secureTextEntry={true}
+        autoCapitalize = 'none'
         onChangeText={password => setPassword(password)}
       />
       <Input
         placeholder="Confirm Password"
         value={confirmPassword}
+        secureTextEntry={true}
+        autoCapitalize = 'none'
         onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
       />
       <Input
         placeholder="Phone number e.g 3031119999"
         value={phoneNumber}
+        keyboardType="numeric"
         onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
       />
       {!isLoading && !success && !failure && (
@@ -76,7 +82,10 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
           title="Submit"
           onPress={() => checkUserSignUp()}
           style={{
-            height: 300
+            height: 50,
+            marginTop: 30,
+            marginBottom: 30,
+            marginLeft: 10,
           }}
         ></Button>
       )}
@@ -90,7 +99,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
           speed={1}
           autoPlay
           style={{
-            marginTop: 20
+            marginTop: 80
           }}
         />
       )}
@@ -102,7 +111,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
           }}
           autoPlay
           style={{
-            marginTop: 20
+            marginTop: 80
           }}
           loop={false}
           onAnimationFinish={() => navigation.navigate("Home")}
@@ -115,7 +124,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
           loop={false}
           speed={2}
           style={{
-            marginTop: 20
+            marginTop: 80
           }}
           onAnimationFinish={() => setFailure(false)}
         />
@@ -128,7 +137,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
         }}
         raised={true}
       >
-        <Text style={{ color: "#1F89DC", fontSize: 18, marginLeft: 20 }}>
+        <Text style={{ color: "#1F89DC", fontSize: 18, marginLeft: 10 }}>
           Back to Login
         </Text>
       </TouchableOpacity>
