@@ -1,4 +1,4 @@
-import { getEvents, hasErrored } from '../Actions/index'
+import { getEvents, hasErrored, addEvent } from '../Actions/index'
 
 export const getEventsThunk = (key) => {
   const url = `https://lets-hang-be.herokuapp.com/api/v1/events?${key}`
@@ -14,3 +14,26 @@ export const getEventsThunk = (key) => {
     }
   }
 }
+
+export const createEventThunk = (event) => {
+  const url = 'https://lets-hang-be.herokuapp.com/api/v1/events'
+  return async dispatch => {
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(event)
+      }
+      const response = await fetch(url, options)
+      const newEvent = await response .json()
+      dispatch(addEvent(newEvent))
+      return event
+    }
+    catch(error) {
+      dispatch(hasErrored)
+    }
+  }
+} 
