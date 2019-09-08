@@ -45,4 +45,27 @@ describe('Reducers', () => {
       expect(result).toEqual(expected)
     })
   })
+
+  describe('EventReducer', () => {
+    it('Should return default state', () => {
+      const expected = []
+      const result = EventReducer(undefined, {})
+
+      expect(result).toEqual(expected)
+    })
+    it('Should return the data out the the event property when type is GET_EVENTS', () => {
+      const mockEvents = { data: [
+        {id: 1, name: 'ryan'},
+        {id: 2, name: 'kayla'}
+      ]}
+      const mockAction = {
+        type: 'GET_EVENTS',
+        events: mockEvents
+      }
+      const expected = mockEvents.data
+      const result = EventReducer('', mockAction)
+
+      expect(result).toEqual(expected)
+    })
+  })
 })
