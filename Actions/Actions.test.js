@@ -37,4 +37,19 @@ describe('Actions', () => {
       expect(result).toEqual(expected)
     })
   })
+  describe('addCurrentUser', () => {
+    it('should have the type of ADD_CURRENT_USER', () => {
+      const expected = 'ADD_CURRENT_USER'
+      const result = action.addCurrentUser().type
+
+      expect(result).toEqual(expected)
+    })
+    it('Should set the argument to the user property', () => {
+      const mockUser = {id: 1, name: 'ryan'}
+      const expected = mockUser
+      const result = action.addCurrentUser(mockUser).user
+
+      expect(result).toEqual(expected)
+    })
+  })
 })
