@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView, Text, TouchableOpacity } from "react-native";
+import { View, ScrollView, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Button, TextInput } from "react-native-elements";
 import { connect } from "react-redux";
 import {
@@ -22,19 +22,27 @@ export const Profile = props => {
             <ProfileAvatar source={require("../../assets/close.png")} />
           </TouchableOpacity>
         </View>
-        <Headshot source={require("../../assets/profile-picture.png")}>
-          <Text
-            style={{
-              color: "white",
-              fontSize: 36,
-              marginTop: 250,
-              marginLeft: 30
-            }}
+        <View style={styles.container}>
+          <Headshot
+            source={require("../../assets/profile-picture.png")}
+            style={styles.imageContainer}
           >
-            {props.user.attributes.first_name}{" "}
-            {props.user.attributes.last_name}
-          </Text>
-        </Headshot>
+            <View style={styles.overlay} />
+            <Text
+              style={{
+                color: "white",
+                fontSize: 36,
+                marginTop: 250,
+                marginLeft: 30,
+                marginBottom: 10,
+                fontWeight: 'bold'
+              }}
+            >
+              {props.user.attributes.first_name}{" "}
+              {props.user.attributes.last_name}
+            </Text>
+          </Headshot>
+        </View>
         <Text
           style={{
             marginLeft: 30,
@@ -74,6 +82,23 @@ export const Profile = props => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: null,
+    height: null
+  },
+  imageContainer: {
+    flex: 1,
+    width: null,
+    height: null
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(69,85,117,0.4)"
+  }
+});
 
 export const mapStateToProps = store => ({
   events: store.events,

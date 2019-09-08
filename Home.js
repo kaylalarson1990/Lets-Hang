@@ -8,10 +8,9 @@ import { Avatar, Name, Cover } from "./StyledComponents/StyledComponents";
 export const Home = props => {
   const [events, setEvents] = useState([]);
 
-
   useEffect(async () => {
     const allEvents = await props.getEvents(props.user.attributes.api_key);
-    setEvents(allEvents.data);
+    setEvents(allEvents.data.attributes.events);
   }, []);
 
   const allEvents = events.map(event => {
