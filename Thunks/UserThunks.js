@@ -36,7 +36,8 @@ export const loginUserThunk = currentUser => {
       }
       const response = await fetch(url, options)
       const user = await response.json()
-      dispatch(addCurrentUser(user.data))
+      console.log(user.data)
+      dispatch(addCurrentUser(user))
       return user
     }
     catch (error) {

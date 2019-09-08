@@ -10,6 +10,7 @@ export const Home = props => {
 
 
   useEffect(async () => {
+    console.log(props.user)
     const allEvents = await props.getEvents(props.user.attributes.api_key);
     setEvents(allEvents.data);
   }, []);
