@@ -86,4 +86,26 @@ describe('Reducers', () => {
       expect(result).toEqual(expected)
     })
   })
+  describe('FriendsReducer', () => {
+    it('Should return default state', () => {
+      const expected = []
+      const result = FriendsReducer(undefined, {})
+
+      expect(result).toEqual(expected)
+    })
+    it('Should return friends array when type is GET_FRIENDS', () => {
+      const mockFriends = [
+        {id: 1, name: 'Ryan'},
+        {id: 2, name: 'Kayla'}
+      ]
+      const mockAction = {
+        type: 'GET_FRIENDS',
+        friends: mockFriends
+      }
+      const expected = mockFriends
+      const result = FriendsReducer([], mockAction)
+
+      expect(result).toEqual(expected)
+    })
+  })
 })
