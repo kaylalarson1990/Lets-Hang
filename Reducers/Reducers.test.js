@@ -33,5 +33,16 @@ describe('Reducers', () => {
 
       expect(result).toEqual(expected)
     })
+    it('Should return action error when type is HAS_ERRORED', () => {
+      const mockError = 'This is a mock error'
+      const mockAction = {
+        type: 'HAS_ERRORED',
+        error: mockError
+      }
+      const expected = mockError
+      const result = ErrorReducer('', mockAction)
+
+      expect(result).toEqual(expected)
+    })
   })
 })
