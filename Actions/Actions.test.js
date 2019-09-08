@@ -52,4 +52,19 @@ describe('Actions', () => {
       expect(result).toEqual(expected)
     })
   })
+  describe('hasErrored', () => {
+    it('Should have the type of HAS_ERRORED', () => {
+      const expected = 'HAS_ERRORED'
+      const result = action.hasErrored().type
+
+      expect(result).toEqual(expected)
+    })
+    it('Should set the argument to the error property', () => {
+      const mockError = 'This is a mock error'
+      const expected = mockError
+      const result = action.hasErrored(mockError).error
+
+      expect(result).toEqual(expected)
+    })
+  })
 })
