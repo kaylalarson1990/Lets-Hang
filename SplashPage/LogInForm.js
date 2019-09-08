@@ -29,72 +29,7 @@ export const LogInForm = props => {
     }
   };
   return (
-    <LoginForm>
-      <Input
-        placeholder="Email"
-        value={email}
-        autoCapitalize = 'none'
-        onChangeText={email => setEmail(email)}
-      />
-      <Input
-        placeholder="Password"
-        value={password}
-        secureTextEntry={true}
-        autoCapitalize = 'none'
-        onChangeText={password => setPassword(password)}
-      />
-      {!isLoading && !success && !failure && (
-        <Button
-          title="Submit"
-          style={{
-            height: 50,
-            marginTop: 30,
-            marginBottom: 30,
-            marginLeft: 10
-          }}
-          onPress={() => handleUserLogin()}
-        ></Button>
-      )}
-      {isLoading && (
-        <LottieView
-          ref={animation => {
-            waveAnimation = animation;
-          }}
-          source={require("../Animations/196-material-wave-loading.json")}
-          loop={true}
-          speed={1}
-          autoPlay
-          style={{
-            marginTop: 30
-          }}
-        />
-      )}
-      {!isLoading && success && (
-        <LottieView
-          source={require("../Animations/4431-success.json")}
-          ref={animation => {
-            successAnimation = animation;
-          }}
-          autoPlay
-          loop={false}
-          style={{
-            marginTop: 30
-          }}
-          onAnimationFinish={() => props.navigation.navigate("Home")}
-        />
-      )}
-      {!isLoading && failure && (
-        <LottieView
-          source={require("../Animations/6952-fail.json")}
-          autoPlay
-          loop={false}
-          speed={2}
-          style={{
-            marginTop: 30
-          }}
-          onAnimationFinish={() => setFailure(false)}
-        />
-      )}
+    <>
       <TouchableOpacity
         onPress={() => props.setLogIn(false)}
         containerStyle={{
@@ -102,11 +37,85 @@ export const LogInForm = props => {
           right: 175
         }}
       >
-        <Text style={{ color: "#1F89DC", fontSize: 18, marginLeft: 10 }}>
+        <Text
+          style={{
+            color: "#1F89DC",
+            fontSize: 18,
+            marginLeft: 10,
+            marginBottom: 150
+          }}
+        >
           Back to Sign Up
         </Text>
       </TouchableOpacity>
-    </LoginForm>
+      <LoginForm>
+        <Input
+          placeholder="Email"
+          value={email}
+          autoCapitalize="none"
+          onChangeText={email => setEmail(email)}
+        />
+        <Input
+          placeholder="Password"
+          value={password}
+          secureTextEntry={true}
+          autoCapitalize="none"
+          onChangeText={password => setPassword(password)}
+        />
+        {!isLoading && !success && !failure && (
+          <Button
+            title="Submit"
+            style={{
+              height: 50,
+              marginTop: 30,
+              marginBottom: 30,
+              marginLeft: 10
+            }}
+            onPress={() => handleUserLogin()}
+          ></Button>
+        )}
+        {isLoading && (
+          <LottieView
+            ref={animation => {
+              waveAnimation = animation;
+            }}
+            source={require("../Animations/196-material-wave-loading.json")}
+            loop={true}
+            speed={1}
+            autoPlay
+            style={{
+              marginTop: 35
+            }}
+          />
+        )}
+        {!isLoading && success && (
+          <LottieView
+            source={require("../Animations/4431-success.json")}
+            ref={animation => {
+              successAnimation = animation;
+            }}
+            autoPlay
+            loop={false}
+            style={{
+              marginTop: 35
+            }}
+            onAnimationFinish={() => props.navigation.navigate("Home")}
+          />
+        )}
+        {!isLoading && failure && (
+          <LottieView
+            source={require("../Animations/6952-fail.json")}
+            autoPlay
+            loop={false}
+            speed={2}
+            style={{
+              marginTop: 35
+            }}
+            onAnimationFinish={() => setFailure(false)}
+          />
+        )}
+      </LoginForm>
+    </>
   );
 };
 
