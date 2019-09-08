@@ -67,4 +67,19 @@ describe('Actions', () => {
       expect(result).toEqual(expected)
     })
   })
+  describe('addEvent', () => {
+    it('Should have the type of ADD_EVENT', () => {
+      const expected = 'ADD_EVENT'
+      const result = action.addEvent().type
+
+      expect(result).toEqual(expected)
+    })
+    it('Should set the argument to the event property', () => {
+      const mockEvent = {id: 1, name: 'ryan'}
+      const expected = mockEvent
+      const result = action.addEvent(mockEvent).event
+
+      expect(result).toEqual(expected)
+    })
+  })
 })
