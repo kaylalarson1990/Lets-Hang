@@ -63,7 +63,25 @@ describe('Reducers', () => {
         events: mockEvents
       }
       const expected = mockEvents.data
-      const result = EventReducer('', mockAction)
+      const result = EventReducer([], mockAction)
+
+      expect(result).toEqual(expected)
+    })
+    it('Should add event object to state array when type is ADD_EVENT', () => {
+      const mockState = [
+        {id: 1, name: 'ryan'},
+        {id: 2, name: 'kayla'}
+      ]
+      const mockEvent = {
+        id: 1,
+        name: 'Logan'
+      }
+      const mockAction = {
+        type: 'ADD_EVENT',
+        event: mockEvent
+      }
+      const expected = [...mockState, mockEvent]
+      const result = EventReducer(mockState, mockAction)
 
       expect(result).toEqual(expected)
     })
