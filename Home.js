@@ -11,10 +11,12 @@ import { Events } from "./Components/Events/Events";
 import { connect } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
 import { getUserFriendsThunk } from './Thunks/FriendsThunks'
+import { FloatingAction } from 'react-native-floating-action'
 
 export const Home = props => {
   const [events, setEvents] = useState([]);
   const [friends, setFriends] = useState([]);
+  const [createEvent, setCreateEvent ] = useState(false)
 
   useEffect(async () => {
     const allEvents = await props.getEvents(props.user.attributes.api_key);
@@ -64,6 +66,9 @@ export const Home = props => {
         <TouchableOpacity>
         </TouchableOpacity>
       </ScrollView>
+      <FloatingAction 
+        onPressItem={() => setCreateEvent(!CreateEvent)}
+      />
     </>
   );
 };
