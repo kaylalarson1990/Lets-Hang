@@ -4,18 +4,14 @@ import LogInForm from "./LogInForm";
 import SignUpForm from "./SignUpForm";
 import { Button } from "react-native-elements";
 import LottieView from "lottie-react-native";
-import {
-  SplashView,
-  AppTitle,
-  SplashContent
-} from "../StyledComponents/StyledComponents";
+import { Text, View, StyleSheet } from "react-native";
 
 export const SplashPage = props => {
   const [signUp, setSignUp] = useState(false);
   const [logIn, setLogIn] = useState(false);
 
   return (
-    <SplashView>
+    <View style={styles.splashView}>
       <LottieView
         source={require("../Animations/animation-w414-h736.json")}
         loop={false}
@@ -26,10 +22,10 @@ export const SplashPage = props => {
           height: "100%"
         }}
       />
-      <SplashContent>
+      <View style={styles.splashContent}>
         {!logIn && !signUp && (
           <>
-            <AppTitle>Let's Hang!</AppTitle>
+            <Text style={styles.appTitle}>Let's Hang!</Text>
             <Button
               title="Log In"
               onPress={() => setLogIn(true)}
@@ -62,10 +58,32 @@ export const SplashPage = props => {
         )}
         {logIn && <LogInForm setLogIn={setLogIn} />}
         {signUp && <SignUpForm setSignUp={setSignUp} />}
-      </SplashContent>
-    </SplashView>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  splashView: {
+    width: "100%",
+    backgroundColor: "#01d2c1",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  appTitle: {
+    fontSize: 50,
+    color: "yellow",
+    textAlign: "center",
+    marginBottom: 100,
+    position: "relative"
+  },
+  splashContent: {
+    zIndex: 10,
+    position: "absolute"
+  }
+});
 
 const mapDispatchToProps = dispatch => ({});
 

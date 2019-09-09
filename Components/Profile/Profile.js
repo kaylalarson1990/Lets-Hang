@@ -1,11 +1,15 @@
 import React from "react";
-import { View, ScrollView, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ImageBackground
+} from "react-native";
 import { Button, TextInput } from "react-native-elements";
 import { connect } from "react-redux";
-import {
-  Headshot,
-  ProfileAvatar
-} from "../../StyledComponents/StyledComponents";
 
 export const Profile = props => {
   return (
@@ -19,13 +23,16 @@ export const Profile = props => {
           }}
         >
           <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
-            <ProfileAvatar source={require("../../assets/close.png")} />
+            <Image
+              style={styles.profileAvatar}
+              source={require("../../assets/close.png")}
+            />
           </TouchableOpacity>
         </View>
         <View style={styles.container}>
-          <Headshot
+          <ImageBackground
             source={require("../../assets/profile-picture.png")}
-            style={styles.imageContainer}
+            style={styles.headShot}
           >
             <View style={styles.overlay} />
             <Text
@@ -35,13 +42,13 @@ export const Profile = props => {
                 marginTop: 250,
                 marginLeft: 30,
                 marginBottom: 10,
-                fontWeight: 'bold'
+                fontWeight: "bold"
               }}
             >
               {props.user.attributes.first_name}{" "}
               {props.user.attributes.last_name}
             </Text>
-          </Headshot>
+          </ImageBackground>
         </View>
         <Text
           style={{
@@ -89,14 +96,26 @@ const styles = StyleSheet.create({
     width: null,
     height: null
   },
-  imageContainer: {
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(69,85,117,0.4)"
+  },
+  headShot: {
+    width: "100%",
+    height: 300,
+    display: "flex",
     flex: 1,
     width: null,
     height: null
   },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(69,85,117,0.4)"
+  profileAvatar: {
+    top: 10,
+    borderRadius: 20,
+    width: 48,
+    height: 48,
+    marginTop: 50,
+    marginRight: 10,
+    marginBottom: 20
   }
 });
 
