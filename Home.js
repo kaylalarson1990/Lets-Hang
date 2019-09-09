@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
+import { StyleSheet, View, ScrollView, TouchableOpacity, Image } from "react-native";
 import { Events } from "./Components/Events/Events";
 import { connect } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
@@ -9,7 +9,6 @@ export const Home = props => {
   const [events, setEvents] = useState([]);
 
   useEffect(async () => {
-    console.log(props.user)
     const allEvents = await props.getEvents(props.user.attributes.api_key);
     setEvents(allEvents.data.attributes.events);
   }, []);
@@ -17,12 +16,12 @@ export const Home = props => {
   const allEvents = events.map(event => {
     return (
       <Events
-        name={event.attributes.creator}
-        title={event.attributes.title}
-        time={event.attributes.event_time}
-        address={event.attributes.event_location}
-        description={event.attributes.description}
-        key={event.id}
+        name={event.Creator}
+        title={event.Title}
+        time={event.Time}
+        address={event.Location}
+        description={event.Description}
+        key={event.Time}
       />
     );
   });
@@ -47,6 +46,8 @@ export const Home = props => {
           </View>
         </Cover>
         <View style={styles.container}>{allEvents}</View>
+        <TouchableOpacity>
+        </TouchableOpacity>
       </ScrollView>
     </>
   );
