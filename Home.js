@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
 import { getUserFriendsThunk } from './Thunks/FriendsThunks'
 import { FloatingAction } from 'react-native-floating-action'
+import CreateEvent  from './Components/CreateEvent/CreateEvent'
 
 export const Home = props => {
   const [events, setEvents] = useState([]);
@@ -34,12 +35,13 @@ export const Home = props => {
         address={event.Location}
         description={event.Description}
         key={event.Time}
-      />
-    );
-  });
-  return (
-    <>
+        />
+        );
+      });
+      return (
+        <>
       <ScrollView>
+        {createEvent && <CreateEvent />}
         <View style={styles.cover}>
           <View
             style={{
@@ -67,7 +69,8 @@ export const Home = props => {
         </TouchableOpacity>
       </ScrollView>
       <FloatingAction 
-        onPressItem={() => setCreateEvent(!CreateEvent)}
+        onPressMain={(value) => setCreateEvent(value)}
+        showBackground={false}
       />
     </>
   );

@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
-import { View, Text, TouchableOpacity, styleSheet, Input } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Input, Button } from 'react-native-elements'
 import { connect } from 'react-redux'
+import { withNavigation } from 'react-navigation'
 
 export const CreateEvent = (props) => {
   const [eventName, setEventName] = useState('');
@@ -8,10 +10,10 @@ export const CreateEvent = (props) => {
   const [eventTime, setEventTime] = useState('');
   const [eventLocation, setEventLocation] = useState('')
 
-
   return (
-    <View>
-      <Text>Create an Event!</Text>
+    <>
+    <View style={styles.container}>
+      <Text>Create a New Event!</Text>
       <Input 
         placeholder='Event Name'
         value={eventName}
@@ -32,9 +34,29 @@ export const CreateEvent = (props) => {
         value={eventTime}
         onChangeText={eventTime => setEventTime(eventTime)}
       />
+      <Button
+        title='Submit'
+      ></Button>
     </View>
+    </>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    zIndex: 1,
+    height: 300,
+    width: '100%',
+    position: 'absolute',
+    top: 200,
+    backgroundColor: '#f7f7f7',
+    padding: 20
+  },
+  input: {
+    padding: 5,
+    color: '#fff'
+  }
+})
 
 
 
