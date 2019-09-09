@@ -14,24 +14,24 @@ export const getEventsThunk = key => {
   };
 };
 
-export const createEventThunk = event => {
-  const url = "https://lets-hang-be.herokuapp.com/api/v1/events";
+export const createEventThunk = (event, key) => {
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/events?api_key=${key}`;
   return async dispatch => {
     try {
       const options = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json"
+          "Accept": "application/json"
         },
         body: JSON.stringify(event)
       };
       const response = await fetch(url, options);
       const newEvent = await response.json();
       dispatch(addEvent(newEvent));
-      return event;
+      return newEvent;
     } catch (error) {
-      dispatch(hasErrored);
+      dispatch(hasErrored(error.message));
     }
   };
 };

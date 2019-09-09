@@ -1,14 +1,30 @@
 import React, {useState} from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { withNavigation } from 'react-navigation'
+import { createEventThunk } from '../../Thunks/EventThunks'
 
 export const CreateEvent = (props) => {
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventTime, setEventTime] = useState('');
-  const [eventLocation, setEventLocation] = useState('')
+  const [eventLocation, setEventLocation] = useState('');
+  const [error, setError] = useState(false)
+
+  const handleCreateEvent = async () => {
+    const event = {
+      title: eventName,
+      description: eventDescription,
+      event_time: eventTime,
+      event_location: eventLocation
+    }
+    const response = await props.createEvent(event, props.id)
+    if (response) {
+      props.setCreateEvent(false)
+    } else {
+      setError(true)
+    }
+  }
 
   return (
     <>
@@ -36,7 +52,9 @@ export const CreateEvent = (props) => {
       />
       <Button
         title='Submit'
+        onPress={() => handleCreateEvent()}
       ></Button>
+      {error && <Text>Error creating an event</Text>}
     </View>
     </>
   )
@@ -58,6 +76,12 @@ const styles = StyleSheet.create({
   }
 })
 
+const mapStateToProps = store => ({
+  key: store.currentUser.attributes.api_key
+})
 
+const mapDispatchToProps = dispatch => ({
+  createEvent: (event, key) => dispatch(createEventThunk(event, key))
+})
 
-export default connect(null, null)(CreateEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent)

@@ -8,25 +8,23 @@ import {
   Text
 } from "react-native";
 import { Events } from "./Components/Events/Events";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
 import { getUserFriendsThunk } from './Thunks/FriendsThunks'
 import { FloatingAction } from 'react-native-floating-action'
 import CreateEvent  from './Components/CreateEvent/CreateEvent'
 
 export const Home = props => {
-  const [events, setEvents] = useState([]);
-  const [friends, setFriends] = useState([]);
   const [createEvent, setCreateEvent ] = useState(false)
+  const selectEvents = useSelector(state => state.events)
 
   useEffect(async () => {
-    const allEvents = await props.getEvents(props.user.attributes.api_key);
-    setEvents(allEvents.data.attributes.events);
-    const allFriends = await props.getFriends(props.user.attributes.api_key);
-    setFriends(allFriends.data.attributes.friends)
+    await props.getEvents(props.user.attributes.api_key);
+    await props.getFriends(props.user.attributes.api_key);
   }, []);
 
-  const allEvents = events.map(event => {
+  console.log(selectEvents)
+  const allEvents = selectEvents.map(event => {
     return (
       <Events
         name={event.Creator}
@@ -41,7 +39,7 @@ export const Home = props => {
       return (
         <>
       <ScrollView>
-        {createEvent && <CreateEvent />}
+        {createEvent && <CreateEvent setCreateEvent={setCreateEvent} id={props.user.attributes.api_key}/>}
         <View style={styles.cover}>
           <View
             style={{
