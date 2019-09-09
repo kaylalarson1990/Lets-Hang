@@ -5,11 +5,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-<<<<<<< HEAD
     "test": "jest --watchAll=true",
-=======
-    "test": "jest --watchAll",
->>>>>>> 05833f142d3e44b6f3488566d9dad43f32e642a6
     "eject": "expo eject",
     "postinstall": "rndebugger-open"
   },

@@ -10,13 +10,17 @@ import {
 import { Events } from "./Components/Events/Events";
 import { connect } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
+import { getUserFriendsThunk } from './Thunks/FriendsThunks'
 
 export const Home = props => {
   const [events, setEvents] = useState([]);
+  const [friends, setFriends] = useState([]);
 
   useEffect(async () => {
     const allEvents = await props.getEvents(props.user.attributes.api_key);
     setEvents(allEvents.data.attributes.events);
+    const allFriends = await props.getFriends(props.user.attributes.api_key);
+    setFriends(allFriends.data.attributes.friends)
   }, []);
 
   const allEvents = events.map(event => {
@@ -102,7 +106,8 @@ export const mapStateToProps = store => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  getEvents: event => dispatch(getEventsThunk(event))
+  getEvents: event => dispatch(getEventsThunk(event)),
+  getFriends: key => dispatch(getUserFriendsThunk(key))
 });
 
 export default connect(
