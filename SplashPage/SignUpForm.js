@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Input, Button } from "react-native-elements";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
 import { connect } from "react-redux";
 import { addNewUserThunk } from "../Thunks/UserThunks";
 import { withNavigation } from "react-navigation";
-import { SignUp } from "../StyledComponents/StyledComponents";
 
 export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
   const [email, setEmail] = useState("");
@@ -60,7 +59,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
           Back to Login
         </Text>
       </TouchableOpacity>
-      <SignUp>
+      <View style={styles.signUpForm}>
         <Input
           placeholder="First Name"
           value={firstName}
@@ -149,10 +148,17 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
             onAnimationFinish={() => setFailure(false)}
           />
         )}
-      </SignUp>
+      </View>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  signUpForm: {
+    height: "100%",
+    width: 300
+  }
+});
 
 const mapDispatchToProps = dispatch => ({
   addNewUser: user => dispatch(addNewUserThunk(user))

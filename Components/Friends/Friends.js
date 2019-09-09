@@ -1,14 +1,10 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, Image, View, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { MockFriends } from "../../MockData";
 import { getFriends } from "../../Actions/index";
 import { FriendList } from "./FriendList";
-import {
-  FriendName,
-  FriendAvatar,
-  FriendCover
-} from "../../StyledComponents/StyledComponents";
+
 
 const Friends = props => {
   const [friends, setFriends] = useState([]);
@@ -29,7 +25,7 @@ const Friends = props => {
   });
   return (
     <ScrollView>
-      <FriendCover>
+      <View style={styles.friendCover}>
         <View
           style={{
             display: "flex",
@@ -38,16 +34,46 @@ const Friends = props => {
             alignItems: "center"
           }}
         >
-          <FriendName>Friends List</FriendName>
-          <FriendAvatar source={require("./assets/main-user.png")} />
+          <Text style={styles.friendName}>Friends List</Text>
+          <Image
+            style={styles.friendAvatar}
+            source={require("./assets/main-user.png")}
+          />
         </View>
-      </FriendCover>
+      </View>
       <View style={{ backgroundColor: "#f7f7f7", minHeight: 600 }}>
         {allFriends}
       </View>
     </ScrollView>
   );
 };
+
+export const styles = StyleSheet.create({
+  friendName: {
+    color: "black",
+    fontSize: 32,
+    fontWeight: "bold",
+    marginTop: 20,
+    marginRight: 84,
+    textAlign: "center"
+  },
+  friendAvatar: {
+    top: 10,
+    left: 15,
+    borderRadius: 20,
+    width: 48,
+    height: 48,
+    marginRight: 6
+  },
+  friendCover: {
+    width: "100%",
+    height: 150,
+    overflow: "hidden",
+    paddingTop: 40,
+    backgroundColor: "#f7f7f7"
+  }
+});
+
 
 const mapStateToProps = store => ({
   friends: store.friends

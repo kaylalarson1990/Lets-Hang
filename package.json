@@ -5,16 +5,31 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+<<<<<<< HEAD
     "test": "jest --watchAll=true",
+=======
+    "test": "jest --watchAll",
+>>>>>>> 05833f142d3e44b6f3488566d9dad43f32e642a6
     "eject": "expo eject",
     "postinstall": "rndebugger-open"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transform": { "^.+\\.jsx?$": "babel-jest" },
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
+    "testEnvironment": "enzyme",
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react16"
+    }
   },
   "dependencies": {
+    "@babel/core": "^7.6.0",
     "axios": "^0.19.0",
+    "babel-jest": "^24.9.0",
     "expo": "^34.0.1",
+    "jest": "^24.9.0",
     "lottie-ios": "3.0.3",
     "lottie-react-native": "~2.6.1",
     "react": "16.8.3",
@@ -40,8 +55,15 @@
     "yarn": "^1.17.3"
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-expo": "^6.0.0",
     "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest-environment-enzyme": "^7.1.1",
+    "jest-enzyme": "^7.1.1",
     "jest-styled-components": "^6.3.3",
     "react-native-debugger-open": "^0.3.22"
   },

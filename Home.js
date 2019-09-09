@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, TouchableOpacity, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Text
+} from "react-native";
 import { Events } from "./Components/Events/Events";
 import { connect } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
-import { Avatar, Name, Cover } from "./StyledComponents/StyledComponents";
 
 export const Home = props => {
   const [events, setEvents] = useState([]);
@@ -28,7 +34,7 @@ export const Home = props => {
   return (
     <>
       <ScrollView>
-        <Cover>
+        <View style={styles.cover}>
           <View
             style={{
               display: "flex",
@@ -37,14 +43,19 @@ export const Home = props => {
               alignItems: "center"
             }}
           >
-            <Name>Welcome, {props.user.attributes.first_name}!</Name>
+            <Text style={styles.name}>
+              Welcome, {props.user.attributes.first_name}!
+            </Text>
             <TouchableOpacity
               onPress={() => props.navigation.navigate("Profile")}
             >
-              <Avatar source={require("./assets/main-user.png")} />
+              <Image
+                style={styles.avatar}
+                source={require("./assets/main-user.png")}
+              />
             </TouchableOpacity>
           </View>
-        </Cover>
+        </View>
         <View style={styles.container}>{allEvents}</View>
         <TouchableOpacity>
         </TouchableOpacity>
@@ -59,6 +70,29 @@ export const styles = StyleSheet.create({
     backgroundColor: "#f7f7f7",
     alignItems: "center",
     justifyContent: "center"
+  },
+  cover: {
+    width: "100%",
+    height: 150,
+    overflow: "hidden",
+    paddingTop: 40,
+    backgroundColor: "#f7f7f7"
+  },
+  avatar: {
+    top: 10,
+    left: 15,
+    borderRadius: 20,
+    width: 48,
+    height: 48,
+    marginRight: 16
+  },
+  name: {
+    color: "black",
+    fontSize: 32,
+    fontWeight: "bold",
+    marginTop: 20,
+    marginRight: 44,
+    textAlign: "center"
   }
 });
 
