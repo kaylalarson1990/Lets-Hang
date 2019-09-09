@@ -22,12 +22,12 @@ export const Home = props => {
   const allEvents = events.map(event => {
     return (
       <Events
-        name={event.attributes.creator}
-        title={event.attributes.title}
-        time={event.attributes.event_time}
-        address={event.attributes.event_location}
-        description={event.attributes.description}
-        key={event.id}
+        name={event.Creator}
+        title={event.Title}
+        time={event.Time}
+        address={event.Location}
+        description={event.Description}
+        key={event.Time}
       />
     );
   });
