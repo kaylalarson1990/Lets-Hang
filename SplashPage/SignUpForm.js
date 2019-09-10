@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Input, Button } from "react-native-elements";
-import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
+import { Button } from "react-native-elements";
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Image
+} from "react-native";
 import LottieView from "lottie-react-native";
 import { connect } from "react-redux";
 import { addNewUserThunk } from "../Thunks/UserThunks";
@@ -43,68 +49,104 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
       <TouchableOpacity
         onPress={() => setSignUp(false)}
         containerStyle={{
-          position: "absolute",
-          right: 175
+          position: "absolute"
         }}
-        raised={true}
       >
-        <Text
-          style={{
-            color: "#1F89DC",
-            fontSize: 18,
-            marginLeft: 10,
-            marginBottom: 150
-          }}
-        >
-          Back to Login
-        </Text>
+        <Image
+          style={{ height: 30, width: 30, marginBottom: 50 }}
+          source={require("../assets/back-btn.png")}
+        />
       </TouchableOpacity>
       <View style={styles.signUpForm}>
-        <Input
-          placeholder="First Name"
+        <Text style={styles.inputTags}>First Name</Text>
+        <TextInput
+          style={styles.textInputs}
+          placeholder="First_Name"
           value={firstName}
           onChangeText={firstName => setFirstName(firstName)}
+          onSubmitEditing={() => {
+            Last_Name.focus();
+          }}
+          blurOnSubmit={false}
         />
-        <Input
-          placeholder="Last Name"
+        <Text style={styles.inputTags}>Last Name</Text>
+        <TextInput
+          style={styles.textInputs}
+          placeholder="Last_Name"
           value={lastName}
           onChangeText={lastName => setLastName(lastName)}
+          ref={input => {
+            Last_Name = input;
+          }}
+          onSubmitEditing={() => {
+            Email.focus();
+          }}
+          blurOnSubmit={false}
         />
-        <Input
+        <Text style={styles.inputTags}>Email</Text>
+        <TextInput
+          style={styles.textInputs}
           placeholder="Email"
           value={email}
           autoCapitalize="none"
           onChangeText={email => setEmail(email)}
+          ref={input => {
+            Email = input;
+          }}
+          onSubmitEditing={() => {
+            Password.focus();
+          }}
+          blurOnSubmit={false}
         />
-        <Input
+        <Text style={styles.inputTags}>Password</Text>
+        <TextInput
+          style={styles.textInputs}
           placeholder="Password"
           value={password}
           secureTextEntry={true}
           autoCapitalize="none"
           onChangeText={password => setPassword(password)}
+          ref={input => {
+            Password = input;
+          }}
+          onSubmitEditing={() => {
+            Confirm_Password.focus();
+          }}
+          blurOnSubmit={false}
         />
-        <Input
-          placeholder="Confirm Password"
+        <Text style={styles.inputTags}>Confirm Password</Text>
+        <TextInput
+          style={styles.textInputs}
+          placeholder="Confirm_Password"
           value={confirmPassword}
           secureTextEntry={true}
           autoCapitalize="none"
           onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
+          ref={input => {
+            Confirm_Password = input;
+          }}
+          onSubmitEditing={() => {
+            Phone_Number.focus();
+          }}
+          blurOnSubmit={false}
         />
-        <Input
-          placeholder="Phone number e.g 3031119999"
+        <Text style={styles.inputTags}>Phone Number</Text>
+        <TextInput
+          style={styles.textInputs}
+          placeholder="Phone_Number"
           value={phoneNumber}
           keyboardType="numeric"
           onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
+          ref={input => {
+            Phone_Number = input;
+          }}
         />
         {!isLoading && !success && !failure && (
           <Button
             title="Submit"
             onPress={() => checkUserSignUp()}
             style={{
-              height: 50,
-              marginTop: 30,
-              marginBottom: 30,
-              marginLeft: 10
+              height: 50
             }}
           ></Button>
         )}
@@ -118,7 +160,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
             speed={1}
             autoPlay
             style={{
-              marginTop: 80
+              marginTop: 240
             }}
           />
         )}
@@ -130,7 +172,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
             }}
             autoPlay
             style={{
-              marginTop: 80
+              marginTop: 240
             }}
             loop={false}
             onAnimationFinish={() => navigation.navigate("Home")}
@@ -143,7 +185,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
             loop={false}
             speed={2}
             style={{
-              marginTop: 80
+              marginTop: 240
             }}
             onAnimationFinish={() => setFailure(false)}
           />
@@ -157,6 +199,24 @@ const styles = StyleSheet.create({
   signUpForm: {
     height: "100%",
     width: 300
+  },
+  textInputs: {
+    borderColor: "gray",
+    borderWidth: 1,
+    height: 50,
+    backgroundColor: "white",
+    marginBottom: 20,
+    padding: 5,
+    borderRadius: 2
+  },
+  login: {
+    color: "#1F89DC",
+    fontSize: 21,
+    marginBottom: 50
+  },
+  inputTags: {
+    color: "#333",
+    fontSize: 16
   }
 });
 

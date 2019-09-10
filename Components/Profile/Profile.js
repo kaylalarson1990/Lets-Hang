@@ -22,7 +22,7 @@ export const Profile = props => {
             justifyContent: "flex-end"
           }}
         >
-          <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
+          <TouchableOpacity onPress={() => props.navigation.goBack()}>
             <Image
               style={styles.profileAvatar}
               source={require("../../assets/close.png")}

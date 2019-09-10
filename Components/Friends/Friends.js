@@ -1,89 +1,60 @@
-import { StyleSheet, Text, Image, View, ScrollView } from "react-native";
-import { connect } from "react-redux";
-import React, { useState, useEffect } from "react";
-import { MockFriends } from "../../MockData";
-import { getFriends } from "../../Actions/index";
-import { FriendList } from "./FriendList";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-
-const Friends = props => {
-  const [friends, setFriends] = useState([]);
-
-  useEffect(() => {
-    props.getFriends(MockFriends.friends);
-    setFriends(MockFriends.friends);
-  }, []);
-
-  const allFriends = friends.map(friend => {
-    return (
-      <FriendList
-        name={friend.name}
-        phone={friend.phone}
-        email={friend.email}
-      />
-    );
-  });
+export const Friends = props => {
   return (
-    <ScrollView>
-      <View style={styles.friendCover}>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center"
-          }}
-        >
-          <Text style={styles.friendName}>Friends List</Text>
-          <Image
-            style={styles.friendAvatar}
-            source={require("./assets/main-user.png")}
-          />
+    <View style={styles.friendListContainer}>
+      <View style={styles.friendListContent}>
+        <View style={styles.friendListWrapper}>
+          <Text style={styles.friendListName}>{props.name}</Text>
+          <Text style={styles.phone}>{props.phone}</Text>
+          <Text style={styles.email}>{props.email}</Text>
         </View>
       </View>
-      <View style={{ backgroundColor: "#f7f7f7", minHeight: 600 }}>
-        {allFriends}
-      </View>
-    </ScrollView>
+    </View>
   );
 };
 
 export const styles = StyleSheet.create({
-  friendName: {
+  friendListContainer: {
+    backgroundColor: "#fff",
+    minHeight: 150,
+    borderRadius: 4,
+    margin: 10,
+    borderBottomWidth: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    marginBottom: 20,
+    // box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    elevation: 2
+  },
+  friendListContent: {
+    flexDirection: "column",
+    height: 50,
+    paddingTop: 10
+  },
+  friendListWrapper: {
+    marginTop: 4,
+    marginLeft: 24,
+    marginBottom: 4,
+    marginRight: 24
+  },
+  email: {
+    color: "#767676",
+    fontSize: 20,
+    marginTop: 4
+  },
+  phone: {
+    color: "#767676",
+    fontSize: 20,
+    marginTop: 4
+  },
+  friendListName: {
     color: "black",
     fontSize: 32,
     fontWeight: "bold",
-    marginTop: 20,
-    marginRight: 84,
-    textAlign: "center"
-  },
-  friendAvatar: {
-    top: 10,
-    left: 15,
-    borderRadius: 20,
-    width: 48,
-    height: 48,
-    marginRight: 6
-  },
-  friendCover: {
-    width: "100%",
-    height: 150,
-    overflow: "hidden",
-    paddingTop: 40,
-    backgroundColor: "#f7f7f7"
+    marginTop: 4
   }
 });
-
-
-const mapStateToProps = store => ({
-  friends: store.friends
-});
-
-const mapDispatchToProps = dispatch => ({
-  getFriends: friend => dispatch(getFriends(friend))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Friends);
