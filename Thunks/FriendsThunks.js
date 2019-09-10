@@ -27,8 +27,29 @@ export const makeFriendRequest = (key, id) => {
         }
       }
       const response = await fetch(url, options)
-      const request = await response.json()
-      return request
+      const requestStatus = await response.json()
+      return requestStatus
+    }
+    catch(error) {
+      dispatch(hasErrored(error.message))
+    }
+  }
+}
+
+export const acceptFriendRequest = (id, key) => {
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/friendships/${id}?api_key=${key}`
+  return async dispatch => {
+    const options = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    }
+    try {
+      const response = await fetch(url, options)
+      const requestStatus = response.json()
+      return requestStatus
     }
     catch(error) {
       dispatch(hasErrored(error.message))
