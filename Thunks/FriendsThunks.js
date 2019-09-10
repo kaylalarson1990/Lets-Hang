@@ -6,7 +6,10 @@ export const getUserFriendsThunk = key => {
     try{ 
       const response = await fetch(url)
       const friends = await response.json()
+      console.log(friends)
       dispatch(getFriends(friends))
+      dispatch(getPendingFriends(friends.data.attributes.pending_friends))
+      dispatch(getRequestedFriends(friends.data.attributes.requested_friends))
       return friends
     }
     catch(error) {

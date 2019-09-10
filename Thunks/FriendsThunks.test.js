@@ -3,8 +3,6 @@ import {
   mockFriendRequestThunk,
   acceptFriendRequestThunk,
   removeFriendThunk,
-  getPendingFriendsThunk,
-  getRequestedFriendsThunk
 } from './FriendsThunks'
 
 describe('ALL FRIENDS THUNKS', () => {

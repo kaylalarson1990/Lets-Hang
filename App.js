@@ -13,6 +13,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { SplashPage } from './SplashPage/SplashPage'
 import thunk from 'redux-thunk'
 import CreateEvent from './Components/CreateEvent/CreateEvent'
+import PendingFriendList from './Components/PendingFriendList/PendingFriendList'
 
 YellowBox.ignoreWarnings(["ReactNative.NativeModules.LottieAnimationView.getConstants"]);
 
@@ -58,6 +59,9 @@ const rootStack = createStackNavigator(
     },
     CreateEvent: {
       screen: CreateEvent
+    },
+    PendingFriendList: {
+      screen: PendingFriendList
     }
   },
   {

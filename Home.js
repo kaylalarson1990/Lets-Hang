@@ -10,11 +10,7 @@ import {
 import { Events } from "./Components/Events/Events";
 import { connect, useSelector } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
-import {
-  getUserFriendsThunk,
-  getPendingFriendsThunk,
-  getRequestedFriendsThunk
-} from "./Thunks/FriendsThunks";
+import { getUserFriendsThunk } from "./Thunks/FriendsThunks";
 import { FloatingAction } from "react-native-floating-action";
 import CreateEvent from "./Components/CreateEvent/CreateEvent";
 
@@ -25,8 +21,6 @@ export const Home = props => {
   useEffect(async () => {
     await props.getEvents(props.user.attributes.api_key);
     await props.getFriends(props.user.attributes.api_key);
-    await props.getPendingFriends(props.user.attributes.api_key);
-    await props.getRequestedFriends(props.user.attributes.api_key);
   }, []);
 
   const allEvents = selectEvents.map(event => {
@@ -122,15 +116,12 @@ export const styles = StyleSheet.create({
 export const mapStateToProps = store => ({
   events: store.events,
   user: store.currentUser,
-  pending: store.pending,
-  requested: store.requested
+  friends: store.friends
 });
 
 export const mapDispatchToProps = dispatch => ({
   getEvents: event => dispatch(getEventsThunk(event)),
   getFriends: key => dispatch(getUserFriendsThunk(key)),
-  getPendingFriends: key => dispatch(getPendingFriendsThunk(key)),
-  getRequestedFriends: key => dispatch(getRequestedFriendsThunk(key))
 });
 
 export default connect(
