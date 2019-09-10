@@ -23,16 +23,16 @@ export const Home = props => {
     await props.getFriends(props.user.attributes.api_key);
   }, []);
 
-  console.log(selectEvents)
   const allEvents = selectEvents.map(event => {
+ 
     return (
       <Events
-        name={event.Creator}
-        title={event.Title}
-        time={event.Time}
-        address={event.Location}
-        description={event.Description}
-        key={event.Time}
+        name={event.creator}
+        title={event.title}
+        time={event.event_time}
+        address={event.event_location}
+        description={event.description}
+        key={event.id}
         />
         );
       });

@@ -22,3 +22,13 @@ export const addEvent = event => ({
   type: 'ADD_EVENT',
   event
 })
+
+export const getPendingFriends = friends => ({
+  type: 'GET_PENDING_FRIENDS',
+  friends
+})
+
+export const getRequestedFriends = friends => ({
+  type: 'GET_REQUESTED_FRIENDS',
+  friends
+})
