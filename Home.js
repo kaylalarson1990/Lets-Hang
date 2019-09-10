@@ -10,19 +10,23 @@ import {
 import { Events } from "./Components/Events/Events";
 import { connect, useSelector } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
-import { getUserFriendsThunk, getPendingFriendsThunk, getRequestedFriendsThunk } from './Thunks/FriendsThunks'
-import { FloatingAction } from 'react-native-floating-action'
-import CreateEvent  from './Components/CreateEvent/CreateEvent'
+import {
+  getUserFriendsThunk,
+  getPendingFriendsThunk,
+  getRequestedFriendsThunk
+} from "./Thunks/FriendsThunks";
+import { FloatingAction } from "react-native-floating-action";
+import CreateEvent from "./Components/CreateEvent/CreateEvent";
 
 export const Home = props => {
-  const [createEvent, setCreateEvent ] = useState(false)
-  const selectEvents = useSelector(state => state.events)
+  const [createEvent, setCreateEvent] = useState(false);
+  const selectEvents = useSelector(state => state.events);
 
   useEffect(async () => {
     await props.getEvents(props.user.attributes.api_key);
     await props.getFriends(props.user.attributes.api_key);
     await props.getPendingFriends(props.user.attributes.api_key);
-    await props.getRequestedFriends(props.user.attributes.api_key)
+    await props.getRequestedFriends(props.user.attributes.api_key);
   }, []);
 
   const allEvents = selectEvents.map(event => {
@@ -34,13 +38,18 @@ export const Home = props => {
         address={event.event_location}
         description={event.description}
         key={event.id}
-        />
-        );
-      });
-      return (
-        <>
+      />
+    );
+  });
+  return (
+    <>
       <ScrollView>
-        {createEvent && <CreateEvent setCreateEvent={setCreateEvent} id={props.user.attributes.api_key}/>}
+        {createEvent && (
+          <CreateEvent
+            setCreateEvent={setCreateEvent}
+            id={props.user.attributes.api_key}
+          />
+        )}
         <View style={styles.cover}>
           <View
             style={{
@@ -64,18 +73,21 @@ export const Home = props => {
           </View>
         </View>
         <View style={styles.container}>{allEvents}</View>
-        <TouchableOpacity>
-        </TouchableOpacity>
+        <TouchableOpacity></TouchableOpacity>
       </ScrollView>
-      <FloatingAction 
-        onPressMain={(value) => setCreateEvent(value)}
-        showBackground={true}
+      <FloatingAction
+        onPressMain={value => setCreateEvent(value)}
+        showBackground={false}
       />
     </>
   );
 };
 
 export const styles = StyleSheet.create({
+  opacity: {
+    width: "100%",
+    height: 900
+  },
   container: {
     flex: 1,
     backgroundColor: "#f7f7f7",
