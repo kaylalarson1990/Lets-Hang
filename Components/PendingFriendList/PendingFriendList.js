@@ -5,9 +5,12 @@ import { PendingFriend } from '../PendingFriend/PendingFriend'
 
 export const PendingFriendList = ({ friends }) => {
 
+  console.log(friends)
+
   const pendingFriends = friends.map( friend => {
     return <PendingFriend friend={friend} />
   })
+  
   return (
     <View>
       {pendingFriends}
@@ -15,8 +18,8 @@ export const PendingFriendList = ({ friends }) => {
   )
 }
 
-const mapStateToProps = store => {
-  const friends = store.pending
-}
+const mapStateToProps = store => ({
+  friends: store.pending
+})
 
 export default connect(mapStateToProps, null)(PendingFriendList)

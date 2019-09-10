@@ -9,6 +9,8 @@ import {
 import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { Friends } from "../Friends/Friends";
+import { FloatingAction } from 'react-native-floating-action'
+import { withNavigation } from 'react-navigation'
 
 export const FriendList = props => {
   const allFriends = props.friends.map(friend => {
@@ -21,6 +23,7 @@ export const FriendList = props => {
     );
   });
   return (
+    <>
     <ScrollView>
       <View style={styles.friendCover}>
         <View
@@ -46,6 +49,11 @@ export const FriendList = props => {
         {allFriends}
       </View>
     </ScrollView>
+      <FloatingAction 
+        onPressMain={ () => props.navigation.navigate('PendingFriendList')}
+        showBackground={false}
+      />
+    </>
   );
 };
 
@@ -87,4 +95,4 @@ const mapStateToProps = store => ({
   friends: store.friends
 });
 
-export default connect(mapStateToProps)(FriendList);
+export default withNavigation(connect(mapStateToProps)(FriendList));
