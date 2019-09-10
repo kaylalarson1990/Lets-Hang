@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { Input, Button } from "react-native-elements";
-import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
+import { Button } from "react-native-elements";
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Image
+} from "react-native";
 import LottieView from "lottie-react-native";
 import { connect } from "react-redux";
 import { loginUserThunk } from "../Thunks/UserThunks";
@@ -33,42 +40,45 @@ export const LogInForm = props => {
         onPress={() => props.setLogIn(false)}
         containerStyle={{
           position: "absolute",
-          right: 175
+          marginLeft: 0
         }}
       >
-        <Text
-          style={{
-            color: "#1F89DC",
-            fontSize: 18,
-            marginLeft: 10,
-            marginBottom: 150
-          }}
-        >
-          Back to Sign Up
-        </Text>
+        <Image
+          style={{ height: 30, width: 30, marginBottom: 50 }}
+          source={require("../assets/back-btn.png")}
+        />
       </TouchableOpacity>
       <View style={styles.loginForm}>
-        <Input
+        <Text style={styles.inputTags}>Email</Text>
+        <TextInput
+          style={styles.textInputs}
           placeholder="Email"
           value={email}
           autoCapitalize="none"
           onChangeText={email => setEmail(email)}
+          returnKeyType={"next"}
+          onSubmitEditing={() => {
+            Password.focus();
+          }}
+          blurOnSubmit={false}
         />
-        <Input
+        <Text style={styles.inputTags}>Password</Text>
+        <TextInput
+          style={styles.textInputs}
           placeholder="Password"
           value={password}
           secureTextEntry={true}
           autoCapitalize="none"
           onChangeText={password => setPassword(password)}
+          ref={input => {
+            Password = input;
+          }}
         />
         {!isLoading && !success && !failure && (
           <Button
             title="Submit"
             style={{
-              height: 50,
-              marginTop: 30,
-              marginBottom: 30,
-              marginLeft: 10
+              height: 50
             }}
             onPress={() => handleUserLogin()}
           ></Button>
@@ -122,6 +132,24 @@ const styles = StyleSheet.create({
   loginForm: {
     height: "100%",
     width: 300
+  },
+  inputTags: {
+    color: "#333",
+    fontSize: 16
+  },
+  signup: {
+    color: "#1F89DC",
+    fontSize: 21,
+    marginBottom: 50
+  },
+  textInputs: {
+    borderColor: "gray",
+    borderWidth: 1,
+    height: 50,
+    backgroundColor: "white",
+    marginBottom: 20,
+    padding: 5,
+    borderRadius: 2
   }
 });
 

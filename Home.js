@@ -20,18 +20,19 @@ export const Home = props => {
     const allEvents = await props.getEvents(props.user.attributes.api_key);
     setEvents(allEvents.data.attributes.events);
     const allFriends = await props.getFriends(props.user.attributes.api_key);
+    console.log(allFriends)
     setFriends(allFriends.data.attributes.friends)
   }, []);
 
   const allEvents = events.map(event => {
     return (
       <Events
-        name={event.Creator}
-        title={event.Title}
-        time={event.Time}
-        address={event.Location}
-        description={event.Description}
-        key={event.Time}
+        name={event.creator}
+        title={event.title}
+        time={event.event_time}
+        address={event.event_location}
+        description={event.description}
+        key={event.event_time}
       />
     );
   });

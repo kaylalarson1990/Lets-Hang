@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { rootReducer } from "./Reducers/index";
 import Profile from "./Components/Profile/Profile";
 import Home from "./Home";
-import { FriendList } from "./Components/FriendsList/FriendList";
+import FriendList from "./Components/FriendsList/FriendList";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { SplashPage } from './SplashPage/SplashPage'
