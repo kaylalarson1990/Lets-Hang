@@ -121,14 +121,16 @@ export const styles = StyleSheet.create({
 
 export const mapStateToProps = store => ({
   events: store.events,
-  user: store.currentUser
+  user: store.currentUser,
+  pending: store.pending,
+  requested: store.requested
 });
 
 export const mapDispatchToProps = dispatch => ({
   getEvents: event => dispatch(getEventsThunk(event)),
   getFriends: key => dispatch(getUserFriendsThunk(key)),
   getPendingFriends: key => dispatch(getPendingFriendsThunk(key)),
-  getRequestedFriendsThunk: key => dispatch(getRequestedFriendsThunk(key))
+  getRequestedFriends: key => dispatch(getRequestedFriendsThunk(key))
 });
 
 export default connect(
