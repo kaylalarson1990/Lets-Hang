@@ -56,3 +56,24 @@ export const acceptFriendRequest = (id, key) => {
     }
   }
 }
+
+export const removeFriend = (id, key) => {
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/friendships/${id}?api_key=${key}`
+  return async dispatch => {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    }
+    try{
+      const response = await fetch(url, options)
+      const removeStatus = await response.json()
+      return removeStatus
+    }
+    catch(error) {
+      dispatch(hasErrored(error.message))
+    }
+  }
+}
