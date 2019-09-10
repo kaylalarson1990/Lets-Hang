@@ -15,3 +15,23 @@ export const getUserFriendsThunk = key => {
   }
 }
 
+export const makeFriendRequest = (key, id) => {
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/friendships?api_key=${key}&friend_id=${id}`
+  return async dispatch => {
+    try{
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      }
+      const response = await fetch(url, options)
+      const request = await response.json()
+      return request
+    }
+    catch(error) {
+      dispatch(hasErrored(error.message))
+    }
+  }
+}
