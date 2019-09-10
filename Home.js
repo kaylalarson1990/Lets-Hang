@@ -8,23 +8,24 @@ import {
   Text
 } from "react-native";
 import { Events } from "./Components/Events/Events";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
-import { getUserFriendsThunk } from './Thunks/FriendsThunks'
+import { getUserFriendsThunk, getPendingFriendsThunk, getRequestedFriendsThunk } from './Thunks/FriendsThunks'
+import { FloatingAction } from 'react-native-floating-action'
+import CreateEvent  from './Components/CreateEvent/CreateEvent'
 
 export const Home = props => {
-  const [events, setEvents] = useState([]);
-  const [friends, setFriends] = useState([]);
+  const [createEvent, setCreateEvent ] = useState(false)
+  const selectEvents = useSelector(state => state.events)
 
   useEffect(async () => {
-    const allEvents = await props.getEvents(props.user.attributes.api_key);
-    setEvents(allEvents.data.attributes.events);
-    const allFriends = await props.getFriends(props.user.attributes.api_key);
-    console.log(allFriends)
-    setFriends(allFriends.data.attributes.friends)
+    await props.getEvents(props.user.attributes.api_key);
+    await props.getFriends(props.user.attributes.api_key);
+    await props.getPendingFriends(props.user.attributes.api_key);
+    await props.getRequestedFriends(props.user.attributes.api_key)
   }, []);
 
-  const allEvents = events.map(event => {
+  const allEvents = selectEvents.map(event => {
     return (
       <Events
         name={event.creator}
@@ -32,13 +33,14 @@ export const Home = props => {
         time={event.event_time}
         address={event.event_location}
         description={event.description}
-        key={event.event_time}
-      />
-    );
-  });
-  return (
-    <>
+        key={event.id}
+        />
+        );
+      });
+      return (
+        <>
       <ScrollView>
+        {createEvent && <CreateEvent setCreateEvent={setCreateEvent} id={props.user.attributes.api_key}/>}
         <View style={styles.cover}>
           <View
             style={{
@@ -65,6 +67,10 @@ export const Home = props => {
         <TouchableOpacity>
         </TouchableOpacity>
       </ScrollView>
+      <FloatingAction 
+        onPressMain={(value) => setCreateEvent(value)}
+        showBackground={true}
+      />
     </>
   );
 };
@@ -108,7 +114,9 @@ export const mapStateToProps = store => ({
 
 export const mapDispatchToProps = dispatch => ({
   getEvents: event => dispatch(getEventsThunk(event)),
-  getFriends: key => dispatch(getUserFriendsThunk(key))
+  getFriends: key => dispatch(getUserFriendsThunk(key)),
+  getPendingFriends: key => dispatch(getPendingFriendsThunk(key)),
+  getRequestedFriendsThunk: key => dispatch(getRequestedFriendsThunk(key))
 });
 
 export default connect(
