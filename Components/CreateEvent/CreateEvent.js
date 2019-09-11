@@ -49,6 +49,7 @@ export const CreateEvent = props => {
           style={styles.textInputs}
           placeholder="Event_Name"
           value={eventName}
+          editable={true}
           onChangeText={eventName => setEventName(eventName)}
           onSubmitEditing={() => {
             Description.focus();
@@ -60,6 +61,7 @@ export const CreateEvent = props => {
           style={styles.textInputs}
           placeholder="Description"
           value={eventDescription}
+          editable={true}
           onChangeText={eventDescription =>
             setEventDescription(eventDescription)
           }
@@ -76,6 +78,7 @@ export const CreateEvent = props => {
           style={styles.textInputs}
           placeholder="Location"
           value={eventLocation}
+          editable={true}
           onChangeText={eventLocation => setEventLocation(eventLocation)}
           onSubmitEditing={() => {
             Time.focus();
@@ -90,6 +93,7 @@ export const CreateEvent = props => {
           style={styles.textInputs}
           placeholder="Time"
           value={eventTime}
+          editable={true}
           onChangeText={eventTime => setEventTime(eventTime)}
           ref={input => {
             Time = input;

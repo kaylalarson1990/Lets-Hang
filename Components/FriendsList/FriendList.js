@@ -14,7 +14,7 @@ import { Friends } from "../Friends/Friends";
 import { withNavigation } from "react-navigation";
 
 export const FriendList = props => {
-  const [searchUser, setSearchUser] = useState('')
+  const [searchUser, setSearchUser] = useState("");
 
   const allFriends = props.friends.map(friend => {
     return (
@@ -25,7 +25,6 @@ export const FriendList = props => {
       />
     );
   });
-
 
   return (
     <>
@@ -50,16 +49,23 @@ export const FriendList = props => {
             </TouchableOpacity>
           </View>
         </View>
-        <View>
-          <TextInput 
-            placeholder='Search For Friends'
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            marginBottom: 15,
+            backgroundColor: "#f7f7f7"
+          }}
+        >
+          <TextInput
+            placeholder="Add friends"
             value={searchUser}
-            onChangeText={ searchUser => setSearchUser(searchUser)}
+            style={styles.textInputs}
+            onChangeText={searchUser => setSearchUser(searchUser)}
           />
-          <Icon 
-            name='search'
-            type='font-awesome'
-          />
+          <Icon style={{ height: 30, width: 30}} name="search" type="font-awesome" />
         </View>
         <View
           style={{
@@ -69,8 +75,7 @@ export const FriendList = props => {
             alignItems: "center",
             backgroundColor: "#f7f7f7"
           }}
-        > 
-
+        >
           <TouchableOpacity>
             <Button
               title="View Pending Friends"
@@ -82,7 +87,7 @@ export const FriendList = props => {
                 marginBottom: 10
               }}
               buttonStyle={{
-                width: '100%',
+                width: "100%",
                 backgroundColor: "FDFFFC"
               }}
               titleStyle={{
@@ -93,7 +98,7 @@ export const FriendList = props => {
             />
           </TouchableOpacity>
         </View>
-        <View style={{ backgroundColor: "#f7f7f7", minHeight: '100%' }}>
+        <View style={{ backgroundColor: "#f7f7f7", minHeight: "100%" }}>
           {allFriends}
         </View>
       </ScrollView>
@@ -132,6 +137,17 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
     paddingTop: 40,
     backgroundColor: "#f7f7f7"
+  },
+  textInputs: {
+    borderColor: "gray",
+    borderWidth: 1,
+    height: 50,
+    backgroundColor: "white",
+    marginLeft: 15,
+    marginRight: 10,
+    width: 300,
+    padding: 5,
+    borderRadius: 30
   }
 });
 
