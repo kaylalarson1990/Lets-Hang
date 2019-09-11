@@ -34,6 +34,12 @@ export const Profile = props => {
             source={require("../../assets/profile-picture.png")}
             style={styles.headShot}
           >
+            <TouchableOpacity onPress={() => getPhotosFromGallery()}>
+              <Image
+                style={styles.edit}
+                source={require("../../assets/edit.png")}
+              />
+            </TouchableOpacity>
             <View style={styles.overlay} />
             <Text
               style={{
@@ -41,6 +47,7 @@ export const Profile = props => {
                 fontSize: 36,
                 marginTop: 250,
                 marginLeft: 30,
+                marginRight: 30,
                 marginBottom: 10,
                 fontWeight: "bold"
               }}
@@ -94,7 +101,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: null,
-    height: null
+    height: null,
+    display: "flex",
+    justifyContent: "space-between"
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -116,6 +125,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginRight: 10,
     marginBottom: 20
+  },
+  edit: {
+    width: 30,
+    height: 30,
+    marginLeft: 30
   }
 });
 
