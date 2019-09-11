@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { Button } from 'react-native-elements'
+import { connect } from 'react-redux'
+
 
 export const Events = props => {
+  const [accepted, setAccepted] = useState(false) 
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -11,6 +16,12 @@ export const Events = props => {
           <Text style={styles.address}>{props.address}</Text>
           <Text style={styles.time}>{props.time}</Text>
           <Text style={styles.description}>{props.description}</Text>
+          {!accepted && <Button 
+            title='Join This Hang!'
+          />}
+          {accepted && <Button 
+            title='Leave Hang'
+          />}
         </View>
       </View>
     </View>
@@ -98,3 +109,5 @@ export const styles = StyleSheet.create({
     marginTop: 4
   }
 });
+
+export default connect(null, null)(Events)
