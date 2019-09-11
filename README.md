@@ -1,5 +1,7 @@
 # Lets-Hang
-### By: [Ryan Flachman](https://github.com/flachman03) and [Kayla Larson](https://github.com/kaylalarson1990)
+### Frontend By: [Ryan Flachman](https://github.com/flachman03) and [Kayla Larson](https://github.com/kaylalarson1990)
+### Backend By: [Logan Pile](https://github.com/lpile) and [Anneke McGrady](https://github.com/annekemcgrady)
+[Backend Repo](https://github.com/lpile/lets-hang-be)
 
 ## Description
 Let's Hang is a native app that allows friends to schedule same day events to hang out with their friends. 
