@@ -23,7 +23,7 @@ export const PendingFriendList = (props) => {
         >
           <Text style={styles.pendingFriends}>Pending Friends</Text>
           <TouchableOpacity
-            onPress={() => props.navigation.goBack()}
+            onPress={() => props.navigation.navigate('FriendList')}
           >
             <Image
               style={styles.avatar}
