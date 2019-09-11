@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
-import { createEventThunk, inviteFriendsToEventThunk } from "../../Thunks/EventThunks";
+import {
+  createEventThunk,
+  inviteFriendsToEventThunk
+} from "../../Thunks/EventThunks";
 
 export const CreateEvent = props => {
   const [eventName, setEventName] = useState("");
@@ -11,9 +14,9 @@ export const CreateEvent = props => {
   const [eventLocation, setEventLocation] = useState("");
   const [error, setError] = useState(false);
 
-  const friendsIds = props.friends.map( friend => {
-    return friend.id
-  })
+  const friendsIds = props.friends.map(friend => {
+    return friend.id;
+  });
 
   const handleCreateEvent = async () => {
     const event = {
@@ -23,7 +26,11 @@ export const CreateEvent = props => {
       event_location: eventLocation
     };
     const response = await props.createEvent(event, props.id);
-    const addFriends = await props.inviteFriends(response.data.id, props.user.attributes.api_key, {friend_ids: friendsIds})
+    const addFriends = await props.inviteFriends(
+      response.data.id,
+      props.user.attributes.api_key,
+      { friend_ids: friendsIds }
+    );
     if (response) {
       props.setCreateEvent(false);
     } else {
@@ -88,11 +95,26 @@ export const CreateEvent = props => {
             Time = input;
           }}
         />
-        <Button
-          style={{ marginTop: 30 }}
-          title="Submit"
-          onPress={() => handleCreateEvent()}
-        ></Button>
+        <View style={{ display: "flex" }}>
+          <Button
+            style={{
+              height: 50,
+              marginTop: 30,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+            title="Submit"
+            onPress={() => handleCreateEvent()}
+            buttonStyle={{
+              width: 300,
+              backgroundColor: "#011627"
+            }}
+            titleStyle={{
+              color: "#FDFFFC",
+              fontSize: 20
+            }}
+          ></Button>
+        </View>
         {error && <Text>Error creating an event</Text>}
       </View>
     </>
@@ -102,7 +124,7 @@ export const CreateEvent = props => {
 const styles = StyleSheet.create({
   container: {
     zIndex: 2,
-    height: "100%",
+    height: 800,
     width: "100%",
     position: "absolute",
     top: 110,
@@ -113,11 +135,10 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderBottomWidth: 0,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 2,
     elevation: 4
-    // boxShadow: '0 10px 15px rgba(0, 0, 0, 0.15)'
   },
   input: {
     padding: 5,
@@ -145,7 +166,8 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   createEvent: (event, key) => dispatch(createEventThunk(event, key)),
-  inviteFriends: (id, key, friends) => dispatch(inviteFriendsToEventThunk(id, key, friends))
+  inviteFriends: (id, key, friends) =>
+    dispatch(inviteFriendsToEventThunk(id, key, friends))
 });
 
 export default connect(

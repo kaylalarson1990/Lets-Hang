@@ -146,8 +146,16 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
             title="Submit"
             onPress={() => checkUserSignUp()}
             style={{
-              height: 50
+              height: 40
             }}
+            buttonStyle={{
+              backgroundColor: "#011627"
+            }}
+            titleStyle={{
+              color: "#FDFFFC",
+              fontSize: 20
+            }}
+            raised={true}
           ></Button>
         )}
         {isLoading && (

@@ -78,8 +78,16 @@ export const LogInForm = props => {
           <Button
             title="Submit"
             style={{
-              height: 50
+              height: 40
             }}
+            buttonStyle={{
+              backgroundColor: "#011627"
+            }}
+            titleStyle={{
+              color: "#FDFFFC",
+              fontSize: 20
+            }}
+            raised={true}
             onPress={() => handleUserLogin()}
           ></Button>
         )}

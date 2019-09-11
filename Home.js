@@ -72,21 +72,19 @@ export const Home = props => {
       <FloatingAction
         onPressMain={value => setCreateEvent(value)}
         showBackground={false}
+        buttonStyle={{ backgroundColor: "#011627" }}
       />
     </>
   );
 };
 
 export const styles = StyleSheet.create({
-  opacity: {
-    width: "100%",
-    height: 900
-  },
   container: {
     flex: 1,
+    minHeight: 800,
     backgroundColor: "#f7f7f7",
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: "center"
+    // justifyContent: "center"
   },
   cover: {
     width: "100%",
@@ -121,7 +119,7 @@ export const mapStateToProps = store => ({
 
 export const mapDispatchToProps = dispatch => ({
   getEvents: event => dispatch(getEventsThunk(event)),
-  getFriends: key => dispatch(getUserFriendsThunk(key)),
+  getFriends: key => dispatch(getUserFriendsThunk(key))
 });
 
 export default connect(

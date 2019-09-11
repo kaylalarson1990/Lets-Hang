@@ -84,14 +84,25 @@ export const Profile = props => {
         <Text style={{ marginLeft: 30, fontSize: 22 }}>
           {props.user.attributes.phone_number}
         </Text>
-        <Button
-          title="Edit Profile"
-          style={{
-            height: 40,
-            margin: 30,
-            marginTop: 200
-          }}
-        />
+        <View style={{ display: "flex" }}>
+          <Button
+            title="Edit Profile"
+            style={{
+              height: 40,
+              marginTop: 150,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+            buttonStyle={{
+              width: 300,
+              backgroundColor: "#011627"
+            }}
+            titleStyle={{
+              color: "#FDFFFC",
+              fontSize: 20
+            }}
+          />
+        </View>
       </ScrollView>
     </>
   );
@@ -129,10 +140,10 @@ const styles = StyleSheet.create({
   edit: {
     width: 40,
     height: 40,
-    marginLeft: 350,
-    marginTop: 5,
+    marginLeft: 360,
+    marginTop: 10,
     borderRadius: 4,
-    backgroundColor: "rgba(69,85,117,0.4)"
+    backgroundColor: "rgba(69,85,117,0.2)"
   }
 });
 

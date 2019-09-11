@@ -35,7 +35,12 @@ export const SplashPage = props => {
                 marginTop: 10
               }}
               buttonStyle={{
-                width: 300
+                width: 300,
+                backgroundColor: "#011627"
+              }}
+              titleStyle={{
+                color: "#FDFFFC",
+                fontSize: 20
               }}
               raised={true}
             />
@@ -51,7 +56,12 @@ export const SplashPage = props => {
               marginTop: 10
             }}
             buttonStyle={{
-              width: 300
+              width: 300,
+              backgroundColor: "#011627"
+            }}
+            titleStyle={{
+              color: "#FDFFFC",
+              fontSize: 20
             }}
             raised={true}
           />
@@ -73,10 +83,10 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   appTitle: {
-    fontSize: 50,
-    color: "yellow",
+    fontSize: 54,
+    color: "#011627",
     textAlign: "center",
-    marginBottom: 100,
+    marginBottom: 70,
     position: "relative"
   },
   splashContent: {
