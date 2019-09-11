@@ -18,9 +18,11 @@ export const Events = props => {
           <Text style={styles.description}>{props.description}</Text>
           {!accepted && <Button 
             title='Join This Hang!'
+            onPress={() => props.acceptEvent(props.id, props.userKey)}
           />}
           {accepted && <Button 
             title='Leave Hang'
+            onPress={() => props.declineEvent(props.id, props.userKey)}
           />}
         </View>
       </View>
@@ -110,9 +112,13 @@ export const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = store => ({
+  userKey: store.currentUser.attributes.api_key
+})
+
 const mapDispatchToProps = dispatch => ({
   acceptEvent: (id, key) => dispatch(acceptEventThunk(id, key)),
   declineEvent: (id, key) => dispatch(declineEventThunk(id, key))
 })
 
-export default connect(null, mapDispatchToProps)(Events)
+export default connect(mapStateToProps, mapDispatchToProps)(Events)
