@@ -70,7 +70,6 @@ export const acceptEventThunk = (id, key) => {
         method: 'PATCH',
       }
       const response = await fetch(url, options)
-      console.log(response)
       const event = await response.json()
       return event
     }
@@ -93,6 +92,7 @@ export const declineEventThunk = (id, key) => {
       }
       const response = await fetch(url, options)
       const event = await response.json()
+      console.log(event)
       return event
     }
     catch (error) {

@@ -7,6 +7,14 @@ import { declineEventThunk, acceptEventThunk } from '../../Thunks/EventThunks'
 export const Events = props => {
   const [accepted, setAccepted] = useState(false) 
 
+  const handleAcceptEvent = async (id, key) => {
+    await props.acceptEvent(id, key)
+    setAccepted(true)
+  }
+  const handleDeclineEvent = async (id, key) => {
+    await props.declineEvent(id, key)
+    setAccepted(false)
+  }
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -18,11 +26,11 @@ export const Events = props => {
           <Text style={styles.description}>{props.description}</Text>
           {!accepted && <Button 
             title='Join This Hang!'
-            onPress={() => props.acceptEvent(props.id, props.userKey)}
+            onPress={() => handleAcceptEvent(props.id, props.userKey)}
           />}
           {accepted && <Button 
             title='Leave Hang'
-            onPress={() => props.declineEvent(props.id, props.userKey)}
+            onPress={() => handleDeclineEvent(props.id, props.userKey)}
           />}
         </View>
       </View>
