@@ -1,10 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import RequestedFriend from '../RequestedFriend/RequestedFriend'
+import { View } from 'react-native'
 
 export const RequestedFriendsList = ({ friends }) => {
-  return (
 
+  const allFriends = friends.map( friend => {
+    return <RequestedFriend friend={friend} />
+  })
+  return (
+    <View>
+      {allFriends}
+    </View>
   )
 }
 
