@@ -82,5 +82,19 @@ export const removeFriendThunk = (id, key) => {
   }
 }
 
+export const searchForFriendThunk = (key, name) => {
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/user/search?api_key=${key}&query=${name}`
+  return async dispatch => {
+    try {
+      const response = await fetch(url)
+      const friend = await response.json()
+      return friend.data
+    }
+    catch(error) {
+      dispatch(hasErrored(error.message))
+    }
+  }
+}
+
 
 
