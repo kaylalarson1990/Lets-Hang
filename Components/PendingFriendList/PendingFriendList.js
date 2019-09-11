@@ -5,12 +5,10 @@ import { PendingFriend } from '../PendingFriend/PendingFriend'
 
 export const PendingFriendList = ({ friends }) => {
 
-  console.log(friends)
-
   const pendingFriends = friends.map( friend => {
     return <PendingFriend friend={friend} />
   })
-  
+
   return (
     <View>
       {pendingFriends}

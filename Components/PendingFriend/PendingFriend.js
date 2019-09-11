@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 
 export const PendingFriend = ({ friend }) => {
   return (
@@ -16,3 +17,5 @@ export const PendingFriend = ({ friend }) => {
     </View>
   )
 }
+
+export default connect(null, null)(PendingFriend)
