@@ -8,9 +8,6 @@ export const PendingFriendList = props => {
   const pendingFriends = props.friends.map(friend => {
     return <PendingFriend friend={friend} />;
   });
-
-  console.log(props);
-
   return (
     <>
       <View style={styles.pendingFriendCover}>
@@ -23,7 +20,9 @@ export const PendingFriendList = props => {
           }}
         >
           <Text style={styles.pendingFriends}>Pending Friends</Text>
-          <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("FriendList")}
+          >
             <Icon
               style={styles.avatar}
               size={48}

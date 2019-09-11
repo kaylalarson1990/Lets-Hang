@@ -29,6 +29,14 @@ const tabNavigator = createBottomTabNavigator({
   Friends: FriendList
 });
 
+const friendNavigator = createBottomTabNavigator({
+  Home: Home,
+  Friends: FriendList,
+},
+{
+  initialRouteName: 'Friends'
+})
+
 const rootStack = createStackNavigator(
   {
     Login: {
@@ -70,6 +78,9 @@ const rootStack = createStackNavigator(
     },
     SearchResult: {
       screen: SearchResult
+    },
+    FriendList: {
+      screen: friendNavigator
     }
   },
   {

@@ -18,7 +18,7 @@ describe('Reducers', () => {
       }
       const mockAction = {
         type: 'ADD_CURRENT_USER',
-        user: mockUser
+        user: {data: mockUser}
       }
       const expected = mockUser
       const result = CurrentUserReducer({}, mockAction)
@@ -60,9 +60,9 @@ describe('Reducers', () => {
       ]}
       const mockAction = {
         type: 'GET_EVENTS',
-        events: mockEvents
+        events: {data: { attributes: { events: mockEvents}}}
       }
-      const expected = mockEvents.data
+      const expected = mockEvents
       const result = EventReducer([], mockAction)
 
       expect(result).toEqual(expected)
@@ -78,7 +78,7 @@ describe('Reducers', () => {
       }
       const mockAction = {
         type: 'ADD_EVENT',
-        event: mockEvent
+        event: {data: { attributes: mockEvent}}
       }
       const expected = [...mockState, mockEvent]
       const result = EventReducer(mockState, mockAction)
@@ -100,7 +100,7 @@ describe('Reducers', () => {
       ]
       const mockAction = {
         type: 'GET_FRIENDS',
-        friends: mockFriends
+        friends: {data: {attributes: {accepted_friends: mockFriends}}}
       }
       const expected = mockFriends
       const result = FriendsReducer([], mockAction)

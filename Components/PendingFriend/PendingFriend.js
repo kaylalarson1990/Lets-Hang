@@ -1,18 +1,20 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { connect } from "react-redux";
-import { Button } from "react-native-elements";
-import {
-  acceptFriendRequestThunk,
-  removeFriendThunk
-} from "../../Thunks/FriendsThunks";
+import React, { useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
+import { acceptFriendRequestThunk, removeFriendThunk } from '../../Thunks/FriendsThunks'
 
-export const PendingFriend = ({
-  friend,
-  acceptRequest,
-  removeFriend,
-  userKey
-}) => {
+export const PendingFriend = ({ friend, acceptRequest, removeFriend, userKey }) => {
+  const [accepted, setAccepted] = useState(false)
+  const [declined, setDeclined] = useState(false)
+
+  const handleAcceptRequest = async (id, key) => {
+    await acceptRequest(id, key)
+    setAccepted(true)
+  }
+  const handleRemoveFriend = async (id, key) => {
+    await removeFriend(id, key)
+    setDeclined(true)
+  }
   return (
     <View style={styles.pendingFriendContainer}>
       <View style={styles.pendingFriendContent}>
@@ -21,7 +23,7 @@ export const PendingFriend = ({
           <Text style={styles.phone}>{friend.phone_number}</Text>
           <Text style={styles.email}>{friend.email}</Text>
           <View style={{ display: "flex", flexDirection: "row", justifyContent: 'space-evenly' }}>
-            <TouchableOpacity onPress={() => removeFriend(friend.id, userKey)}>
+          {!accepted && !declined && <TouchableOpacity onPress={() => removeFriend(friend.id, userKey)}>
               <Button
                 title="Decline"
                 containerStyle={{
@@ -40,8 +42,8 @@ export const PendingFriend = ({
                 }}
                 raised={true}
               />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => acceptRequest(friend.id, userKey)}>
+            </TouchableOpacity>}
+            {!accepted && !declined && <TouchableOpacity onPress={() => acceptRequest(friend.id, userKey)}>
               <Button
                 title="Accept"
                 containerStyle={{
@@ -60,7 +62,9 @@ export const PendingFriend = ({
                 }}
                 raised={true}
               />
-            </TouchableOpacity>
+            </TouchableOpacity>}
+            {accepted && <Text>Friend Request Accepted!</Text>}
+          {declined && <Text>Friend Request Declined</Text>}
           </View>
         </View>
       </View>

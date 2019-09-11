@@ -111,7 +111,7 @@ export const CreateEvent = props => {
             onPress={() => handleCreateEvent()}
             buttonStyle={{
               width: '100%',
-              backgroundColor: "#2EC4B6"
+              backgroundColor: "#011627"
             }}
             titleStyle={{
               color: "#FDFFFC",
