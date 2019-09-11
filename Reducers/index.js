@@ -5,6 +5,7 @@ import { CurrentUserReducer } from "./CurrentUserReducer";
 import { ErrorReducer } from './ErrorReducer'
 import { RequestedReducer } from './RequestedReducer'
 import { PendingReducer } from './PendingReducer'
+import { SearchResultReducer } from './SearchResult'
 
 export const rootReducer = combineReducers({
   events: EventReducer,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
   currentUser: CurrentUserReducer,
   error: ErrorReducer,
   requested: RequestedReducer,
-  pending: PendingReducer
+  pending: PendingReducer,
+  searchResult: SearchResultReducer
 });

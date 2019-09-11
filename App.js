@@ -15,6 +15,7 @@ import thunk from 'redux-thunk'
 import CreateEvent from './Components/CreateEvent/CreateEvent'
 import PendingFriendList from './Components/PendingFriendList/PendingFriendList'
 import EditProfile from './Components/EditProfile/EditProfile'
+import SearchResult from './Components/SearchResult/SearchResult'
 
 YellowBox.ignoreWarnings(["ReactNative.NativeModules.LottieAnimationView.getConstants"]);
 
@@ -66,6 +67,9 @@ const rootStack = createStackNavigator(
     },
     EditProfile: {
       screen: EditProfile
+    },
+    SearchResult: {
+      screen: SearchResult
     }
   },
   {

@@ -18,7 +18,8 @@ export const FriendList = props => {
   const [searchUser, setSearchUser] = useState("");
 
   const handleSearchForFriend = async (key, name) => {
-    
+    await props.searchForFriend(props.userKey, searchUser)
+    props.navigation.navigate('SearchResult')
   }
 
   const allFriends = props.friends.map(friend => {
@@ -74,7 +75,7 @@ export const FriendList = props => {
             style={{ height: 30, width: 30}} 
             name="search" 
             type="font-awesome" 
-            onPress={() => props.searchForFriend(props.userKey, searchUser)}
+            onPress={() => handleSearchForFriend(props.userKey, searchUser)}
             />
         </View>
         <View

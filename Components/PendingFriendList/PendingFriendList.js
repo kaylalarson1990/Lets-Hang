@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => ({
-  friends: store.pending
+  friends: store.requested
 });
 
 export default connect(

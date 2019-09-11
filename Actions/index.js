@@ -32,3 +32,8 @@ export const getRequestedFriends = friends => ({
   type: 'GET_REQUESTED_FRIENDS',
   friends
 })
+
+export const addSearchResult = search => ({
+  type: 'ADD_SEARCH',
+  search
+})
