@@ -50,9 +50,7 @@ export const acceptFriendRequestThunk = (id, key) => {
     }
     try {
       const response = await fetch(url, options)
-      console.log(response)
       const requestStatus = await response.json()
-      console.log(requestStatus)
       await getUserFriendsThunk(key)
       return requestStatus
     }

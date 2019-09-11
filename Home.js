@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Text
 } from "react-native";
-import { Events } from "./Components/Events/Events";
+import  Events  from "./Components/Events/Events";
 import { connect, useSelector } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
 import { getUserFriendsThunk } from "./Thunks/FriendsThunks";
@@ -31,6 +31,7 @@ export const Home = props => {
         time={event.event_time}
         address={event.event_location}
         description={event.description}
+        id={event.id}
         key={event.id}
       />
     );

@@ -60,3 +60,43 @@ export const inviteFriendsToEventThunk = (id, key,friends) => {
     }
   }
 }
+
+export const acceptEventThunk = (id, key) => {
+  console.log(id, key)
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/user/event/${id}?api_key=${key}`
+  return async dispatch => {
+    try{
+      const options = {
+        method: 'PATCH',
+      }
+      const response = await fetch(url, options)
+      const event = await response.json()
+      return event
+    }
+    catch(error) {
+      dispatch(hasErrored(error.messge))
+    }
+  }
+}
+
+export const declineEventThunk = (id, key) => {
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/user/event/${id}?api_key=${key}`
+  return async dispatch => {
+    try {
+      const options = {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      }
+      const response = await fetch(url, options)
+      const event = await response.json()
+      console.log(event)
+      return event
+    }
+    catch (error) {
+      dispatch(hasErrored(error.message))
+    }
+  }
+}

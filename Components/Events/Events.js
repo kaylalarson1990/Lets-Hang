@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { Button } from 'react-native-elements'
+import { connect } from 'react-redux'
+import { declineEventThunk, acceptEventThunk } from '../../Thunks/EventThunks'
 
 export const Events = props => {
+  const [accepted, setAccepted] = useState(false) 
+
+  const handleAcceptEvent = async (id, key) => {
+    await props.acceptEvent(id, key)
+    setAccepted(true)
+  }
+  const handleDeclineEvent = async (id, key) => {
+    await props.declineEvent(id, key)
+    setAccepted(false)
+  }
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -11,6 +24,14 @@ export const Events = props => {
           <Text style={styles.address}>{props.address}</Text>
           <Text style={styles.time}>{props.time}</Text>
           <Text style={styles.description}>{props.description}</Text>
+          {!accepted && <Button 
+            title='Join This Hang!'
+            onPress={() => handleAcceptEvent(props.id, props.userKey)}
+          />}
+          {accepted && <Button 
+            title='Leave Hang'
+            onPress={() => handleDeclineEvent(props.id, props.userKey)}
+          />}
         </View>
       </View>
     </View>
@@ -72,3 +93,14 @@ export const styles = StyleSheet.create({
     marginBottom: 10
   }
 });
+
+const mapStateToProps = store => ({
+  userKey: store.currentUser.attributes.api_key
+})
+
+const mapDispatchToProps = dispatch => ({
+  acceptEvent: (id, key) => dispatch(acceptEventThunk(id, key)),
+  declineEvent: (id, key) => dispatch(declineEventThunk(id, key))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Events)
