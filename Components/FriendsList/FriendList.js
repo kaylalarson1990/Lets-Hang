@@ -4,16 +4,18 @@ import {
   Image,
   View,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from "react-native";
-import { Button } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
 import { connect } from "react-redux";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Friends } from "../Friends/Friends";
-import { FloatingAction } from "react-native-floating-action";
 import { withNavigation } from "react-navigation";
 
 export const FriendList = props => {
+  const [searchUser, setSearchUser] = useState('')
+
   const allFriends = props.friends.map(friend => {
     return (
       <Friends
@@ -23,6 +25,8 @@ export const FriendList = props => {
       />
     );
   });
+
+
   return (
     <>
       <ScrollView>
@@ -46,6 +50,17 @@ export const FriendList = props => {
             </TouchableOpacity>
           </View>
         </View>
+        <View>
+          <TextInput 
+            placeholder='Search For Friends'
+            value={searchUser}
+            onChangeText={ searchUser => setSearchUser(searchUser)}
+          />
+          <Icon 
+            name='search'
+            type='font-awesome'
+          />
+        </View>
         <View
           style={{
             display: "flex",
@@ -54,7 +69,8 @@ export const FriendList = props => {
             alignItems: "center",
             backgroundColor: "#f7f7f7"
           }}
-        >
+        > 
+
           <TouchableOpacity>
             <Button
               title="View Pending Friends"
