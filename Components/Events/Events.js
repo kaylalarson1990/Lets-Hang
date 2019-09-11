@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
-
+import { declineEventThunk, acceptEventThunk } from '../../Thunks/EventThunks'
 
 export const Events = props => {
   const [accepted, setAccepted] = useState(false) 
@@ -110,4 +110,9 @@ export const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, null)(Events)
+const mapDispatchToProps = dispatch => ({
+  acceptEvent: (id, key) => dispatch(acceptEventThunk(id, key)),
+  declineEvent: (id, key) => dispatch(declineEventThunk(id, key))
+})
+
+export default connect(null, mapDispatchToProps)(Events)
