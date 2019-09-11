@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text
 } from "react-native";
+import { Icon } from "react-native-elements";
 import Events from "./Components/Events/Events";
 import { connect, useSelector } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
@@ -60,10 +61,7 @@ export const Home = props => {
             <TouchableOpacity
               onPress={() => props.navigation.navigate("Profile")}
             >
-              <Image
-                style={styles.avatar}
-                source={require("./assets/main-user.png")}
-              />
+              <Icon style={styles.avatar} size={48} name="person" color='#517fa4' type="ionicons" />
             </TouchableOpacity>
           </View>
         </View>
@@ -83,28 +81,27 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     minHeight: 800,
-    backgroundColor: "#f7f7f7",
+    backgroundColor: "#01d2c120",
     alignItems: "center"
-    // justifyContent: "center"
   },
   cover: {
     width: "100%",
     height: 150,
     overflow: "hidden",
     paddingTop: 40,
-    backgroundColor: "#f7f7f7"
+    backgroundColor: "#01d2c120"
   },
   avatar: {
-    top: 10,
+    top: 20,
     left: 15,
     borderRadius: 20,
-    width: 48,
-    height: 48,
+    width: 55,
+    height: 55,
     marginRight: 16
   },
   name: {
-    color: "black",
-    fontSize: 32,
+    color: "#011627",
+    fontSize: 38,
     fontWeight: "bold",
     marginTop: 20,
     marginRight: 44,

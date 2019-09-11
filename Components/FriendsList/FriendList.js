@@ -42,40 +42,46 @@ export const FriendList = props => {
             <TouchableOpacity
               onPress={() => props.navigation.navigate("Profile")}
             >
-              <Image
+              <Icon
                 style={styles.avatar}
-                source={require("../../assets/main-user.png")}
+                size={48}
+                name="person"
+                color="#517fa4"
+                type="ionicons"
               />
             </TouchableOpacity>
           </View>
         </View>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            marginBottom: 15,
-            backgroundColor: "#f7f7f7"
-          }}
-        >
-          <TextInput
-            placeholder="Add friends"
-            value={searchUser}
-            style={styles.textInputs}
-            onChangeText={searchUser => setSearchUser(searchUser)}
-          />
-          <Icon style={{ height: 30, width: 30}} name="search" type="font-awesome" />
-        </View>
+
         <View
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#f7f7f7"
+            minHeight: 800,
+            backgroundColor: "#01d2c120"
           }}
         >
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              marginBottom: 15
+            }}
+          >
+            <TextInput
+              placeholder="Add friends"
+              value={searchUser}
+              style={styles.textInputs}
+              onChangeText={searchUser => setSearchUser(searchUser)}
+            />
+            <Icon
+              style={{ height: 30, width: 30 }}
+              name="search"
+              type="font-awesome"
+            />
+          </View>
           <TouchableOpacity>
             <Button
               title="View Pending Friends"
@@ -88,10 +94,10 @@ export const FriendList = props => {
               }}
               buttonStyle={{
                 width: "100%",
-                backgroundColor: "FDFFFC"
+                backgroundColor: "#011627"
               }}
               titleStyle={{
-                color: "#2EC4B6",
+                color: "#FDFFFC",
                 fontSize: 20
               }}
               raised={true}
@@ -116,11 +122,11 @@ export const styles = StyleSheet.create({
     textAlign: "center"
   },
   avatar: {
-    top: 10,
+    top: 20,
     left: 15,
     borderRadius: 20,
-    width: 48,
-    height: 48,
+    width: 55,
+    height: 55,
     marginRight: 16
   },
   friendAvatar: {
@@ -136,7 +142,7 @@ export const styles = StyleSheet.create({
     height: 150,
     overflow: "hidden",
     paddingTop: 40,
-    backgroundColor: "#f7f7f7"
+    backgroundColor: "#01d2c120"
   },
   textInputs: {
     borderColor: "gray",

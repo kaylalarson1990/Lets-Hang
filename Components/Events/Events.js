@@ -35,8 +35,8 @@ export const Events = props => {
                 marginTop: 10
               }}
               buttonStyle={{
-                backgroundColor: "#2EC4B6",
-                width: '100%'
+                backgroundColor: "#011627",
+                width: "100%"
               }}
               titleStyle={{
                 color: "#FDFFFC",
@@ -57,11 +57,11 @@ export const Events = props => {
                 }}
                 buttonStyle={{
                   backgroundColor: "#FDFFFC",
-                  width: '100%',
-                  border: '#2EC4B6'
+                  width: "100%",
+                  
                 }}
                 titleStyle={{
-                  color: "#2EC4B6",
+                  color: "#011627",
                   fontSize: 20
                 }}
               />
