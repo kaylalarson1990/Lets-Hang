@@ -15,32 +15,33 @@ export const Profile = props => {
   return (
     <>
       <ScrollView>
-        <View
+        <ImageBackground
+          source={require('../../assets/sunset.png')}
           style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-end"
+            height: '100%',
+            width: '100%'
           }}
         >
-          <TouchableOpacity onPress={() => props.navigation.goBack()}>
-            <Image
-              style={styles.profileAvatar}
-              source={require("../../assets/close.png")}
-            />
-          </TouchableOpacity>
-        </View>
         <View style={styles.container}>
           <ImageBackground
             source={require("../../assets/profile-picture.png")}
             style={styles.headShot}
-          >
+            > 
             <TouchableOpacity onPress={() => getPhotosFromGallery()}>
               <Image
                 style={styles.edit}
                 source={require("../../assets/edit.png")}
-              />
+                />
             </TouchableOpacity>
             <View style={styles.overlay} />
+                <TouchableOpacity
+                  onPress={() => props.navigation.goBack()}
+                >
+                  <Image
+                    style={{ height: 50, width: 50 }}
+                    source={require("../../assets/back-50.png")}
+                  />
+                </TouchableOpacity>
             <Text
               style={{
                 color: "white",
@@ -51,7 +52,7 @@ export const Profile = props => {
                 marginBottom: 10,
                 fontWeight: "bold"
               }}
-            >
+              >
               {props.user.attributes.first_name}{" "}
               {props.user.attributes.last_name}
             </Text>
@@ -65,7 +66,7 @@ export const Profile = props => {
             marginTop: 20,
             color: "#767676"
           }}
-        >
+          >
           Email address
         </Text>
         <Text style={{ marginLeft: 30, fontSize: 22, marginBottom: 30 }}>
@@ -78,7 +79,7 @@ export const Profile = props => {
             marginBottom: 5,
             color: "#767676"
           }}
-        >
+          >
           Phone number
         </Text>
         <Text style={{ marginLeft: 30, fontSize: 22 }}>
@@ -102,8 +103,9 @@ export const Profile = props => {
               color: "#FDFFFC",
               fontSize: 20
             }}
-          />
+            />
         </View>
+        </ImageBackground>
       </ScrollView>
     </>
   );
@@ -122,21 +124,17 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(69,85,117,0.4)"
   },
   headShot: {
-    width: "100%",
-    height: 300,
     display: "flex",
     flex: 1,
     width: null,
     height: null
   },
   profileAvatar: {
-    top: 10,
-    borderRadius: 20,
+    borderRadius: 25,
     width: 48,
     height: 48,
-    marginTop: 50,
     marginRight: 10,
-    marginBottom: 20
+    marginBottom: 5,
   },
   edit: {
     width: 40,

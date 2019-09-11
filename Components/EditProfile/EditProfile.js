@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { TextInput, ScrollView, View, Image, TouchableOpacity, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { Button } from 'react-native-elements'
+import { editUserThunk } from '../../Thunks/UserThunks'
 
 export const EditProfile = (props) => {
   const [email, setEmail] = useState(props.user.attributes.email)
@@ -9,13 +10,15 @@ export const EditProfile = (props) => {
   const [lastName, setLastName] = useState(props.user.attributes.last_name)
   const [phoneNumber, setPhoneNumber] = useState(props.user.attributes.phone_number)
 
-  const handleUpdateUser = (id, key) => {
+  const handleUpdateUser = async (id, key) => {
     const profile = {
       first_name: firstName,
       last_name: lastName,
       phone_number: phoneNumber,
       email
     }
+    await props.editProfile(id, key, profile)
+    props.navigation.goBack()
   }
 
   return (
@@ -66,7 +69,7 @@ export const EditProfile = (props) => {
           />
           <Button 
             title='Submit Changes'
-
+            onPress={() => handleUpdateUser(props.user.id, props.user.attributes.api_key)}
           />
         </View>
       </ScrollView>
@@ -104,7 +107,7 @@ const mapStateToProps = store => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
+  editProfile: (id, key, profile) => dispatch(editUserThunk(id, key, profile))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)

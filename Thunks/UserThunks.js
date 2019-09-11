@@ -44,3 +44,26 @@ export const loginUserThunk = currentUser => {
     }
   }
 }
+
+export const editUserThunk = (id, key, profile) => {
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/users/${id}?api_key=${key}`
+  return async dispatch => {
+    try { 
+      const options = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(profile)
+      }
+      const response = await fetch(url, options)
+      const user = await response.json()
+      dispatch(addCurrentUser(user))
+      return user
+    }
+    catch(error) {
+      dispatch(hasErrored(error.message))
+    }
+  }
+}
