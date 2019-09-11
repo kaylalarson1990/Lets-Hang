@@ -6,15 +6,8 @@ cache:
   directories:
   - node_modules
 install:
-- yarn install
-- yarn add expo-cli
-# script:
-# - yarn run lint
-# - yarn run test
-deploy:
-  provider: heroku
-  api_key:
-    secure: fvCXLal+35KdD05CMx3busioSUP3G/wz/1DKJ7K+jlQ77Egw144P3GhUMtF1VZ529U9Li+q/szoHAeFHhAEYyGVVG8fWrI4bp/M3cCayk/jCX3bxtcHIF/TMvEUpKWP+SatI+HekxpGGR4KmkIP8wxR0zMp8RXsTfLfCtp+fETvCSs9QycO3eiZxqvJ8H8bUxmHdcRS4Gs0/jtbthtZbM44p9z1okkoXMaugVFAT9Ir+LPSTYYwu5PxuiuE5OrHoDrV+w0K3CcDO8eYsmYrO7v0INqOZZUNic+oHVSg7zkeDFAo2V5jomt5JZIEFDfv0DV/OQNeIqdYHuVMgrnvb22Caxb58E/Op+OtnV34xaWo4KQCq8zBN4GcG+r3zCGWis0gNQcaKF2xnBKwLd7VmqA0tAQMrvi6D2/hn1huUUUcbuR04tohhUp3asdyyKOH0OqnXCyxSTk+orrEFWHiFwv/bh7mLQIXZd326pANWva4sDtKBtRhnK1KY55FwC/t0dOSyzKvrmdQDit46Amhi2geo01crIsUFmGOLxLEobgbClgGAeGlQ++FdUnmddwG98kyIXMFLBRy0ykjULajGCRn0IwTt172/E+pgDbd4U9c9XdsyYWRbivOMWa6dFkM2VYYrrSijULqwpnGyrCzaCoPr6tQEx/xLJzgDDPL9qf0=
-  app: Lets-Hang-Fe
-  on:
-    repo: kaylalarson1990/Lets-Hang
+- npm install
+- npm install expo-cli
+script:
+- npm test
+
