@@ -6,11 +6,12 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
+import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { Friends } from "../Friends/Friends";
-import { FloatingAction } from 'react-native-floating-action'
-import { withNavigation } from 'react-navigation'
+import { FloatingAction } from "react-native-floating-action";
+import { withNavigation } from "react-navigation";
 
 export const FriendList = props => {
   const allFriends = props.friends.map(friend => {
@@ -24,35 +25,61 @@ export const FriendList = props => {
   });
   return (
     <>
-    <ScrollView>
-      <View style={styles.friendCover}>
+      <ScrollView>
+        <View style={styles.friendCover}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center"
+            }}
+          >
+            <Text style={styles.friendName}>Friends List</Text>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate("Profile")}
+            >
+              <Image
+                style={styles.avatar}
+                source={require("../../assets/main-user.png")}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
         <View
           style={{
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center"
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#f7f7f7"
           }}
         >
-          <Text style={styles.friendName}>Friends List</Text>
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate("Profile")}
-          >
-            <Image
-              style={styles.avatar}
-              source={require("../../assets/main-user.png")}
+          <TouchableOpacity>
+            <Button
+              title="View Pending Friends"
+              onPress={() => props.navigation.navigate("PendingFriendList")}
+              containerStyle={{
+                width: "100%",
+                display: "flex",
+                marginTop: 10,
+                marginBottom: 10
+              }}
+              buttonStyle={{
+                width: '100%',
+                backgroundColor: "white"
+              }}
+              titleStyle={{
+                color: "#2296F3"
+              }}
+              raised={true}
             />
           </TouchableOpacity>
         </View>
-      </View>
-      <View style={{ backgroundColor: "#f7f7f7", minHeight: 675 }}>
-        {allFriends}
-      </View>
-    </ScrollView>
-      <FloatingAction 
-        onPressMain={ () => props.navigation.navigate('PendingFriendList')}
-        showBackground={false}
-      />
+        <View style={{ backgroundColor: "#f7f7f7", minHeight: '100%' }}>
+          {allFriends}
+        </View>
+      </ScrollView>
     </>
   );
 };

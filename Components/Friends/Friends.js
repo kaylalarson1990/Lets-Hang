@@ -27,7 +27,6 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     marginBottom: 20,
-    // box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
     elevation: 2
   },
   friendListContent: {
