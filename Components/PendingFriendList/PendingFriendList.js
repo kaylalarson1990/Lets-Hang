@@ -1,11 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
-import { PendingFriend } from "../PendingFriend/PendingFriend";
+import  PendingFriend  from "../PendingFriend/PendingFriend";
 
-export const PendingFriendList = (props, friends) => {
-  console.log(props);
-  console.log(friends);
+export const PendingFriendList = (props) => {
   const pendingFriends = props.friends.map(friend => {
     return <PendingFriend friend={friend} />;
   });

@@ -1,8 +1,9 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { acceptFriendRequestThunk, removeFriendThunk } from '../../Thunks/FriendsThunks'
 
-export const PendingFriend = ({ friend }) => {
+export const PendingFriend = ({ friend, acceptRequest, removeFriend, userKey }) => {
   return (
     <View style={styles.pendingFriendContainer}>
       <View style={styles.pendingFriendContent}>
@@ -10,10 +11,14 @@ export const PendingFriend = ({ friend }) => {
           <Text style={styles.pendingFriendName}>{friend.name}</Text>
           <Text style={styles.phone}>{friend.phone_number}</Text>
           <Text style={styles.email}>{friend.email}</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => removeFriend(friend.id, userKey)}
+          >
             <Text>Decline</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => acceptRequest(friend.id, userKey)}
+          >
             <Text>Accept</Text>
           </TouchableOpacity>
         </View>
@@ -64,5 +69,13 @@ export const styles = StyleSheet.create({
     marginTop: 4
   }
 });
+const mapStateToProps = store => ({
+  userKey: store.currentUser.attributes.api_key,
+})
 
-export default connect(null, null)(PendingFriend);
+const mapDispatchToProps = dispatch => ({
+  acceptRequest: (id, key) => dispatch(acceptFriendRequestThunk(id, key)),
+  removeFriend: (id, key) => dispatch(removeFriendThunk(id, key))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PendingFriend);
