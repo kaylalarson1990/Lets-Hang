@@ -24,7 +24,7 @@ export const Profile = props => {
             <TouchableOpacity onPress={() => props.navigation.goBack()}>
               <Image
                 style={{ height: 50, width: 50, marginTop: 35 }}
-                source={require("../../assets/back-btn.png")}
+                source={require("../../assets/back-50.png")}
               />
             </TouchableOpacity>
             <Text

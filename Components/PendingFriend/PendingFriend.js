@@ -1,9 +1,18 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
-import { acceptFriendRequestThunk, removeFriendThunk } from '../../Thunks/FriendsThunks'
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { connect } from "react-redux";
+import { Button } from "react-native-elements";
+import {
+  acceptFriendRequestThunk,
+  removeFriendThunk
+} from "../../Thunks/FriendsThunks";
 
-export const PendingFriend = ({ friend, acceptRequest, removeFriend, userKey }) => {
+export const PendingFriend = ({
+  friend,
+  acceptRequest,
+  removeFriend,
+  userKey
+}) => {
   return (
     <View style={styles.pendingFriendContainer}>
       <View style={styles.pendingFriendContent}>
@@ -11,16 +20,48 @@ export const PendingFriend = ({ friend, acceptRequest, removeFriend, userKey }) 
           <Text style={styles.pendingFriendName}>{friend.name}</Text>
           <Text style={styles.phone}>{friend.phone_number}</Text>
           <Text style={styles.email}>{friend.email}</Text>
-          <TouchableOpacity
-            onPress={() => removeFriend(friend.id, userKey)}
-          >
-            <Text>Decline</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => acceptRequest(friend.id, userKey)}
-          >
-            <Text>Accept</Text>
-          </TouchableOpacity>
+          <View style={{ display: "flex", flexDirection: "row", justifyContent: 'space-evenly' }}>
+            <TouchableOpacity onPress={() => removeFriend(friend.id, userKey)}>
+              <Button
+                title="Decline"
+                containerStyle={{
+                  width: 100,
+                  display: "flex",
+                  marginTop: 10,
+                  marginBottom: 10
+                }}
+                buttonStyle={{
+                  width: "100%",
+                  backgroundColor: "#FDFFFC"
+                }}
+                titleStyle={{
+                  color: "#011627",
+                  fontSize: 20
+                }}
+                raised={true}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => acceptRequest(friend.id, userKey)}>
+              <Button
+                title="Accept"
+                containerStyle={{
+                  width: 100,
+                  display: "flex",
+                  marginTop: 10,
+                  marginBottom: 10
+                }}
+                buttonStyle={{
+                  width: "100%",
+                  backgroundColor: "#011627"
+                }}
+                titleStyle={{
+                  color: "#FDFFFC",
+                  fontSize: 20
+                }}
+                raised={true}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -29,8 +70,8 @@ export const PendingFriend = ({ friend, acceptRequest, removeFriend, userKey }) 
 
 export const styles = StyleSheet.create({
   pendingFriendContainer: {
-    backgroundColor: "#fff",
-    minHeight: 150,
+    backgroundColor: "#FDFFFC",
+    minHeight: 200,
     borderRadius: 4,
     margin: 10,
     borderBottomWidth: 0,
@@ -63,19 +104,22 @@ export const styles = StyleSheet.create({
     marginTop: 4
   },
   pendingFriendName: {
-    color: "black",
+    color: "#011627",
     fontSize: 32,
     fontWeight: "bold",
     marginTop: 4
   }
 });
 const mapStateToProps = store => ({
-  userKey: store.currentUser.attributes.api_key,
-})
+  userKey: store.currentUser.attributes.api_key
+});
 
 const mapDispatchToProps = dispatch => ({
   acceptRequest: (id, key) => dispatch(acceptFriendRequestThunk(id, key)),
   removeFriend: (id, key) => dispatch(removeFriendThunk(id, key))
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PendingFriend);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PendingFriend);

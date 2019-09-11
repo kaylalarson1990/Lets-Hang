@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Icon } from "react-native-elements";
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
-import  PendingFriend  from "../PendingFriend/PendingFriend";
+import PendingFriend from "../PendingFriend/PendingFriend";
 
-export const PendingFriendList = (props) => {
+export const PendingFriendList = props => {
   const pendingFriends = props.friends.map(friend => {
     return <PendingFriend friend={friend} />;
   });
 
-  console.log(props)
+  console.log(props);
 
   return (
     <>
@@ -22,17 +23,18 @@ export const PendingFriendList = (props) => {
           }}
         >
           <Text style={styles.pendingFriends}>Pending Friends</Text>
-          <TouchableOpacity
-            onPress={() => props.navigation.goBack()}
-          >
-            <Image
+          <TouchableOpacity onPress={() => props.navigation.goBack()}>
+            <Icon
               style={styles.avatar}
-              source={require("../../assets/close.png")}
+              size={48}
+              name="close"
+              color="#517fa4"
+              type="ionicons"
             />
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ backgroundColor: "#f7f7f7", minHeight: "100%" }}>
+      <View style={{ backgroundColor: "#01d2c120", minHeight: "100%" }}>
         {pendingFriends}
       </View>
     </>
@@ -41,11 +43,11 @@ export const PendingFriendList = (props) => {
 
 export const styles = StyleSheet.create({
   pendingFriends: {
-    color: "black",
-    fontSize: 32,
+    color: "#011627",
+    fontSize: 38,
     fontWeight: "bold",
     marginTop: 20,
-    marginRight: 84,
+    marginRight: 44,
     textAlign: "center"
   },
   pendingFriendCover: {
@@ -53,7 +55,7 @@ export const styles = StyleSheet.create({
     height: 150,
     overflow: "hidden",
     paddingTop: 40,
-    backgroundColor: "#f7f7f7"
+    backgroundColor: "#01d2c120"
   },
   avatar: {
     top: 10,

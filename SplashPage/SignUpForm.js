@@ -168,7 +168,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
             speed={1}
             autoPlay
             style={{
-              marginTop: 240
+              marginTop: 125
             }}
           />
         )}
@@ -180,7 +180,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
             }}
             autoPlay
             style={{
-              marginTop: 240
+              marginTop: 125
             }}
             loop={false}
             onAnimationFinish={() => navigation.navigate("Home")}
@@ -193,7 +193,7 @@ export const SignUpForm = ({ setSignUp, navigation, addNewUser }) => {
             loop={false}
             speed={2}
             style={{
-              marginTop: 240
+              marginTop: 125
             }}
             onAnimationFinish={() => setFailure(false)}
           />

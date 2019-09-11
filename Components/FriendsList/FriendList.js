@@ -85,6 +85,7 @@ export const FriendList = props => {
               style={{ height: 30, width: 30 }}
               name="search"
               type="font-awesome"
+              onPress={() => handleSearchForFriend(props.userKey, searchUser)}
             />
           </View>
           <TouchableOpacity>
@@ -119,11 +120,11 @@ export const FriendList = props => {
 
 export const styles = StyleSheet.create({
   friendName: {
-    color: "black",
-    fontSize: 32,
+    color: "#011627",
+    fontSize: 38,
     fontWeight: "bold",
     marginTop: 20,
-    marginRight: 84,
+    marginRight: 44,
     textAlign: "center"
   },
   avatar: {
