@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { Button } from 'react-native-elements'
-import { connect } from 'react-redux'
-import { declineEventThunk, acceptEventThunk } from '../../Thunks/EventThunks'
+import { Button } from "react-native-elements";
+import { connect } from "react-redux";
+import { declineEventThunk, acceptEventThunk } from "../../Thunks/EventThunks";
 
 export const Events = props => {
-  const [accepted, setAccepted] = useState(false) 
+  const [accepted, setAccepted] = useState(false);
 
   const handleAcceptEvent = async (id, key) => {
-    await props.acceptEvent(id, key)
-    setAccepted(true)
-  }
+    await props.acceptEvent(id, key);
+    setAccepted(true);
+  };
   const handleDeclineEvent = async (id, key) => {
-    await props.declineEvent(id, key)
-    setAccepted(false)
-  }
+    await props.declineEvent(id, key);
+    setAccepted(false);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -24,14 +24,49 @@ export const Events = props => {
           <Text style={styles.address}>{props.address}</Text>
           <Text style={styles.time}>{props.time}</Text>
           <Text style={styles.description}>{props.description}</Text>
-          {!accepted && <Button 
-            title='Join This Hang!'
-            onPress={() => handleAcceptEvent(props.id, props.userKey)}
-          />}
-          {accepted && <Button 
-            title='Leave Hang'
-            onPress={() => handleDeclineEvent(props.id, props.userKey)}
-          />}
+          {!accepted && (
+            <Button
+              title="Join This Hang!"
+              onPress={() => handleAcceptEvent(props.id, props.userKey)}
+              style={{
+                height: 50,
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 10
+              }}
+              buttonStyle={{
+                backgroundColor: "#2EC4B6",
+                width: '100%'
+              }}
+              titleStyle={{
+                color: "#FDFFFC",
+                fontSize: 20
+              }}
+            />
+          )}
+          <View style={{ display: "flex" }}>
+            {accepted && (
+              <Button
+                title="Leave Hang"
+                onPress={() => handleDeclineEvent(props.id, props.userKey)}
+                style={{
+                  height: 50,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: 10
+                }}
+                buttonStyle={{
+                  backgroundColor: "#FDFFFC",
+                  width: '100%',
+                  border: '#2EC4B6'
+                }}
+                titleStyle={{
+                  color: "#2EC4B6",
+                  fontSize: 20
+                }}
+              />
+            )}
+          </View>
         </View>
       </View>
     </View>
@@ -43,7 +78,7 @@ export const styles = StyleSheet.create({
     width: "96%",
     minHeight: 300,
     borderRadius: 4,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FDFFFC",
     borderBottomWidth: 0,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -87,8 +122,8 @@ export const styles = StyleSheet.create({
   },
   eventsName: {
     color: "#011627",
-    fontSize: 28,
-    fontWeight: '300',
+    fontSize: 24,
+    fontWeight: "300",
     marginTop: 4,
     marginBottom: 10
   }
@@ -96,11 +131,14 @@ export const styles = StyleSheet.create({
 
 const mapStateToProps = store => ({
   userKey: store.currentUser.attributes.api_key
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   acceptEvent: (id, key) => dispatch(acceptEventThunk(id, key)),
   declineEvent: (id, key) => dispatch(declineEventThunk(id, key))
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Events)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Events);

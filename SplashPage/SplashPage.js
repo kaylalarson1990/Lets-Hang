@@ -32,7 +32,7 @@ export const SplashPage = props => {
               containerStyle={{
                 width: "100%",
                 display: "flex",
-                marginTop: 10
+                marginTop: 15
               }}
               buttonStyle={{
                 width: 300,
@@ -53,7 +53,7 @@ export const SplashPage = props => {
             containerStyle={{
               width: "100%",
               display: "flex",
-              marginTop: 10
+              marginTop: 15
             }}
             buttonStyle={{
               width: 300,

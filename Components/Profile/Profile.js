@@ -94,8 +94,8 @@ export const Profile = props => {
               alignItems: "center"
             }}
             buttonStyle={{
-              width: 300,
-              backgroundColor: "#011627"
+              width: 350,
+              backgroundColor: "#2EC4B6"
             }}
             titleStyle={{
               color: "#FDFFFC",

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Text
 } from "react-native";
-import  Events  from "./Components/Events/Events";
+import Events from "./Components/Events/Events";
 import { connect, useSelector } from "react-redux";
 import { getEventsThunk } from "./Thunks/EventThunks";
 import { getUserFriendsThunk } from "./Thunks/FriendsThunks";
@@ -73,7 +73,7 @@ export const Home = props => {
       <FloatingAction
         onPressMain={value => setCreateEvent(value)}
         showBackground={false}
-        buttonStyle={{ backgroundColor: "#011627" }}
+        color="#011627"
       />
     </>
   );

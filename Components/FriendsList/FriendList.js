@@ -60,17 +60,18 @@ export const FriendList = props => {
               title="View Pending Friends"
               onPress={() => props.navigation.navigate("PendingFriendList")}
               containerStyle={{
-                width: "100%",
+                //width: "100%",
                 display: "flex",
                 marginTop: 10,
                 marginBottom: 10
               }}
               buttonStyle={{
                 width: '100%',
-                backgroundColor: "white"
+                backgroundColor: "FDFFFC"
               }}
               titleStyle={{
-                color: "#2296F3"
+                color: "#2EC4B6",
+                fontSize: 20
               }}
               raised={true}
             />

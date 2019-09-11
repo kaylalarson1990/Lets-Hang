@@ -106,8 +106,8 @@ export const CreateEvent = props => {
             title="Submit"
             onPress={() => handleCreateEvent()}
             buttonStyle={{
-              width: 300,
-              backgroundColor: "#011627"
+              width: '100%',
+              backgroundColor: "#2EC4B6"
             }}
             titleStyle={{
               color: "#FDFFFC",
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderBottomWidth: 0,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 1,
     shadowRadius: 2,
     elevation: 4
