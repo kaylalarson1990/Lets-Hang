@@ -1,4 +1,4 @@
-import { getFriends, hasErrored, getPendingFriends, getRequestedFriends } from '../Actions/index'
+import { getFriends, hasErrored, getPendingFriends, getRequestedFriends, addSearchResult } from '../Actions/index'
 
 export const getUserFriendsThunk = key => {
   const url = `https://lets-hang-be.herokuapp.com/api/v1/user/friends?api_key=${key}`
@@ -30,6 +30,7 @@ export const makeFriendRequestThunk  = (key, id) => {
       }
       const response = await fetch(url, options)
       const requestStatus = await response.json()
+      console.log(requestStatus)
       return requestStatus
     }
     catch(error) {
@@ -51,6 +52,7 @@ export const acceptFriendRequestThunk = (id, key) => {
     try {
       const response = await fetch(url, options)
       const requestStatus = await response.json()
+      console.log(requestStatus)
       await getUserFriendsThunk(key)
       return requestStatus
     }
@@ -75,6 +77,21 @@ export const removeFriendThunk = (id, key) => {
       const removeStatus = await response.json()
       await getUserFriendsThunk(key)
       return removeStatus
+    }
+    catch(error) {
+      dispatch(hasErrored(error.message))
+    }
+  }
+}
+
+export const searchForFriendThunk = (key, name) => {
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/user/search?api_key=${key}&query=${name}`
+  return async dispatch => {
+    try {
+      const response = await fetch(url)
+      const friend = await response.json()
+      dispatch(addSearchResult(friend.data))
+      return friend.data
     }
     catch(error) {
       dispatch(hasErrored(error.message))

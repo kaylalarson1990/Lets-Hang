@@ -8,6 +8,8 @@ export const PendingFriendList = (props) => {
     return <PendingFriend friend={friend} />;
   });
 
+  console.log(props)
+
   return (
     <>
       <View style={styles.pendingFriendCover}>
@@ -64,7 +66,7 @@ export const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => ({
-  friends: store.pending
+  friends: store.requested
 });
 
 export default connect(

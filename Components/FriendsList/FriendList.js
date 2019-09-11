@@ -12,9 +12,15 @@ import { connect } from "react-redux";
 import React, { useState } from "react";
 import { Friends } from "../Friends/Friends";
 import { withNavigation } from "react-navigation";
+import { searchForFriendThunk } from "../../Thunks/FriendsThunks";
 
 export const FriendList = props => {
   const [searchUser, setSearchUser] = useState("");
+
+  const handleSearchForFriend = async (key, name) => {
+    await props.searchForFriend(props.userKey, searchUser);
+    props.navigation.navigate("SearchResult");
+  };
 
   const allFriends = props.friends.map(friend => {
     return (
@@ -52,7 +58,6 @@ export const FriendList = props => {
             </TouchableOpacity>
           </View>
         </View>
-
         <View
           style={{
             display: "flex",
@@ -158,7 +163,16 @@ export const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => ({
-  friends: store.friends
+  friends: store.friends,
+  userKey: store.currentUser.attributes.api_key
 });
 
-export default withNavigation(connect(mapStateToProps)(FriendList));
+const mapDispatchToProps = dispatch => ({
+  searchForFriend: (key, name) => dispatch(searchForFriendThunk(key, name))
+});
+export default withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(FriendList)
+);
