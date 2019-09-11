@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
-import { createEventThunk } from "../../Thunks/EventThunks";
+import { createEventThunk, inviteFriendsToEventThunk } from "../../Thunks/EventThunks";
 
 export const CreateEvent = props => {
   const [eventName, setEventName] = useState("");
@@ -10,6 +10,10 @@ export const CreateEvent = props => {
   const [eventTime, setEventTime] = useState("");
   const [eventLocation, setEventLocation] = useState("");
   const [error, setError] = useState(false);
+
+  const friendsIds = props.friends.map( friend => {
+    return friend.id
+  })
 
   const handleCreateEvent = async () => {
     const event = {
@@ -19,6 +23,7 @@ export const CreateEvent = props => {
       event_location: eventLocation
     };
     const response = await props.createEvent(event, props.id);
+    const addFriends = await props.inviteFriends(response.data.id, props.user.attributes.api_key, {friend_ids: friendsIds})
     if (response) {
       props.setCreateEvent(false);
     } else {
@@ -134,11 +139,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => ({
-  key: store.currentUser.attributes.api_key
+  user: store.currentUser,
+  friends: store.friends
 });
 
 const mapDispatchToProps = dispatch => ({
-  createEvent: (event, key) => dispatch(createEventThunk(event, key))
+  createEvent: (event, key) => dispatch(createEventThunk(event, key)),
+  inviteFriends: (id, key, friends) => dispatch(inviteFriendsToEventThunk(id, key, friends))
 });
 
 export default connect(

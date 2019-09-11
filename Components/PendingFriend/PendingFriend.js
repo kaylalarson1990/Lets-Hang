@@ -1,5 +1,6 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 
 export const PendingFriend = ({ friend }) => {
   return (
@@ -64,4 +65,4 @@ export const styles = StyleSheet.create({
   }
 });
 
-export default PendingFriend;
+export default connect(null, null)(PendingFriend);

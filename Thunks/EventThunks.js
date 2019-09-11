@@ -35,3 +35,28 @@ export const createEventThunk = (event, key) => {
     }
   };
 };
+
+export const inviteFriendsToEventThunk = (id, key,friends) => {
+  console.log(id, key)
+  const url = `https://lets-hang-be.herokuapp.com/api/v1/user/event/${id}?api_key=${key}`
+  return async dispatch => {
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(friends) 
+      }
+      const response = await fetch(url, options)
+      const event = await response.json()
+      console.log(event)
+      await getEventsThunk(key)
+      return event
+    }
+    catch(error) {
+      dispatch(hasErrored(error.message))
+    }
+  }
+}
