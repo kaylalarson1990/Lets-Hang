@@ -127,9 +127,12 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   edit: {
-    width: 30,
-    height: 30,
-    marginLeft: 30
+    width: 40,
+    height: 40,
+    marginLeft: 350,
+    marginTop: 5,
+    borderRadius: 4,
+    backgroundColor: "rgba(69,85,117,0.4)"
   }
 });
 
