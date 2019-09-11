@@ -8,7 +8,7 @@ import {
   Image,
   ImageBackground
 } from "react-native";
-import { Button, TextInput } from "react-native-elements";
+import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 
 export const Profile = props => {
@@ -87,6 +87,7 @@ export const Profile = props => {
         <View style={{ display: "flex" }}>
           <Button
             title="Edit Profile"
+            onPress={() => props.navigation.navigate('EditProfile')}
             style={{
               height: 40,
               marginTop: 150,
