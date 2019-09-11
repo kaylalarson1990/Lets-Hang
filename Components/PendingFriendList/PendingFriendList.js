@@ -8,6 +8,8 @@ export const PendingFriendList = (props) => {
     return <PendingFriend friend={friend} />;
   });
 
+  console.log(props)
+
   return (
     <>
       <View style={styles.pendingFriendCover}>

@@ -18,7 +18,6 @@ export const getUserFriendsThunk = key => {
 }
 
 export const makeFriendRequestThunk  = (key, id) => {
-  console.log(key, id)
   const url = `https://lets-hang-be.herokuapp.com/api/v1/friendships?api_key=${key}&friend_id=${id}`
   return async dispatch => {
     try{
@@ -53,6 +52,7 @@ export const acceptFriendRequestThunk = (id, key) => {
     try {
       const response = await fetch(url, options)
       const requestStatus = await response.json()
+      console.log(requestStatus)
       await getUserFriendsThunk(key)
       return requestStatus
     }
