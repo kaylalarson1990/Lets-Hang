@@ -6,6 +6,11 @@
 ## Description
 Let's Hang is a native app that allows friends to schedule same day events to hang out with their friends. 
 
+### Technologies
+- React Native
+- Redux
+- Jest/Enzyme
+
 ### Learning Goals
 - Use an agile process to turn well defined requirements into deployed and production ready software.
 - Gain experience dividing applications into components and domains of responsibilities to facilitate multi-developer teams.
@@ -14,12 +19,39 @@ Let's Hang is a native app that allows friends to schedule same day events to ha
 - Gain more experience using continuous integration tools to build and automate the deployment of features in various environments.
 - Focus on communication between front-end and back-end teams in order to complete and deploy MVP features.
 
+### Installation
+- Git clone https://github.com/kaylalarson1990/Lets-Hang.git
+
+- cd into the directory
+
+- Run npm install
+
+- Download Expo to view it on phone simulator. Installation instructions can be found [here](https://expo.io/learn)
+
+- Run npm start
+
 ## Screenshots
 
-<img width="402" alt="Screen Shot 2019-09-11 at 8 05 57 AM" src="https://user-images.githubusercontent.com/37026730/64704328-5e49e100-d46b-11e9-8d2d-212b6a2d6421.png">
-<img width="401" alt="Screen Shot 2019-09-11 at 8 06 10 AM" src="https://user-images.githubusercontent.com/37026730/64704330-5e49e100-d46b-11e9-8e80-a7db707abac0.png">
-<img width="404" alt="Screen Shot 2019-09-11 at 8 06 19 AM" src="https://user-images.githubusercontent.com/37026730/64704331-5e49e100-d46b-11e9-8ccf-df405ebe2619.png">
-<img width="401" alt="Screen Shot 2019-09-11 at 8 06 42 AM" src="https://user-images.githubusercontent.com/37026730/64704332-5e49e100-d46b-11e9-83cf-2dd1b4ea1511.png">
-<img width="407" alt="Screen Shot 2019-09-11 at 8 06 51 AM" src="https://user-images.githubusercontent.com/37026730/64704333-5ee27780-d46b-11e9-8b0e-b95dae1c279b.png">
-<img width="401" alt="Screen Shot 2019-09-11 at 8 07 04 AM" src="https://user-images.githubusercontent.com/37026730/64704334-5ee27780-d46b-11e9-9836-0ca74882301a.png">
-<img width="402" alt="Screen Shot 2019-09-11 at 8 07 17 AM" src="https://user-images.githubusercontent.com/37026730/64704335-5ee27780-d46b-11e9-80ba-5220c0d2bc3d.png">
+#### Splash Page
+![Screen Shot 2019-09-12 at 7 42 56 AM](https://user-images.githubusercontent.com/37026730/64789165-1ab9aa80-d531-11e9-9cb6-b43bae6dd5cb.png)
+
+#### Login Page
+![Screen Shot 2019-09-12 at 7 43 07 AM](https://user-images.githubusercontent.com/37026730/64789202-2e651100-d531-11e9-835e-9c7b5b5b1589.png)
+
+#### Signup Page
+![Screen Shot 2019-09-12 at 7 45 25 AM](https://user-images.githubusercontent.com/37026730/64789262-4d63a300-d531-11e9-9be7-406a03c4d7d8.png)
+
+#### Home Page
+![Screen Shot 2019-09-12 at 7 46 21 AM](https://user-images.githubusercontent.com/37026730/64789347-6f5d2580-d531-11e9-8e98-2fb8368e9014.png)
+
+#### Add Event
+![Screen Shot 2019-09-12 at 7 46 52 AM](https://user-images.githubusercontent.com/37026730/64789403-88fe6d00-d531-11e9-813c-9a11e4247498.png)
+
+#### Friend List
+![Screen Shot 2019-09-12 at 7 54 03 AM](https://user-images.githubusercontent.com/37026730/64789946-818b9380-d532-11e9-94e8-fb68ce74fa38.png)
+
+#### Pending Friends
+![Screen Shot 2019-09-12 at 7 49 03 AM](https://user-images.githubusercontent.com/37026730/64789569-d37fe980-d531-11e9-91e5-cf2b263d2084.png)
+
+#### Friend Request Status
+![Screen Shot 2019-09-12 at 7 53 24 AM](https://user-images.githubusercontent.com/37026730/64790001-97995400-d532-11e9-95bb-4078677917f9.png)
