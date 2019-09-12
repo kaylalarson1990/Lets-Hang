@@ -55,3 +55,6 @@ Let's Hang is a native app that allows friends to schedule same day events to ha
 
 #### Friend Request Status
 ![Screen Shot 2019-09-12 at 7 53 24 AM](https://user-images.githubusercontent.com/37026730/64790001-97995400-d532-11e9-95bb-4078677917f9.png)
+
+### Trello Board MVP 1
+![Screen Shot 2019-09-12 at 8 08 41 AM](https://user-images.githubusercontent.com/37026730/64791278-ba2c6c80-d534-11e9-85af-85f17d3d4166.png)
