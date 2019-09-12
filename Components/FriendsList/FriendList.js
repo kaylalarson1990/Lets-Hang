@@ -121,7 +121,7 @@ export const FriendList = props => {
 export const styles = StyleSheet.create({
   friendName: {
     color: "#011627",
-    fontSize: 38,
+    fontSize: 34,
     fontWeight: "bold",
     marginTop: 20,
     marginRight: 44,
