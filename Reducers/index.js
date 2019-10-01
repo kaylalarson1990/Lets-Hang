@@ -6,6 +6,8 @@ import { ErrorReducer } from './ErrorReducer'
 import { RequestedReducer } from './RequestedReducer'
 import { PendingReducer } from './PendingReducer'
 import { SearchResultReducer } from './SearchResult'
+import { ActionCableReducer } from './ActionCableReducer'
+import { CableReducer } from './CableReducer'
 
 export const rootReducer = combineReducers({
   events: EventReducer,
@@ -14,5 +16,7 @@ export const rootReducer = combineReducers({
   error: ErrorReducer,
   requested: RequestedReducer,
   pending: PendingReducer,
-  searchResult: SearchResultReducer
+  searchResult: SearchResultReducer,
+  actionCable: ActionCableReducer,
+  cable: CableReducer
 });

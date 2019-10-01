@@ -37,3 +37,13 @@ export const addSearchResult = search => ({
   type: 'ADD_SEARCH',
   search
 })
+
+export const addActionCable = actionCable => ({
+  type: 'ADD_ACTION_CABLE',
+  actionCable
+})
+
+export const addCable = cable => ({
+  type: 'ADD_CABLE',
+  cable
+})

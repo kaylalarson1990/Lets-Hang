@@ -12,6 +12,8 @@ import LottieView from "lottie-react-native";
 import { connect } from "react-redux";
 import { loginUserThunk } from "../Thunks/UserThunks";
 import { withNavigation } from "react-navigation";
+import { ActionCable, Cable } from '@kesha-antonov/react-native-action-cable';
+import { addActionCable, addCable } from '../Actions/index'
 
 export const LogInForm = props => {
   const [email, setEmail] = useState("");
@@ -32,6 +34,10 @@ export const LogInForm = props => {
       setFailure(true);
     } else {
       setSuccess(true);
+      const actionCable = ActionCable.createConsumer('ws://lets-hang-be.herokuapp.com/api/v1/cable')
+      const cable = new Cable({})
+      props.addNewActionCable(actionCable)
+      props.addNewCable(cable)
     }
   };
   return (
@@ -162,7 +168,9 @@ const styles = StyleSheet.create({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  loginUser: user => dispatch(loginUserThunk(user))
+  loginUser: user => dispatch(loginUserThunk(user)),
+  addNewActionCable: actionCable => dispatch(addActionCable(actionCable)),
+  addNewCable: cable => dispatch(addCable(cable))
 });
 
 export default withNavigation(
