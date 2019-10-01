@@ -34,10 +34,11 @@ export const LogInForm = props => {
       setFailure(true);
     } else {
       setSuccess(true);
-      const actionCable = ActionCable.createConsumer('ws://lets-hang-be.herokuapp.com/api/v1/cable')
+      const actionCable = ActionCable.createConsumer('wss://echo.websocket.org')
       const cable = new Cable({})
       props.addNewActionCable(actionCable)
       props.addNewCable(cable)
+
     }
   };
   return (

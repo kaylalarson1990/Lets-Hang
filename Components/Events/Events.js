@@ -8,9 +8,7 @@ import { withNavigation } from 'react-navigation'
 
 export const Events = props => {
   const [accepted, setAccepted] = useState(false);
-
-  console.log(props)
-
+  
   const handleAcceptEvent = async (id, key) => {
     await props.acceptEvent(id, key);
     setAccepted(true);

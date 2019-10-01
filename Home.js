@@ -22,6 +22,8 @@ export const Home = props => {
   useEffect(async () => {
     await props.getEvents(props.user.attributes.api_key);
     await props.getFriends(props.user.attributes.api_key);
+
+    console.log(props.actionCable.connection.isActive())
   }, []);
 
   const allEvents = selectEvents.map(event => {
@@ -112,7 +114,9 @@ export const styles = StyleSheet.create({
 export const mapStateToProps = store => ({
   events: store.events,
   user: store.currentUser,
-  friends: store.friends
+  friends: store.friends,
+  actionCable: store.actionCable,
+  cable: store.cable
 });
 
 export const mapDispatchToProps = dispatch => ({
