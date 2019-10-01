@@ -36,7 +36,7 @@ Let's Hang is a native app that allows friends to schedule same day events to ha
 - The users email and password should have the option of being saved so that the login happens automatically
 - The user should be able to message people in an event they are apart of in the app
 - The user should only be able to be apart of two events at a time.
-- 
+-  
 
 ## Screenshots
 

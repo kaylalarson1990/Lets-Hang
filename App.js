@@ -16,6 +16,7 @@ import CreateEvent from './Components/CreateEvent/CreateEvent'
 import PendingFriendList from './Components/PendingFriendList/PendingFriendList'
 import EditProfile from './Components/EditProfile/EditProfile'
 import SearchResult from './Components/SearchResult/SearchResult'
+import EventMessages from './Components/EventMessages/EventMessages'
 
 YellowBox.ignoreWarnings(["ReactNative.NativeModules.LottieAnimationView.getConstants"]);
 
@@ -81,6 +82,9 @@ const rootStack = createStackNavigator(
     },
     FriendList: {
       screen: friendNavigator
+    },
+    EventMessages: {
+      screen: EventMessages
     }
   },
   {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { acceptFriendRequestThunk, removeFriendThunk } from '../../Thunks/FriendsThunks'
-import { Button } from 'react-na'
+import { Button } from 'react-native-elements'
 
 export const PendingFriend = ({ friend, acceptRequest, removeFriend, userKey }) => {
   const [accepted, setAccepted] = useState(false)

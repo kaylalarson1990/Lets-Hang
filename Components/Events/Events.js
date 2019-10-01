@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { declineEventThunk, acceptEventThunk } from "../../Thunks/EventThunks";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { withNavigation } from 'react-navigation'
 
 export const Events = props => {
   const [accepted, setAccepted] = useState(false);
@@ -19,7 +21,16 @@ export const Events = props => {
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.wrapper}>
+          <View style={styles.titleContainer}>
           <Text style={styles.title}>{props.title}</Text>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('EventMessages', {
+              eventId: props.id
+            })}
+          >
+          <Image source={require('../../Icons/messages.png')} style={styles.messagesIcon}/>
+          </TouchableOpacity>
+          </View>
           <Text style={styles.eventsName}>Created by: {props.name}</Text>
           <Text style={styles.address}>{props.address}</Text>
           <Text style={styles.time}>{props.time}</Text>
@@ -126,6 +137,15 @@ export const styles = StyleSheet.create({
     fontWeight: "300",
     marginTop: 4,
     marginBottom: 10
+  },
+  titleContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  messagesIcon: {
+    height: 40,
+    width: 40
   }
 });
 
@@ -138,7 +158,9 @@ const mapDispatchToProps = dispatch => ({
   declineEvent: (id, key) => dispatch(declineEventThunk(id, key))
 });
 
-export default connect(
+export default withNavigation(
+  connect(
   mapStateToProps,
   mapDispatchToProps
-)(Events);
+  )(Events)
+);
