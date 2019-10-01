@@ -9,6 +9,8 @@ import { withNavigation } from 'react-navigation'
 export const Events = props => {
   const [accepted, setAccepted] = useState(false);
 
+  console.log(props)
+
   const handleAcceptEvent = async (id, key) => {
     await props.acceptEvent(id, key);
     setAccepted(true);
@@ -22,7 +24,17 @@ export const Events = props => {
       <View style={styles.content}>
         <View style={styles.wrapper}>
           <View style={styles.titleContainer}>
-          <Text style={styles.title}>{props.title}</Text>
+          <View style={styles.titleMembersContainer}>
+            <Text style={styles.title}>{props.title}</Text>
+            <TouchableOpacity
+              style={styles.acceptedBtn}
+            >
+              <Text
+                style={styles.accepted}
+              >(7)</Text>
+              <Image source={require('../../assets/people.png')} style={styles.peopleImg}/>
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('EventMessages', {
               eventId: props.id
@@ -146,6 +158,25 @@ export const styles = StyleSheet.create({
   messagesIcon: {
     height: 40,
     width: 40
+  },
+  titleMembersContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  acceptedBtn: {
+    marginLeft: 5,
+    display: 'flex',
+    flexDirection: 'row',
+    paddingTop: 8
+  },
+  accepted: {
+    fontSize: 18,
+    fontWeight: 500,
+  },
+  peopleImg: {
+    height: 23,
+    width: 18
   }
 });
 
