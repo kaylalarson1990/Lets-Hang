@@ -17,6 +17,6 @@ export const rootReducer = combineReducers({
   requested: RequestedReducer,
   pending: PendingReducer,
   searchResult: SearchResultReducer,
-  actionCable: ActionCableReducer,
+  ws: ActionCableReducer,
   cable: CableReducer
 });

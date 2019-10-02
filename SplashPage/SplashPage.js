@@ -5,6 +5,8 @@ import SignUpForm from "./SignUpForm";
 import { Button } from "react-native-elements";
 import LottieView from "lottie-react-native";
 import { Text, View, StyleSheet } from "react-native";
+import { PermissionsAndroid } from 'react-native'
+import Contacts from 'react-native-contacts'
 
 export const SplashPage = props => {
   const [signUp, setSignUp] = useState(false);

@@ -23,7 +23,7 @@ export const addNewUserThunk = (user) => {
 }
 
 export const loginUserThunk = currentUser => {
-  const url = 'https://lets-hang-be.herokuapp.com/api/v1/sessions'
+  const url = 'http://localhost:3000/api/v1/sessions'
   return async dispatch => {
     try {
       const options = {

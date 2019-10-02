@@ -6,7 +6,7 @@ import {
   View,
   StyleSheet,
   TextInput,
-  Image
+  Image,
 } from "react-native";
 import LottieView from "lottie-react-native";
 import { connect } from "react-redux";
@@ -14,6 +14,8 @@ import { loginUserThunk } from "../Thunks/UserThunks";
 import { withNavigation } from "react-navigation";
 import { ActionCable, Cable } from '@kesha-antonov/react-native-action-cable';
 import { addActionCable, addCable } from '../Actions/index'
+import Contacts from 'react-native-contacts'
+
 
 export const LogInForm = props => {
   const [email, setEmail] = useState("");
@@ -34,10 +36,6 @@ export const LogInForm = props => {
       setFailure(true);
     } else {
       setSuccess(true);
-      const actionCable = ActionCable.createConsumer('wss://echo.websocket.org')
-      const cable = new Cable({})
-      props.addNewActionCable(actionCable)
-      props.addNewCable(cable)
 
     }
   };
