@@ -46,13 +46,13 @@ export const Events = props => {
             >
           <Image source={require('../../Icons/messages.png')} style={styles.messagesIcon}/>
           </TouchableOpacity>
-          {showAttending && <AttendingListContainer attending={props.attending} />}
           </View>
           </View>
           <Text style={styles.eventsName}>Created by: {props.name}</Text>
           <Text style={styles.address}>{props.address}</Text>
           <Text style={styles.time}>{props.time}</Text>
           <Text style={styles.description}>{props.description}</Text>
+          {showAttending && <AttendingListContainer attending={props.attending} />}
           {!accepted && (
             <Button
               title="Join This Hang!"
