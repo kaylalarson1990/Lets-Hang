@@ -41,6 +41,8 @@ export const Home = props => {
         time={event.event_time}
         address={event.event_location}
         description={event.description}
+        attending={event.attending}
+        invited={event.invited}
         id={event.id}
         key={event.id}
       />

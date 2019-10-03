@@ -9,6 +9,7 @@ import { withNavigation } from 'react-navigation'
 export const Events = props => {
   const [accepted, setAccepted] = useState(false);
   
+  console.log(props.attending)
   const handleAcceptEvent = async (id, key) => {
     await props.acceptEvent(id, key);
     setAccepted(true);
@@ -22,24 +23,24 @@ export const Events = props => {
       <View style={styles.content}>
         <View style={styles.wrapper}>
           <View style={styles.titleContainer}>
+          <Text style={styles.title}>{props.title}</Text>
           <View style={styles.titleMembersContainer}>
-            <Text style={styles.title}>{props.title}</Text>
             <TouchableOpacity
               style={styles.acceptedBtn}
             >
               <Text
                 style={styles.accepted}
-              >(7)</Text>
+              >({props.attending.length})</Text>
               <Image source={require('../../assets/people.png')} style={styles.peopleImg}/>
             </TouchableOpacity>
-          </View>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('EventMessages', {
               eventId: props.id
             })}
-          >
+            >
           <Image source={require('../../Icons/messages.png')} style={styles.messagesIcon}/>
           </TouchableOpacity>
+          </View>
           </View>
           <Text style={styles.eventsName}>Created by: {props.name}</Text>
           <Text style={styles.address}>{props.address}</Text>
@@ -106,18 +107,13 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     marginBottom: 20,
-    elevation: 2
+    elevation: 2,
+    padding: 15
   },
   content: {
     flexDirection: "column",
-    height: 50,
-    paddingTop: 10
   },
   wrapper: {
-    marginTop: 4,
-    marginBottom: 4,
-    marginLeft: 24,
-    marginRight: 24
   },
   time: {
     color: "#767676",
@@ -139,14 +135,14 @@ export const styles = StyleSheet.create({
     color: "#011627",
     fontSize: 34,
     fontWeight: "bold",
-    marginTop: 4
+    width: 230
   },
   eventsName: {
     color: "#011627",
     fontSize: 24,
     fontWeight: "300",
     marginTop: 4,
-    marginBottom: 10
+    marginBottom: 7
   },
   titleContainer: {
     display: 'flex',
@@ -160,13 +156,12 @@ export const styles = StyleSheet.create({
   titleMembersContainer: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
   },
   acceptedBtn: {
-    marginLeft: 5,
+    marginRight: 10,
     display: 'flex',
     flexDirection: 'row',
-    paddingTop: 8
+    alignSelf: 'center'
   },
   accepted: {
     fontSize: 18,

@@ -32,12 +32,10 @@ export class LocationForm extends Component {
 
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ location });
-    console.log(location)
   };
 
   _getContactsAsync = async () => {
     let { data } = await Contacts.getContactsAsync()
-    console.log(data)
   }
   render() {
     return (
