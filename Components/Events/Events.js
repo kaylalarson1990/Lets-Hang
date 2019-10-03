@@ -5,11 +5,11 @@ import { connect } from "react-redux";
 import { declineEventThunk, acceptEventThunk } from "../../Thunks/EventThunks";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { withNavigation } from 'react-navigation'
+import { AttendingList } from '../AttendingList/AttendingList'
 
 export const Events = props => {
   const [accepted, setAccepted] = useState(false);
   
-  console.log(props.attending)
   const handleAcceptEvent = async (id, key) => {
     await props.acceptEvent(id, key);
     setAccepted(true);
@@ -18,6 +18,7 @@ export const Events = props => {
     await props.declineEvent(id, key);
     setAccepted(false);
   };
+  
   return (
     <View style={styles.container}>
       <View style={styles.content}>
