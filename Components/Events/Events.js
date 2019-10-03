@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 import { declineEventThunk, acceptEventThunk } from "../../Thunks/EventThunks";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { withNavigation } from 'react-navigation'
-import { AttendingList } from '../AttendingList/AttendingList'
+import { AttendingListContainer } from '../AttendingListContainer/AttendingListContainer'
 
 export const Events = props => {
   const [accepted, setAccepted] = useState(false);
+  const [showAttending, setShowAttending] = useState(false)
   
   const handleAcceptEvent = async (id, key) => {
     await props.acceptEvent(id, key);
@@ -18,7 +19,7 @@ export const Events = props => {
     await props.declineEvent(id, key);
     setAccepted(false);
   };
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -28,11 +29,15 @@ export const Events = props => {
           <View style={styles.titleMembersContainer}>
             <TouchableOpacity
               style={styles.acceptedBtn}
+              onPress={() => setShowAttending(!showAttending)}  
             >
               <Text
                 style={styles.accepted}
               >({props.attending.length})</Text>
-              <Image source={require('../../assets/people.png')} style={styles.peopleImg}/>
+              <Image 
+                source={require('../../assets/people.png')} 
+                style={styles.peopleImg}
+              />
             </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('EventMessages', {
@@ -41,6 +46,7 @@ export const Events = props => {
             >
           <Image source={require('../../Icons/messages.png')} style={styles.messagesIcon}/>
           </TouchableOpacity>
+          {showAttending && <AttendingListContainer attending={props.attending} />}
           </View>
           </View>
           <Text style={styles.eventsName}>Created by: {props.name}</Text>
@@ -99,7 +105,6 @@ export const Events = props => {
 export const styles = StyleSheet.create({
   container: {
     width: "96%",
-    minHeight: 300,
     borderRadius: 4,
     backgroundColor: "#FDFFFC",
     borderBottomWidth: 0,
@@ -143,7 +148,8 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "300",
     marginTop: 4,
-    marginBottom: 7
+    marginBottom: 7,
+    zIndex: 0
   },
   titleContainer: {
     display: 'flex',

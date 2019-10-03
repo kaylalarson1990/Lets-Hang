@@ -1,11 +1,16 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 
-export const AttendingList = (props) => {
+export const AttendingList = ({name}) => {
   return (
-    <View>
-
-    </View>
+    <Text style={styles.attendingName}>{name}</Text>
   )
 }
+
+export const styles = StyleSheet.create({
+  attendingName: {
+    margin: 2,
+      
+  }
+})
