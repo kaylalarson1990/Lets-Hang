@@ -28,6 +28,7 @@ export const createEventThunk = (event, key) => {
       };
       const response = await fetch(url, options);
       const newEvent = await response.json();
+      newEvent.data.attributes.attending = newEvent.data.attributes.accepted
       dispatch(addEvent(newEvent));
       return newEvent;
     } catch (error) {
