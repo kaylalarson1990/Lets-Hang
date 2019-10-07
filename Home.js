@@ -112,10 +112,11 @@ export const styles = StyleSheet.create({
   },
   name: {
     color: "#011627",
-    fontSize: 38,
+    fontSize: 34,
     fontWeight: "bold",
     marginTop: 20,
     marginRight: 44,
+    marginLeft: 19,
     textAlign: "center"
   }
 });

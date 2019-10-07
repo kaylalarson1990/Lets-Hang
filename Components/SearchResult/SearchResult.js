@@ -82,7 +82,7 @@ export const SearchResult = props => {
           speed={1}
           autoPlay
           style={{
-            marginTop: 35
+            marginTop: 110
           }}
         />
       )}
@@ -95,7 +95,7 @@ export const SearchResult = props => {
           autoPlay
           loop={false}
           style={{
-            marginTop: 35
+            marginTop: 110
           }}
           onAnimationFinish={() => props.navigation.goBack()}
         />

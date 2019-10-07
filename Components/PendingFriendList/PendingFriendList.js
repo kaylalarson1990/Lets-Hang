@@ -1,7 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Icon } from "react-native-elements";
-import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ScrollView
+} from "react-native";
 import PendingFriend from "../PendingFriend/PendingFriend";
 
 export const PendingFriendList = props => {
@@ -33,9 +39,11 @@ export const PendingFriendList = props => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ backgroundColor: "#01d2c120", minHeight: "100%" }}>
-        {pendingFriends}
-      </View>
+      <ScrollView>
+        <View style={{ backgroundColor: "#01d2c120", minHeight: "100%" }}>
+          {pendingFriends}
+        </View>
+      </ScrollView>
     </>
   );
 };
@@ -43,7 +51,7 @@ export const PendingFriendList = props => {
 export const styles = StyleSheet.create({
   pendingFriends: {
     color: "#011627",
-    fontSize: 38,
+    fontSize: 34,
     fontWeight: "bold",
     marginTop: 20,
     marginRight: 44,
