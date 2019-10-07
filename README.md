@@ -19,6 +19,29 @@ Let's Hang is a native app that allows friends to schedule same day events to ha
 - Gain more experience using continuous integration tools to build and automate the deployment of features in various environments.
 - Focus on communication between front-end and back-end teams in order to complete and deploy MVP features.
 
+## MVP 2 User Stories
+- The user should be able to use google maps do set a location of drop a pin of where the event is
+- Any user who is part of an event should have their status changed to active when they cross a geofence around 
+  they event
+- The user should be able to see who all is attending the event
+- The user should be able to see which people attending an event are physically there right now.
+- The user should be able to create groups of friends
+- The user should be able to invite one or more groups of friends to an event
+- The user should be able to invite individual friends to an event
+- The user should be able to access their camera to take a profile picture
+- The user shuold be able to access their gallery and choose a photo for their profile picture
+- The user should be able to see a list a available deals from groupon
+- The user should be able to see a list of available deals from yelp.
+- The user should see the monkey logo on the splashpage.
+- The user should be able to logout
+- The user should be able to Oauth with facebook.
+- the user should be able to Oauth with google.
+- the user should have access to their contacts.
+- The user should be able to invite friends from their contacts to an event through twillio
+- The users email and password should have the option of being saved so that the login happens automatically
+- The user should be able to message people in an event they are apart of in the app
+- The user should only be able to be apart of two events at a time.
+-  
 ### Installation
 - Git clone https://github.com/kaylalarson1990/Lets-Hang.git
 

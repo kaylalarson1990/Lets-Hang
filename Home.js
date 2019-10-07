@@ -14,6 +14,7 @@ import { getEventsThunk } from "./Thunks/EventThunks";
 import { getUserFriendsThunk } from "./Thunks/FriendsThunks";
 import { FloatingAction } from "react-native-floating-action";
 import CreateEvent from "./Components/CreateEvent/CreateEvent";
+import Contacts from 'react-native-contacts'
 
 export const Home = props => {
   const [createEvent, setCreateEvent] = useState(false);
@@ -22,6 +23,14 @@ export const Home = props => {
   useEffect(async () => {
     await props.getEvents(props.user.attributes.api_key);
     await props.getFriends(props.user.attributes.api_key);
+    Contacts.getAll((err, contacts) => {
+      console.log('I ran')
+      if (err === 'denied'){
+        console.log("Error")
+      } else {
+        console.log("Contacts")
+      }
+    })
   }, []);
 
   const allEvents = selectEvents.map(event => {
@@ -32,6 +41,8 @@ export const Home = props => {
         time={event.event_time}
         address={event.event_location}
         description={event.description}
+        attending={event.attending}
+        invited={event.invited}
         id={event.id}
         key={event.id}
       />
@@ -113,7 +124,9 @@ export const styles = StyleSheet.create({
 export const mapStateToProps = store => ({
   events: store.events,
   user: store.currentUser,
-  friends: store.friends
+  friends: store.friends,
+  ws: store.ws,
+  cable: store.cable
 });
 
 export const mapDispatchToProps = dispatch => ({

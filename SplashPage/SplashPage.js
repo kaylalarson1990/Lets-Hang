@@ -5,6 +5,7 @@ import SignUpForm from "./SignUpForm";
 import { Button } from "react-native-elements";
 import LottieView from "lottie-react-native";
 import { Text, View, StyleSheet } from "react-native";
+import { LocationForm } from '../Components/LocationForm/LocationForm'
 
 export const SplashPage = props => {
   const [signUp, setSignUp] = useState(false);
@@ -23,6 +24,7 @@ export const SplashPage = props => {
         }}
       />
       <View style={styles.splashContent}>
+        <LocationForm />
         {!logIn && !signUp && (
           <>
             <Text style={styles.appTitle}>Let's Hang!</Text>

@@ -1,12 +1,23 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import { declineEventThunk, acceptEventThunk } from "../../Thunks/EventThunks";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { withNavigation } from 'react-navigation'
+import { AttendingListContainer } from '../AttendingListContainer/AttendingListContainer'
 
 export const Events = props => {
   const [accepted, setAccepted] = useState(false);
-
+  const [showAttending, setShowAttending] = useState(false)
+  
+  useEffect(() => {
+    let isAttending = props.attending.find(person => person === props.user.first_name + ' ' + props.user.last_name)
+    console.log(isAttending)
+    if(isAttending !== undefined) {
+      setAccepted(true)
+    }
+  })
   const handleAcceptEvent = async (id, key) => {
     await props.acceptEvent(id, key);
     setAccepted(true);
@@ -15,15 +26,40 @@ export const Events = props => {
     await props.declineEvent(id, key);
     setAccepted(false);
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.wrapper}>
+          <View style={styles.titleContainer}>
           <Text style={styles.title}>{props.title}</Text>
+          <View style={styles.titleMembersContainer}>
+            <TouchableOpacity
+              style={styles.acceptedBtn}
+              onPress={() => setShowAttending(!showAttending)}  
+            >
+              <Text
+                style={styles.accepted}
+              >({props.attending.length})</Text>
+              <Image 
+                source={require('../../assets/people.png')} 
+                style={styles.peopleImg}
+              />
+            </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('EventMessages', {
+              eventId: props.id
+            })}
+            >
+          <Image source={require('../../Icons/messages.png')} style={styles.messagesIcon}/>
+          </TouchableOpacity>
+          </View>
+          </View>
           <Text style={styles.eventsName}>Created by: {props.name}</Text>
           <Text style={styles.address}>{props.address}</Text>
           <Text style={styles.time}>{props.time}</Text>
           <Text style={styles.description}>{props.description}</Text>
+          {showAttending && <AttendingListContainer attending={props.attending} />}
           {!accepted && (
             <Button
               title="Join This Hang!"
@@ -76,7 +112,6 @@ export const Events = props => {
 export const styles = StyleSheet.create({
   container: {
     width: "96%",
-    minHeight: 300,
     borderRadius: 4,
     backgroundColor: "#FDFFFC",
     borderBottomWidth: 0,
@@ -85,18 +120,13 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     marginBottom: 20,
-    elevation: 2
+    elevation: 2,
+    padding: 15
   },
   content: {
     flexDirection: "column",
-    height: 50,
-    paddingTop: 10
   },
   wrapper: {
-    marginTop: 4,
-    marginBottom: 4,
-    marginLeft: 24,
-    marginRight: 24
   },
   time: {
     color: "#767676",
@@ -118,19 +148,48 @@ export const styles = StyleSheet.create({
     color: "#011627",
     fontSize: 34,
     fontWeight: "bold",
-    marginTop: 4
+    width: 230
   },
   eventsName: {
     color: "#011627",
     fontSize: 24,
     fontWeight: "300",
     marginTop: 4,
-    marginBottom: 10
+    marginBottom: 7,
+    zIndex: 0
+  },
+  titleContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  messagesIcon: {
+    height: 40,
+    width: 40
+  },
+  titleMembersContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  acceptedBtn: {
+    marginRight: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    alignSelf: 'center'
+  },
+  accepted: {
+    fontSize: 18,
+    fontWeight: 500,
+  },
+  peopleImg: {
+    height: 23,
+    width: 18
   }
 });
 
 const mapStateToProps = store => ({
-  userKey: store.currentUser.attributes.api_key
+  userKey: store.currentUser.attributes.api_key,
+  user: store.currentUser.attributes
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -138,7 +197,9 @@ const mapDispatchToProps = dispatch => ({
   declineEvent: (id, key) => dispatch(declineEventThunk(id, key))
 });
 
-export default connect(
+export default withNavigation(
+  connect(
   mapStateToProps,
   mapDispatchToProps
-)(Events);
+  )(Events)
+);
