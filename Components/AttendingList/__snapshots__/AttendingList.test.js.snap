@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttendingList Should match the snapshot 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+>
+  <Text
+    style={
+      Object {
+        "margin": 2,
+      }
+    }
+  >
+    ryan
+  </Text>
+</TouchableOpacity>
+`;

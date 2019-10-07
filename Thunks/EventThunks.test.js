@@ -45,7 +45,7 @@ describe('ALL EVENT THUNKS', () => {
     let mockDispatch, mockResponse
     beforeEach(() => {
       mockDispatch = jest.fn()
-      mockResponse = {id: 1, name: 'ryan'}
+      mockResponse = {data: {attributes: {id: 1, name: 'ryan'}}}
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           json: () => Promise.resolve(mockResponse)

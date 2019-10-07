@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1568244274548" clover="3.2.0">
-  <project timestamp="1568244274548" name="All files">
-    <metrics statements="127" coveredstatements="60" conditionals="13" coveredconditionals="13" methods="32" coveredmethods="15" elements="172" coveredelements="88" complexity="0" loc="127" ncloc="127" packages="3" files="7" classes="7"/>
+<coverage generated="1570478872722" clover="3.2.0">
+  <project timestamp="1570478872722" name="All files">
+    <metrics statements="133" coveredstatements="66" conditionals="13" coveredconditionals="13" methods="35" coveredmethods="16" elements="181" coveredelements="95" complexity="0" loc="133" ncloc="133" packages="4" files="8" classes="8"/>
     <package name="Actions">
-      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="5"/>
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="5"/>
       <file name="index.js" path="/Users/ryanflachmam/Module4/lets-hang/Actions/index.js">
-        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="5"/>
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="5"/>
         <line num="1" count="4" type="stmt"/>
         <line num="6" count="4" type="stmt"/>
         <line num="11" count="3" type="stmt"/>
@@ -14,6 +14,17 @@
         <line num="26" count="3" type="stmt"/>
         <line num="31" count="3" type="stmt"/>
         <line num="36" count="3" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="Components.AttendingList">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="AttendingList.js" path="/Users/ryanflachmam/Module4/lets-hang/Components/AttendingList/AttendingList.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Reducers">
@@ -49,9 +60,9 @@
       </file>
     </package>
     <package name="Thunks">
-      <metrics statements="102" coveredstatements="35" conditionals="0" coveredconditionals="0" methods="20" coveredmethods="6"/>
+      <metrics statements="103" coveredstatements="36" conditionals="0" coveredconditionals="0" methods="20" coveredmethods="6"/>
       <file name="EventThunks.js" path="/Users/ryanflachmam/Module4/lets-hang/Thunks/EventThunks.js">
-        <metrics statements="51" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="4"/>
+        <metrics statements="52" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="4"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="3" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
@@ -70,39 +81,40 @@
         <line num="30" count="2" type="stmt"/>
         <line num="31" count="2" type="stmt"/>
         <line num="32" count="2" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
         <line num="73" count="0" type="stmt"/>
         <line num="74" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
         <line num="84" count="0" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
         <line num="94" count="0" type="stmt"/>
         <line num="95" count="0" type="stmt"/>
         <line num="96" count="0" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
       </file>
       <file name="FriendsThunks.js" path="/Users/ryanflachmam/Module4/lets-hang/Thunks/FriendsThunks.js">
         <metrics statements="51" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="2"/>
