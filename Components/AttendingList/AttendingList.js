@@ -1,10 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 
 export const AttendingList = ({name}) => {
   return (
-    <Text style={styles.attendingName}>{name}</Text>
+    <TouchableOpacity>
+      <Text style={styles.attendingName}>{name}</Text>
+    </TouchableOpacity>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
@@ -11,6 +11,13 @@ export const Events = props => {
   const [accepted, setAccepted] = useState(false);
   const [showAttending, setShowAttending] = useState(false)
   
+  useEffect(() => {
+    let isAttending = props.attending.find(person => person === props.user.first_name + ' ' + props.user.last_name)
+    console.log(isAttending)
+    if(isAttending !== undefined) {
+      setAccepted(true)
+    }
+  })
   const handleAcceptEvent = async (id, key) => {
     await props.acceptEvent(id, key);
     setAccepted(true);
@@ -181,7 +188,8 @@ export const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => ({
-  userKey: store.currentUser.attributes.api_key
+  userKey: store.currentUser.attributes.api_key,
+  user: store.currentUser.attributes
 });
 
 const mapDispatchToProps = dispatch => ({
